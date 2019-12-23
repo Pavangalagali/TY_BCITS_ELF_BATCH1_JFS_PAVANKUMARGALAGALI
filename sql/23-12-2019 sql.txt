@@ -1,0 +1,88 @@
+1)select avg(age) from employee;
+
+2)select count(eid) from employee;
+
+3)select max(salary) from employee;
+
+4)select min(salary) from employee;
+
+5)select sum(eid) from employee;
+
+6)select upper(name) from employee;
+
+7)select lower(name) from employee;
+
+8)select length(email) length_of_email
+  -> from employee;
+
+9)select concat(name,gender)
+  -> from employee;
+
+10)select reverse(name) from employee;
+
+11)select substr(name,1,3) from employee;
+
+12)select instr(email,substr(name,1,5)) from employee;
+
+13)create table department(
+    -> deptid int(3) not null unique check(deptid>0),
+    -> dname varchar(200),
+    -> location varchar(200),
+    -> primary key (deptid)
+    -> );
+
+14)insert into department
+   -> values(10,'admin','mysore'),(20,'hr','banglore'),(30,'sales','mumbai'),(40,'operation','pune');
+
+15)select salary from employee order by salary;
+
+16)select salary from employee order by salary desc;
+
+17)select count(name) from employee group by deptid;
+
+18)select max(salary) from employee group by deptid having max(salary)>=40000;
+
+19)select deptid,max(salary) max_salary from employee group by deptid having max(salary)>=40000 order by salary ;
+
+20)rollback; // to delete the previous transaction
+
+21)set autocommit=0;//to set the autocommit to false from true;
+
+22)commit; // to save the transaction and that can not be deleted;
+
+23)savepoint test; //to save the transaction
+   update department set dname = 'hr' where deptid =10;
+   savepoint test1;//to save the transaction
+   delete from department where deptid=10;
+   rollback to test; // to delete the test transaction
+
+24)select * from employee cross join department;  //cartesian join
+
+25)select * from employee inner join department
+   on employee.deptid=department.deptid               //inner join
+
+
+26)select employee.deptid,name,dname
+   from employee inner join department
+   on employee.deptid = department.deptid
+
+27)select emp.deptid,emp.name,dept.dname,dept.deptid
+   from employee emp inner join department dept
+   on emp.deptid = dept.deptid
+
+28)select * from employee natural join department          // natural join
+
+29)select * from employee natural join department  on employee.deptid=department.deptid     // left outer join
+
+30)select * from employee right outer join department on employee.deptid=department.deptid  // right outer join
+
+31)select * from employee left outer join department on employee.deptid=department.deptid
+   union all                                                                                // full outer join
+   select * from employee right outer join department on employee.deptid=department.deptid
+
+
+
+
+
+
+

@@ -1,0 +1,369 @@
+
+create database databasename;
+
+crate table tablename(
+columnname datatype,
+columnname2 datatype,
+.
+.
+.
+.
+columnnamen datatype
+);
+
+alter table tablename
+add columnname datatype;
+
+alter table tablename
+drop column columnname;
+
+
+
+    create table product(
+    pid number(3) not null unique check(pid>0),
+    pname varchar(10) not null,
+    price number(5) not null check(price>0),
+    primary key (pid)
+    );
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+ show databases;
+ drop database bcits;
+ create database bcits;
+ mysql> use bcits;
+Database changed
+ use bcits;
+Database changed
+
+mysql> create table student_info(
+    -> sid int(3) not null unique check(sid>0),
+    -> name varchar(150) not null,
+    -> phoneno int(11),
+    -> marks double(3,1) not null check(marks>0),
+    -> email varchar(100),
+    -> primary key (sid)
+    -> );
+Query OK, 0 rows affected (0.59 sec)
+
+mysql> desc student_info;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| sid     | int(3)       | NO   | PRI | NULL    |       |
+| name    | varchar(150) | NO   |     | NULL    |       |
+| phoneno | int(11)      | YES  |     | NULL    |       |
+| marks   | double(3,1)  | NO   |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+
+ alter table student_info
+    -> add gender varchar(10);
+Query OK, 0 rows affected (0.88 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student_info;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| sid     | int(3)       | NO   | PRI | NULL    |       |
+| name    | varchar(150) | NO   |     | NULL    |       |
+| phoneno | int(11)      | YES  |     | NULL    |       |
+| marks   | double(3,1)  | NO   |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
+| gender  | varchar(10)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+ alter table student_info
+    -> drop column gender;
+Query OK, 0 rows affected (0.69 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student_info;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| sid     | int(3)       | NO   | PRI | NULL    |       |
+| name    | varchar(150) | NO   |     | NULL    |       |
+| phoneno | int(11)      | YES  |     | NULL    |       |
+| marks   | double(3,1)  | NO   |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+insert into student_info
+    -> values(1,'kiran',900878790,28.0,'kiran@gmail.com'),(2,'barath',886542345,43.9,'barath@gmail.com');
+Query OK, 2 rows affected (0.34 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+ insert into student_info
+    -> values(3,'aryan',952658790,98.0,'aryan@gmail.com'),(4,'jagadish',886546235,57.3,'jagga@gmail.com');
+Query OK, 2 rows affected (0.14 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into student_info
+    -> values(5,'kartic',988878008,89.0,'karti@gmail.com'),(6,'max',823654245,93.9,'max@gmail.com');
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+
+ select * from student_info;
++-----+----------+-----------+-------+------------------+
+| sid | name     | phoneno   | marks | email            |
++-----+----------+-----------+-------+------------------+
+|   1 | kiran    | 900878790 |  28.0 | kiran@gmail.com  |
+|   2 | barath   | 886542345 |  43.9 | barath@gmail.com |
+|   3 | aryan    | 952658790 |  98.0 | aryan@gmail.com  |
+|   4 | jagadish | 886546235 |  57.3 | jagga@gmail.com  |
+|   5 | kartic   | 988878008 |  89.0 | karti@gmail.com  |
+|   6 | max      | 823654245 |  93.9 | max@gmail.com    |
++-----+----------+-----------+-------+------------------+
+
+ delete from student_info
+    -> where sid=6;
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from student_info;
++-----+----------+-----------+-------+------------------+
+| sid | name     | phoneno   | marks | email            |
++-----+----------+-----------+-------+------------------+
+|   1 | kiran    | 900878790 |  28.0 | kiran@gmail.com  |
+|   2 | barath   | 886542345 |  43.9 | barath@gmail.com |
+|   3 | aryan    | 952658790 |  98.0 | aryan@gmail.com  |
+|   4 | jagadish | 886546235 |  57.3 | jagga@gmail.com  |
+|   5 | kartic   | 988878008 |  89.0 | karti@gmail.com  |
++-----+----------+-----------+-------+------------------+
+
+mysql> update student_info
+    -> set marks = 99
+    -> where sid = 1;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_info;
++-----+----------+-----------+-------+------------------+
+| sid | name     | phoneno   | marks | email            |
++-----+----------+-----------+-------+------------------+
+|   1 | kiran    | 900878790 |  99.0 | kiran@gmail.com  |
+|   2 | barath   | 886542345 |  43.9 | barath@gmail.com |
+|   3 | aryan    | 952658790 |  98.0 | aryan@gmail.com  |
+|   4 | jagadish | 886546235 |  57.3 | jagga@gmail.com  |
+|   5 | kartic   | 988878008 |  89.0 | karti@gmail.com  |
++-----+----------+-----------+-------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student_info
+    -> rename to info_students;
+
+ show tables;
++-----------------+
+| Tables_in_bcits |
++-----------------+
+| info_students   |
++-----------------+
+
+e   | phoneno   | marks | email           |
++-----+--------+-----------+-------+-----------------+
+|   1 | kiran  | 900878790 |  99.0 | kiran@gmail.com |
+|   3 | aryan  | 952658790 |  98.0 | aryan@gmail.com |
+|   5 | kartic | 988878008 |  89.0 | karti@gmail.com |
++-----+--------+-----------+-------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select *
+    -> from students_info
+    -> where sid not in (1,3,5);
++-----+----------+-----------+-------+------------------+
+| sid | name     | phoneno   | marks | email            |
++-----+----------+-----------+-------+------------------+
+|   2 | barath   | 886542345 |  43.9 | barath@gmail.com |
+|   4 | jagadish | 886546235 |  57.3 | jagga@gmail.com  |
++-----+----------+-----------+-------+------------------+
+
+ select *
+    -> from students_info
+    -> where sid in (1,3,4) and
+    -> name like '%a';
+Empty set (0.00 sec)
+
+mysql> select *
+    -> from students_info
+    -> where sid in (1,2,3) and
+    -> name like 'a%';
++-----+-------+-----------+-------+-----------------+
+| sid | name  | phoneno   | marks | email           |
++-----+-------+-----------+-------+-----------------+
+|   3 | aryan | 952658790 |  98.0 | aryan@gmail.com |
++-----+-------+-----------+-------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> select *
+    -> from students_info
+    -> where marks between 50 and 100;
++-----+----------+-----------+-------+-----------------+
+| sid | name     | phoneno   | marks | email           |
++-----+----------+-----------+-------+-----------------+
+|   1 | kiran    | 900878790 |  99.0 | kiran@gmail.com |
+|   3 | aryan    | 952658790 |  98.0 | aryan@gmail.com |
+|   4 | jagadish | 886546235 |  57.3 | jagga@gmail.com |
+|   5 | kartic   | 988878008 |  89.0 | karti@gmail.com |
++-----+----------+-----------+-------+-----------------+
+
+ alter table students_info
+    -> drop column phoneno;
+Query OK, 0 rows affected (1.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+ mysql> desc students_info;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| sid   | int(3)       | NO   | PRI | NULL    |       |
+| name  | varchar(150) | NO   |     | NULL    |       |
+| marks | double(3,1)  | NO   |     | NULL    |       |
+| email | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+
+ create database demo;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| bcits              |
+| demo               |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> drop database demo;
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| bcits              |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+truncate table students_info;
+Query OK, 0 rows affected (0.19 sec)
+
+
+
+rename table students_info to info_students;
+Query OK, 0 rows affected (0.19 sec)
+
+ alter table info_students
+    -> modify column email varchar(100) not null;
+Query OK, 0 rows affected (0.62 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+ alter table info_students
+    -> change id sid int(3);
+Query OK, 0 rows affected (0.13 sec)
+
+
+create table student_info(
+    -> eid int(100) not null unique check(sid>0),
+    -> name varchar(150) not null,
+    -> mobilenono bigint,
+    -> email varchar(100),
+    -> dob date,
+    -> designation varchar(50),
+    -> salary double(7,1),
+    -> deptid int(3),
+    -> doj date,
+    -> bloodgroup varchar(10)
+    -> gender varchar(15),
+    -> primary key (eid)
+    -> );
+
+insert into employee
+    -> values(1,'kiran',9008575613,'kiran@gmail.com','1997-12-09','HR',30000,10,'2019-11-22','A+','male'),
+    values(2,'aryan',9913256351 ,'aryan32@gmail.com','1990-12-19','Test Engineer',25000,20,'2013-08-12','AB-','male'),
+    values(3,'kapil',9986325751,'kapil123@gmail.com','1984-11-01','Software developer',50000,30,'2013-02-11','AB+','male'),
+    values(4,'madhu',8865356351,'madhumita@gmail.com','1982-01-01','Manager',80000,30,'2010-02-12','B-','female'),
+    values(5,'arun',8877325351 ,'dhavanarun@gmail.com','1989-11-07','clerk',40000,40,'2009-05-10','B+','male'),
+    values(6,'aishwarya',7775356351,'raiaish@gmail.com','1994-10-17','Test Engineer',30000,40,'2018-04-13','B-','female'),
+    values(7,'madhav',9008575613,'madhav123@gmail.com','1990-07-15','clerk',40000,10,'2015-02-18','B-','male'),
+    values(8,'poorva',8886530051 ,'poorvipatil@gmail.com','1987-02-19','Test Engineer',40000,30,'2000-06-12','B+','female'),
+    values(9,'harsha',9985230051 ,'ppharsha@gmail.com','1990-04-11','Analyst',20000,10,'2013-02-22','AB-','female'),
+    values(10,'deepak',9658745636 ,'veerdeep@gmail.com','1987-08-09','Analyst',30000,20,'2000-01-01','B+','male');
+
+
+
+select* from employee;
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Test Engineer      | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> update employee
+    -> set designation = 'Software Developer'
+    -> where eid=6;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

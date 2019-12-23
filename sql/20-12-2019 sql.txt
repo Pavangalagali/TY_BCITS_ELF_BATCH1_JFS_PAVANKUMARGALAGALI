@@ -1,0 +1,542 @@
+------------------------------------------------------20/12/2019---------------------------------------------------------------------------
+
+1) select distinct deptid
+    -> from employee;
++--------+
+| deptid |
++--------+
+|     10 |
+|     20 |
+|     30 |
+|     40 |
++--------+
+4 rows in set (0.00 sec)
+
+2)mysql> select distinct deptid,designation
+    -> from employee;
++--------+--------------------+
+| deptid | designation        |
++--------+--------------------+
+|     10 | HR                 |
+|     20 | Test Engineer      |
+|     30 | Software developer |
+|     30 | Manager            |
+|     40 | clerk              |
+|     40 | Software Developer |
+|     10 | clerk              |
+|     30 | Test engineer      |
+|     10 | Analyst            |
+|     20 | Analyst            |
++--------+--------------------+
+
+3)mysql> select *
+    -> from employee
+    -> where designation = 'software developer';
++-----+-----------+------------+--------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email              | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+--------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   3 | kapil     | 9986325751 | kapil123@gmail.com | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com  | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
++-----+-----------+------------+--------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+4)mysql> select name,mobileno
+    -> from employee
+    -> where salary < 15000;
+Empty set (0.31 sec)
+
+
+5)mysql> select name,mobileno
+    -> from employee
+    -> where salary > 15000;
++-----------+------------+
+| name      | mobileno   |
++-----------+------------+
+| kiran     | 9008575613 |
+| aryan     | 9913256351 |
+| kapil     | 9986325751 |
+| madhu     | 8865356351 |
+| arun      | 8877325351 |
+| aishwarya | 7775356351 |
+| madhav    | 8877300051 |
+| poorva    | 8886530051 |
+| harsha    | 9985230051 |
+| deepak    | 9658745636 |
++-----------+------------+
+10 rows in set (0.00 sec)
+
+
+6)mysql> select *
+    -> from employee
+    -> where salary <= 25000;
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+| eid | name   | mobileno   | email              | dob        | designation   | salary  | deptid | doj        | bloodgroup | gender |
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+|   2 | aryan  | 9913256351 | aryan32@gmail.com  | 1990-12-19 | Test Engineer | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   9 | harsha | 9985230051 | ppharsha@gmail.com | 1990-04-11 | Analyst       | 20000.0 |     10 | 2013-02-22 | AB-        | female |
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+
+7)mysql> select *
+    -> from employee
+    -> where designation <> 'test engineer';
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com      | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com   | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com  | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com    | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com  | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com   | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com   | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+8 rows in set (0.00 sec)
+
+
+8)mysql> select salary+5000
+    -> from employee;
++-------------+
+| salary+5000 |
++-------------+
+|     35000.0 |
+|     30000.0 |
+|     55000.0 |
+|     85000.0 |
+|     45000.0 |
+|     35000.0 |
+|     45000.0 |
+|     45000.0 |
+|     25000.0 |
+|     35000.0 |
++-------------+
+10 rows in set (0.00 sec)
+
+9)mysql> select salary*12 annual_salary
+    -> from employee
+    -> ;
++---------------+
+| annual_salary |
++---------------+
+|      360000.0 |
+|      300000.0 |
+|      600000.0 |
+|      960000.0 |
+|      480000.0 |
+|      360000.0 |
+|      480000.0 |
+|      480000.0 |
+|      240000.0 |
+|      360000.0 |
++---------------+
+10 rows in set (0.00 sec)
+
+10)mysql> select *
+    -> from employee
+    -> where designation='software developer' and deptid=10;
+Empty set (0.02 sec)
+
+11)mysql> select *
+    -> from employee
+    -> where designation='test engineer' and doj > '2015-12-31';
+Empty set (0.00 sec)
+
+12)mysql> select *
+    -> from employee
+    -> where designation = 'manager' and deptid=30 and salary>35000;
++-----+-------+------------+---------------------+------------+-------------+---------+--------+------------+------------+--------+
+| eid | name  | mobileno   | email               | dob        | designation | salary  | deptid | doj        | bloodgroup | gender |
++-----+-------+------------+---------------------+------------+-------------+---------+--------+------------+------------+--------+
+|   4 | madhu | 8865356351 | madhumita@gmail.com | 1982-01-01 | Manager     | 80000.0 |     30 | 2010-02-12 | B-         | female |
++-----+-------+------------+---------------------+------------+-------------+---------+--------+------------+------------+--------+
+
+13)mysql> select *
+    -> from employee
+    -> where designation='hr' or deptid=20;
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+| eid | name   | mobileno   | email              | dob        | designation   | salary  | deptid | doj        | bloodgroup | gender |
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+|   1 | kiran  | 9008575613 | kiran@gmail.com    | 1997-12-09 | HR            | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   2 | aryan  | 9913256351 | aryan32@gmail.com  | 1990-12-19 | Test Engineer | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|  10 | deepak | 9658745636 | veerdeep@gmail.com | 1987-08-09 | Analyst       | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+3 rows in set (0.00 sec)
+
+14)mysql> select *
+    -> from employee
+    -> where dob <'1995-01-01' or bloodgroup='o+';
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+9 rows in set (0.00 sec)
+
+
+15)mysql> select name,email
+    -> from employee
+    -> where designation = 'test engineer' or designation = 'analyst' or designation='software developer';
++-----------+-----------------------+
+| name      | email                 |
++-----------+-----------------------+
+| aryan     | aryan32@gmail.com     |
+| kapil     | kapil123@gmail.com    |
+| aishwarya | raiaish@gmail.com     |
+| poorva    | poorvipatil@gmail.com |
+| harsha    | ppharsha@gmail.com    |
+| deepak    | veerdeep@gmail.com    |
++-----------+-----------------------+
+6 rows in set (0.00 sec)
+
+16)mysql> select * from employee where not designation = 'analyst';
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+8 rows in set (0.05 sec)
+
+
+17)mysql> select * from employee where not deptid=10 and not deptid=20 and not deptid=30;
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com    | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+
+18)mysql> select * from employee where not designation='test engineer' and not deptid=40;
++-----+--------+------------+---------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name   | mobileno   | email               | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+--------+------------+---------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran  | 9008575613 | kiran@gmail.com     | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   3 | kapil  | 9986325751 | kapil123@gmail.com  | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu  | 8865356351 | madhumita@gmail.com | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   7 | madhav | 8877300051 | madhav123@gmail.com | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   9 | harsha | 9985230051 | ppharsha@gmail.com  | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak | 9658745636 | veerdeep@gmail.com  | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+--------+------------+---------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+
+
+19)insert into employee(eid,name,mobileno,salary)
+    -> values(11,'mohan',9988789321,34000);
+Query OK, 1 row affected (0.44 sec)
+
+20)mysql> select * from employee;
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
+|  11 | mohan     | 9988789321 | NULL                  | NULL       | NULL               | 34000.0 |   NULL | NULL       | NULL       | NULL   |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+21)mysql> select * from employee where deptid in (10,20,30);
++-----+--------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name   | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+--------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran  | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   2 | aryan  | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   3 | kapil  | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu  | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   7 | madhav | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   8 | poorva | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |
+|   9 | harsha | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+--------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+22)mysql> select * from employee
+    -> where designation in ('salesman','software developer','test engineer','manager','hr') and
+    -> deptid in (10,30,40) and salary >15000;
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+23)mysql> select * from employee where designation not in ('hr','test engineer');
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name      | mobileno   | email                | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   3 | kapil     | 9986325751 | kapil123@gmail.com   | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com  | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com    | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com  | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com   | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com   | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+S
+
+
+24)mysql> select * from employee where deptid in (20,30) and designation not in ('hr','test engineer');
++-----+--------+------------+---------------------+------------+--------------------+---------+--------+------------+------------+--------+
+| eid | name   | mobileno   | email               | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender |
++-----+--------+------------+---------------------+------------+--------------------+---------+--------+------------+------------+--------+
+|   3 | kapil  | 9986325751 | kapil123@gmail.com  | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |
+|   4 | madhu  | 8865356351 | madhumita@gmail.com | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |
+|  10 | deepak | 9658745636 | veerdeep@gmail.com  | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |
++-----+--------+------------+---------------------+------------+--------------------+---------+--------+------------+------------+--------+
+
+
+25)mysql> select * from employee where salary between 20000 and 25000;
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+| eid | name   | mobileno   | email              | dob        | designation   | salary  | deptid | doj        | bloodgroup | gender |
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+|   2 | aryan  | 9913256351 | aryan32@gmail.com  | 1990-12-19 | Test Engineer | 25000.0 |     20 | 2013-08-12 | AB-        | male   |
+|   9 | harsha | 9985230051 | ppharsha@gmail.com | 1990-04-11 | Analyst       | 20000.0 |     10 | 2013-02-22 | AB-        | female |
++-----+--------+------------+--------------------+------------+---------------+---------+--------+------------+------------+--------+
+
+
+mysql> update employee
+    -> set age = 23
+    -> where eid = 1;
+Query OK, 1 row affected (0.35 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 30
+    -> where eid = 2;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 36
+    -> where eid = 3;
+Query OK, 1 row affected (0.38 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 38
+    -> where eid = 4;
+Query OK, 1 row affected (0.19 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 31
+    -> where eid = 5;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 25
+    -> where eid = 6;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 29
+    -> where eid=7;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 32
+    -> where eid=8;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 31
+    -> where eid = 9;
+Query OK, 1 row affected (0.33 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 34
+    -> where eid = 10;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set age = 40
+    -> where eid = 11;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |   23 |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |   36 |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |   38 |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |   25 |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |   29 |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |   32 |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |   31 |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |   34 |
+|  11 | mohan     | 9988789321 | NULL                  | NULL       | NULL               | 34000.0 |   NULL | NULL       | NULL       | NULL   |   40 |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+11 rows in set (0.00 sec)
+
+26) mysql> select name,age
+    -> from employee
+    -> where age between 20 and 30;
++-----------+------+
+| name      | age  |
++-----------+------+
+| kiran     |   23 |
+| aryan     |   30 |
+| aishwarya |   25 |
+| madhav    |   29 |
++-----------+------+
+4 rows in set (0.00 sec)
+
+27)mysql> select *
+    -> from employee
+    -> where salary not between 50000 and 70000;
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |   23 |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |   38 |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |   25 |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |   29 |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |   32 |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |   31 |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |   34 |
+|  11 | mohan     | 9988789321 | NULL                  | NULL       | NULL               | 34000.0 |   NULL | NULL       | NULL       | NULL   |   40 |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+
+28)mysql> select * from employee where deptid is null;
++-----+-------+------------+-------+------+-------------+---------+--------+------+------------+--------+------+
+| eid | name  | mobileno   | email | dob  | designation | salary  | deptid | doj  | bloodgroup | gender | age  |
++-----+-------+------------+-------+------+-------------+---------+--------+------+------------+--------+------+
+|  11 | mohan | 9988789321 | NULL  | NULL | NULL        | 34000.0 |   NULL | NULL | NULL       | NULL   |   40 |
++-----+-------+------------+-------+------+-------------+---------+--------+------+------------+--------+------+
+
+29)mysql> select * from employee where deptid is not null;
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |   23 |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |   36 |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |   38 |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |   25 |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |   29 |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |   32 |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |   31 |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |   34 |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+
+30)mysql> select *
+    -> from employee
+    -> where name like 'a%';
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+| eid | name      | mobileno   | email                | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+|   2 | aryan     | 9913256351 | aryan32@gmail.com    | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com    | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |   25 |
++-----+-----------+------------+----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+3 rows in set (0.00 sec)
+
+31)mysql> select *
+    -> from employee
+    -> where name like 'a%n';
++-----+-------+------------+----------------------+------------+---------------+---------+--------+------------+------------+--------+------+
+| eid | name  | mobileno   | email                | dob        | designation   | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-------+------------+----------------------+------------+---------------+---------+--------+------------+------------+--------+------+
+|   2 | aryan | 9913256351 | aryan32@gmail.com    | 1990-12-19 | Test Engineer | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   5 | arun  | 8877325351 | dhavanarun@gmail.com | 1989-11-07 | clerk         | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
++-----+-------+------------+----------------------+------------+---------------+---------+--------+------------+------------+--------+------+
+2 rows in set (0.00 sec)
+
+32)mysql> select *
+    -> from employee
+    -> where name like '%l%';
++-----+-------+------------+--------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+| eid | name  | mobileno   | email              | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-------+------------+--------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+|   3 | kapil | 9986325751 | kapil123@gmail.com | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |   36 |
++-----+-------+------------+--------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+
+33)mysql> select *
+    -> from employee
+    -> where name like '_r%';
++-----+-------+------------+----------------------+------------+---------------+---------+--------+------------+------------+--------+------+
+| eid | name  | mobileno   | email                | dob        | designation   | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-------+------------+----------------------+------------+---------------+---------+--------+------------+------------+--------+------+
+|   2 | aryan | 9913256351 | aryan32@gmail.com    | 1990-12-19 | Test Engineer | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   5 | arun  | 8877325351 | dhavanarun@gmail.com | 1989-11-07 | clerk         | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
++-----+-------+------------+----------------------+------------+---------------+---------+--------+------------+------------+--------+------+
+
+
+34)mysql> select *
+    -> from employee
+    -> where name like '%___%';
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |   23 |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |   36 |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |   38 |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |   25 |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |   29 |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |   32 |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |   31 |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |   34 |
+|  11 | mohan     | 9988789321 | NULL                  | NULL       | NULL               | 34000.0 |   NULL | NULL       | NULL       | NULL   |   40 |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+
+
+
+35)mysql> select *
+    -> from employee
+    -> where email like '%com';
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+| eid | name      | mobileno   | email                 | dob        | designation        | salary  | deptid | doj        | bloodgroup | gender | age  |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+|   1 | kiran     | 9008575613 | kiran@gmail.com       | 1997-12-09 | HR                 | 30000.0 |     10 | 2019-11-22 | A+         | male   |   23 |
+|   2 | aryan     | 9913256351 | aryan32@gmail.com     | 1990-12-19 | Test Engineer      | 25000.0 |     20 | 2013-08-12 | AB-        | male   |   30 |
+|   3 | kapil     | 9986325751 | kapil123@gmail.com    | 1984-11-01 | Software developer | 50000.0 |     30 | 2013-02-11 | AB+        | male   |   36 |
+|   4 | madhu     | 8865356351 | madhumita@gmail.com   | 1982-01-01 | Manager            | 80000.0 |     30 | 2010-02-12 | B-         | female |   38 |
+|   5 | arun      | 8877325351 | dhavanarun@gmail.com  | 1989-11-07 | clerk              | 40000.0 |     40 | 2009-05-10 | B+         | male   |   31 |
+|   6 | aishwarya | 7775356351 | raiaish@gmail.com     | 1994-10-17 | Software Developer | 30000.0 |     40 | 2018-04-13 | B-         | female |   25 |
+|   7 | madhav    | 8877300051 | madhav123@gmail.com   | 1990-07-15 | clerk              | 40000.0 |     10 | 2015-02-18 | B-         | male   |   29 |
+|   8 | poorva    | 8886530051 | poorvipatil@gmail.com | 1987-02-19 | Test engineer      | 40000.0 |     30 | 2000-06-12 | B+         | female |   32 |
+|   9 | harsha    | 9985230051 | ppharsha@gmail.com    | 1990-04-11 | Analyst            | 20000.0 |     10 | 2013-02-22 | AB-        | female |   31 |
+|  10 | deepak    | 9658745636 | veerdeep@gmail.com    | 1987-08-09 | Analyst            | 30000.0 |     20 | 2000-01-01 | B+         | male   |   34 |
++-----+-----------+------------+-----------------------+------------+--------------------+---------+--------+------------+------------+--------+------+
+10 rows in set (0.00 sec)
+
+36) mysql> select *
+    -> from employee
+    -> where email not like '%com';
+
