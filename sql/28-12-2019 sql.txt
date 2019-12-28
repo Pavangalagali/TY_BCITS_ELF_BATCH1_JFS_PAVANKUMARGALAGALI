@@ -1,0 +1,96 @@
+1) create database employee_management_info;
+2) use employee_management_info;
+3) create table employee_primary_info(
+    -> empid int not null unique check(empid>0),
+    -> name varchar(20),
+    -> mobileno bigint,
+    -> official_maildid varchar(30),
+    -> date_of_birth date,
+    -> date_of_joining date,
+    -> designation varchar(30),
+    -> blood_group varchar(10),
+    -> salary double,
+    -> deptid int,
+    -> mgrid int,
+    -> primary key (empid)
+    -> );
+4)insert into employee_primary_info
+    -> values(10,'kiran',9889765236,'kirantech@bcits.com','1992-03-12','2017-12-23','developer','B+',35000,10,30),
+    -> (20,'arun',9008575613,'arunshinde@bcits.com','1985-12-29','2012-05-11','manager','AB-',60000,20,40),
+    -> (30,'aryan',9020754321,'aryanpatil@bcits.com','1979-06-01','2002-11-15','manager','O+',95000,30,40),
+    -> (40,'mahesh',8865326985,'maheshangadi@bcits.com','1990-12-12','2015-02-16','developer','B-',50000,40,20),
+    -> (50,'zakir',7858269851,'zakirkhan@bcits.com','1993-11-11','2014-07-19','sales','AB-',20000,20,20),
+    -> (60,'arohi',9741347447,'arohimishra@bcits.com','1990-10-14','2011-03-07','tester','A-',40000,30,30),
+    -> (70,'prashant',9741335623,'prashantkhale@bcits.com','1985-12-13','2007-09-04','HR','O-',50000,10,10),
+    -> (80,'chetan',9965832658,'chetanmarmaeed@bcits.com','1995-04-12','2018-04-13','sales','AB+',15000,40,60),
+    -> (90,'sarika',8996586325,'sarikad@bcits.com','1997-09-10','2019-07-11','tester','A-',50000,30,50),
+    -> (100,'pradeep',9696586856,'pradeeppatil@bcits.com','1978-04-19','2000-06-30','HR','A-',50000,20,70);
+5)create table employee_secondary_info(
+    -> empid int primary key,
+    -> gender varchar(10),
+    -> personal_maildid varchar(30),
+    -> age int,
+    -> nationality varchar(20),
+    -> is_married varchar(10),
+    -> govt_id varchar(20),
+    -> guardian_name varchar(20),
+    -> guardian_contactno bigint,
+    -> job_location varchar(20)
+    -> );
+6) insert into employee_secondary_info
+    -> values(10,'male','kirank@gmail.com',25,'Indian','no','7854-5656-9636','kapil',9669856325,'banglore'),
+    -> (20,'male','varunarn@gmail.com',29,'Indian','yes','9856-0032-5632','loki',8965236589,'mumbai'),
+    -> (30,'male','patilarya@gmail.com',24,'Indian','no','6356-0010-3232','mahendra',7856236598,'hydrabad'),
+    -> (40,'male','mahesh5050@gmail.com',29,'Indian','yes','7875-0635-8585','puneet',6365698745,'banglore'),
+    -> (50,'male','khanzakir@gmail.com',27,'Indian','no','5235-6536-9990','kapoor',7858686986,'pune'),
+    -> (60,'female','arohi223@gmail.com',25,'Indian','yes','9009-8787-1122','lara',8563258962,'mumbai'),
+    -> (70,'male','prashanthpro@gmail.com',29,'Indian','no','7025-5652-0232','viru',6569874523,'banglore'),
+    -> (80,'male','chetanbro@gmail.com',22,'Indian','no','7236-9966-0326','pavan',7898659845,'mumbai'),
+    -> (90,'female','sarikaakka@gmail.com',27,'Indian','no','9089-5632-1563','mary',8563258962,'pune'),
+    -> (100,'male','pradeeyake@gmail.com',25,'Indian','yes','8959-5222-1233','imran',8236598642,'lahore');
+7)create table department_info(
+    -> deptid int primary key,
+    -> dname varchar(20),
+    -> mgrid int
+    -> );
+8) insert into department_info
+    -> values(10,'developers',20),
+    -> (20,'HR',100),
+    -> (30,'testing',60),
+    -> (40,'sales',80);
+9)> create table employee_bank_info(
+    -> empid int not null unique check(empid>0),
+    -> accountno bigint not null unique,
+    -> bankname varchar(20),
+    -> branch_name varchar(20),
+    -> IFSC_code varchar(20),
+    -> primary key (empid)
+    -> );
+10)insert into employee_bank_info
+    -> values(10,36569696,'ICICI','BTR','ICICI98987800'),
+    -> (20,25636985,'CORPORATION','Bilagi','CORP099099009'),
+    -> (30,12365256,'CANARA BANK','BTR','CNR899889000'),
+    -> (40,52635666,'CORPORATION','BTR','CORP09909000'),
+    -> (50,45659865,'CANARA BANK','Rajajinagar','CNR899889230'),
+    -> (60,0099090,'ICICI','BTR','ICICI98987800'),
+    -> (70,9098989,'ICICI','HSR','ICICI989555'),
+    -> (80,5636966,'CANARA BANK','BTM','CNR23659800'),
+    -> (90,8565981,'ICICI','Whitefield','ICICI989879999'),
+    -> (100,1236565,'BANK of india','BTM','BOI99090990');
+11) create table employee_address_info(
+    -> empid int not null unique,
+    -> address_type varchar(30),
+    -> house_no int,
+    -> address1 varchar(20),
+    -> address2 varchar(20),
+    -> landmark varchar(20),
+    -> city varchar(20),
+    -> pincode bigint,
+    -> primary key (empid,address_type)
+    -> );
+12)
+
+
+
+
+
