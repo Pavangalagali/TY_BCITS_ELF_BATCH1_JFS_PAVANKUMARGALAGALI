@@ -20,8 +20,8 @@ public class MyFirstJDBCProgram {
 			DriverManager.registerDriver(dref);
 
 			// step 2 : get the connection via driver
-			String dbUral = "jdbc:mysql://localhost:3306/employee_management_info?user=root&password=root";
-			con = DriverManager.getConnection(dbUral);
+			String dbUral = "jdbc:mysql://localhost:3306/employee_management_info";
+			con = DriverManager.getConnection(dbUral, "root", "root");
 
 			// Step 3 : issue the sql queries via connection
 			String query = " select * from employee_primary_info";

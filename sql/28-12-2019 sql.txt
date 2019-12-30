@@ -78,7 +78,7 @@
     -> (90,8565981,'ICICI','Whitefield','ICICI989879999'),
     -> (100,1236565,'BANK of india','BTM','BOI99090990');
 11) create table employee_address_info(
-    -> empid int not null unique,
+    -> empid int  ,
     -> address_type varchar(30),
     -> house_no int,
     -> address1 varchar(20),

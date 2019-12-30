@@ -1,0 +1,22 @@
+1)insert into employee_address_info
+    -> values(10,'local',101,'c/o ashok hegde','sai nilaya','near bms college',587006),
+    -> (20,'guardian',222,'c/o N R murthi','shiva sadan','near mantri Square',586007),
+    -> (30,'local',343,'c/o M G angadi','shri ram pg','near unlimited shop',586101),
+    -> (40,'home',123,'c/o A B nagral','maruti nilaya','near gadhi circlr',586965);
+2) create table employee_education_info(
+    -> empid int,
+    -> education_type varchar(30),
+    -> college_name varchar(30),
+    -> year_of_passout date,
+    -> Stream varchar(30),
+    -> percentage double,
+    -> univercity varchar(50),
+    -> primary key (empid,education_type)
+    -> );
+3) insert into employee_education_info
+    -> values(10,'Degree','basaveshwar college','2019-05-31','ECE',81.2,'VTU'),
+    -> (10,'PU','basaveshwar college','2015-04-30','PCMB',88.2,'STATE BOARD'),
+    -> (20,'PU','don bosco college','2013-05-17','PCMC',75,'CBSE'),
+    -> (30,'degree','reva college','2014-05-31','CS',60,'VTU'),
+    -> (40,'degree','mysore college','2011-04-12','EE',73,'VTU'),
+    -> (50,'masters','SDM college','2015-04-18','IS',53,'VTU');
