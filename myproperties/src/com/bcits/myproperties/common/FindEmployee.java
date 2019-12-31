@@ -1,36 +1,36 @@
-package com.bcits.jdbcapp.common;
+package com.bcits.myproperties.common;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class FindEmployee {
-
 	public static void main(String[] args) {
 
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			// Step 1 : Load the driver
+			FileInputStream fileInputStream = new FileInputStream("dbInfo.properties");
+			Properties properties = new Properties();
+			properties.load(fileInputStream);
 
-			// Driver dRef = new Driver(); DriverManager.registerDriver(dRef);
+			// step 1 load the driver
+			Class.forName(properties.getProperty("drivername")).newInstance();
 
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			// Step 2 : get the db connection via driver
-			String dbUrl = "jdbc:mysql://localhost:3306/employee_management_info";
+			// step 2 get connection via driver
+			con = DriverManager.getConnection(properties.getProperty("dbUrl"), properties.getProperty("user"),
+					properties.getProperty("password"));
 
-			con = DriverManager.getConnection(dbUrl, "root", "root");
-
-			// Step 3 : issue sql queries via connection
-			String query = " select * from employee_primary_info " + " where empid = 101 ";
+			// step 3: issue sql query via connection
+			String query = " select * from employee_primary_info " + " where empid = 20 ";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
-
-			// step 4 : process the result returned by sql query
 			while (rs.next()) {
 				int employeeId = rs.getInt("empid");
 				String name = rs.getString("name");
@@ -54,11 +54,10 @@ public class FindEmployee {
 				System.out.println("blood group ====> " + blood_group);
 				System.out.println("salary    ======> " + salary);
 				System.out.println("dept Id   ======> " + deptId);
-				System.out.println("manager id  ====> " + managerId);
+				System.out.println("manager id ====> " + managerId);
 			}
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		} finally {
 			// step 5 : close all jdbc objects
@@ -76,6 +75,7 @@ public class FindEmployee {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+
 		}
 	}
 }

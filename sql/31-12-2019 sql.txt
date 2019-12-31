@@ -1,0 +1,22 @@
+1) create table project_info(
+    -> pro_id int,
+    -> pro_name varchar(40),
+    -> technologies varchar(90),
+    -> start_date date,
+    -> end_date date,
+    -> location varchar(70),
+    -> primary key (pro_id)
+    -> );
+
+2)create table employee_project_info(
+    -> empid int,
+    -> pro_id int,
+    -> primary key (empid,pro_id)
+    -> );
+3)insert into employee_project_info
+    -> values(10,20),
+    -> (20,20),
+    -> (30,20),
+    -> (40,20),
+    -> (60,10),
+    -> (50,10),(70,10),(80,10),(90,10);
