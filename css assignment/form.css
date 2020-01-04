@@ -10,33 +10,46 @@ form{
      
 }
 h2{
-    margin-top: 15mm;
+    margin-top: 10mm;
 }
 input[type="text"]{
-    width: 272px;
+    width: 256px;
     height: 40px;
-    margin-top: 6mm;
-    border: 1px solid white;
+    margin-top: 5mm; 
+    border: 1px solid rgb(46, 45, 45);
     background-color: rgb(56, 57, 59);
+    border-radius: 5px;
+    font-size: 20px;
+    padding-left: 4mm;
+    outline: none;
+    
 }
 input[type="email"], input[type="password"]{
-    width: 550px;
+    width: 514px;
     height: 40px;
-    margin-top: 6mm;
-    border: 1px solid white;
+    margin-top: 10mm; 
+    border: 1px solid rgb(46, 46, 46);
     background-color: rgb(56, 57, 59);
+    border-radius: 5px;
+    font-size: 20px;
+    padding-left: 8mm;
+    outline: none;
+    
    
 }
 input[type="submit"]{
     
-    width: 556px;
+    width: 550px;
     height: 40px;
-    margin-top: 6mm;
+    margin-top: 10mm; 
     background-color: rgb(39, 149, 144);
-    background-color: rgb(133, 182, 145);
+    background-color: rgb(124, 238, 200);
     outline: none;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: larger;
+    padding-left: 8mm;
+    border-radius: 5px;
+    
 }
 button[type="signup"]{
    
@@ -47,7 +60,10 @@ button[type="signup"]{
     margin-top: 6mm; 
     font-size: larger;
     border: 1px solid rgb(37, 36, 36);
-    background-color: rgb(133, 182, 145);
+    background-color: rgb(124, 238, 200);
+    border-radius: 5px;
+    outline: none;
+    
     
 
 }
@@ -55,12 +71,15 @@ button[type="login"]{
    
     width: 275px;
     height: 50px;
-    margin-top: 6mm; 
+    margin-top: 6mm;  
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: larger;
     border: 1px solid rgb(44, 42, 42);
     background-color: rgb(56, 57, 59);
+     border-radius: 5px;
+     outline: none;
+   
 
 }
 table{

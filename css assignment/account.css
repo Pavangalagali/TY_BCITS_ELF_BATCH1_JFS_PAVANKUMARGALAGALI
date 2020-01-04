@@ -1,6 +1,6 @@
 body{
     color: papayawhip;
-    background-image: url(/images/images.jpg);
+    background-color: rgb(50, 89, 121);
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -16,11 +16,17 @@ form{
 }
 input[type="text"], input[type="email"], input[type="password"]{
     background-color: black;
-    border :1px solid white;
+    border :1px solid rgb(54, 53, 53);
     outline: none;
     width: 600px;
-    height: 25px;
+    height: 30px;
+    font-size: 20px;
     margin-top: 6mm;
+    color: cornsilk;
+    font-family: cursive;
+   padding-left: 2mm;
+    
+   
     
 }
 input[type="file"]{
@@ -32,9 +38,13 @@ input[type="file"]{
 input[type="submit"]{
     margin-top: 6mm;
     width: 600px;
-    height: 30px;
+    height: 40px;
     background-color: rgb(19, 47, 172);
-    border: 1px solid rgb(19, 47, 172);
+    border: 1px solid rgb(33, 136, 219);
     outline: none;
     border-radius: 2px;
+    border-radius: 1mm;
+    font-size: 20px;
+    color: cornsilk;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
