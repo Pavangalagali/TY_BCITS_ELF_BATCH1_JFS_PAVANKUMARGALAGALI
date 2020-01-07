@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Events</title>
+    <style>
+        .prop {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="showAlert()">Click here</button>
+    <button onclick="myElement()">click to create the element</button>
+    <h1 id='disp' class="prop">display properties</h1>
+    <button id='hide' onclick="displayElement()">click to view Element</button>
+    <p id='ptag' onmouseover="mouseOver()" onmouseout="mouseOut()">Mouse Over Here</p>
+    <input onkeyup="showData()" onkeydown="showDetails()" id="myInput">
+    <input onkeyup="getInputValue()" id="secondInput">
+    <h1 id='show'></h1>
+    <script src="/events/events.js"></script>
+</body>
+
+</html>
