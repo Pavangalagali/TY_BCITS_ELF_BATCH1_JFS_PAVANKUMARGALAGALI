@@ -19,7 +19,7 @@ public class UpdateStaticSqlQuery {
 			// step 1 : load the driver
 			Class.forName(properties.getProperty("drivername")).newInstance();
 
-			// step 2 : get the bd connection via driver
+			// step 2 : get the db connection via driver
 			connection = DriverManager.getConnection(properties.getProperty("dbUrl"), properties);
 
 			// step 3 : issue the sql query
