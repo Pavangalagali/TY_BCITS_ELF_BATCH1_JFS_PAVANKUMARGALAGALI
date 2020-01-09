@@ -12,12 +12,6 @@ public class PreparedStatementUpdateSqlQuery {
 	public static void main(String[] args) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
-		java.util.Date dob = new java.util.Date("10/10/1980");
-		java.sql.Date sqlDate = new java.sql.Date(dob.getDate());
-
-		java.util.Date doj = new java.util.Date("15/11/2009");
-		java.sql.Date sqlDoj = new java.sql.Date(doj.getDate());
 
 		try {
 			FileInputStream inStream = new FileInputStream("dbInfo.properties");
