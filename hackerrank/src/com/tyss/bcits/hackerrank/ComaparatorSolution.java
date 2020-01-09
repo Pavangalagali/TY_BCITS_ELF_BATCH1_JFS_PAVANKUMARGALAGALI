@@ -11,17 +11,18 @@ public class ComaparatorSolution {
 	public static void main(String[] args) {
 		System.out.println("enter the number of players");
 		int n = Integer.parseInt(scanner.nextLine());
-		SortByScore sc = new SortByScore();
-	TreeSet<Player> list = new TreeSet<Player>(sc);
+		TreeSet<Player> list = new TreeSet<Player>();
 
 		for (int i = 1; i <= n; i++) {
 			System.out.println("enter name and score");
 			list.add(new Player(scanner.nextLine(), Integer.parseInt(scanner.nextLine())));
 		}
 		Iterator i1 = list.iterator();
-		while(i1.hasNext()) {
+		while (i1.hasNext()) {
 			System.out.println(i1.next());
 		}
+		
+		
 	}
 
 }

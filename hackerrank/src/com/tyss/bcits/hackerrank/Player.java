@@ -1,6 +1,6 @@
 package com.tyss.bcits.hackerrank;
 
-public class Player  {
+public class Player implements Comparable<Player> {
 	String name;
 	int score;
 
@@ -23,6 +23,14 @@ public class Player  {
 	@Override
 	public int hashCode() {
 		return score;
+	}
+
+	@Override
+	public int compareTo(Player o) {
+		if(this.score==o.score) {
+			return this.name.compareTo(o.name);
+		}
+		return this.score-o.score;
 	}
 
 
