@@ -37,14 +37,14 @@ public class StackSolution {
 
 	public static void main(String[] args) {
 		System.out.println("number of expression");
-		int t = Integer.parseInt(scanner.nextLine());
-		for (int i = 1; i <= t; i++) {
+		int expressionCount = Integer.parseInt(scanner.nextLine());
+		for (int i = 1; i <= expressionCount; i++) {
 			System.out.println("expression " + i);
-			String s = scanner.nextLine();
-			if (isBalanced(s)) {
-				System.out.println(s + "  is valid");
+			String expression = scanner.nextLine();
+			if (isBalanced(expression)) {
+				System.out.println(expression + "  is valid");
 			} else {
-				System.out.println(s + "  is invalid");
+				System.out.println(expression + "  is invalid");
 			}
 		}
 	}
