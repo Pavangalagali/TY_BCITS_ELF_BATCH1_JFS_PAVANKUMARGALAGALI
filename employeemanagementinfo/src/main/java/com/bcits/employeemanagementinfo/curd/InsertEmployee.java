@@ -12,17 +12,17 @@ public class InsertEmployee {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		PrimaryInfo primary = new PrimaryInfo();
-		primary.setEmpid(189);
-		primary.setName("naveen");
-		primary.setMobileno(9865986587l);
-		primary.setOfficial_maildid("naveenhuman@bcits.com");
-		primary.setDate_of_birth(java.sql.Date.valueOf("1994-11-15"));
-		primary.setDate_of_joining(java.sql.Date.valueOf("2017-04-19"));
-		primary.setDesignation("developer");
-		primary.setBlood_group("AB-");
-		primary.setSalary(45000);
-		primary.setDeptid(10);
-		primary.setMgrid(10);
+		primary.setEmpId(182);
+		primary.setName("magadeera");
+		primary.setMobileNo(8986598000L);
+		primary.setMaildId("deera123@bcits.com");
+		primary.setBirthDate(java.sql.Date.valueOf("1992-10-10"));
+		primary.setJoiningDate(java.sql.Date.valueOf("2014-03-12"));
+		primary.setDesignation("tester");
+		primary.setBloodGroup("B-");
+		primary.setSalary(25000);
+		primary.setDeptId(20);
+		primary.setMgrId(20);
 
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("primary");

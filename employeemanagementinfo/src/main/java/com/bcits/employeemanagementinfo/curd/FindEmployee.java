@@ -14,17 +14,17 @@ public class FindEmployee {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		primaryInfo = entityManager.find(PrimaryInfo.class, 10);
 
-		System.out.println("employee id              => "+ primaryInfo.getEmpid());
+		System.out.println("employee id              => "+ primaryInfo.getEmpId());
 		System.out.println("employee name            => "+ primaryInfo.getName());
-		System.out.println("employee mail            => "+primaryInfo.getOfficial_maildid());
-		System.out.println("employee mobile number   => "+primaryInfo.getMobileno());
+		System.out.println("employee mail            => "+primaryInfo.getMaildId());
+		System.out.println("employee mobile number   => "+primaryInfo.getMobileNo());
 		System.out.println("employee designation     => "+primaryInfo.getDesignation());
 		System.out.println("employee salary          => "+primaryInfo.getSalary());
-		System.out.println("employee date of birth   => "+primaryInfo.getDate_of_birth());
-		System.out.println("employee date of joining => "+primaryInfo.getDate_of_joining());
-		System.out.println("employee department id   => "+primaryInfo.getDeptid());
-		System.out.println("employee blood group     => "+primaryInfo.getBlood_group());
-		System.out.println("employee manager id      => "+primaryInfo.getMgrid());
+		System.out.println("employee date of birth   => "+primaryInfo.getBirthDate());
+		System.out.println("employee date of joining => "+primaryInfo.getJoiningDate());
+		System.out.println("employee department id   => "+primaryInfo.getDeptId());
+		System.out.println("employee blood group     => "+primaryInfo.getBloodGroup());
+		System.out.println("employee manager id      => "+primaryInfo.getMgrId());
 		entityManager.close();
 	} // end of main
 } // end of class

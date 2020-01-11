@@ -9,98 +9,118 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="employee_primary_info")
-public class PrimaryInfo implements Serializable{
+@Table(name = "employee_primary_info")
+public class PrimaryInfo implements Serializable {
 	@Id
-	@Column
-	private int empid;
+	@Column(name = "empid")
+	private int empId;
 	@Column
 	private String name;
 	@Column
 	private long mobileNo;
-	@Column
-	private String official_maildid;
-	@Column
-	private Date date_of_birth;
-	@Column
-	private Date date_of_joining;
+	@Column(name = "official_maildid")
+	private String maildId;
+	@Column(name = "date_of_birth")
+	private Date birthDate;
+	@Column(name = "date_of_joining")
+	private Date joiningDate;
 	@Column
 	private String designation;
-	@Column
-	private String blood_group;
+	@Column(name = "blood_group")
+	private String bloodGroup;
 	@Column
 	private double salary;
-	@Column
-	private int deptid;
-	@Column
-	private int mgrid;
-	public int getEmpid() {
-		return empid;
+	@Column(name = "deptid")
+	private int deptId;
+	@Column(name = "mgrid")
+	private int mgrId;
+
+	public int getEmpId() {
+		return empId;
 	}
-	public void setEmpid(int empid) {
-		this.empid = empid;
+
+	public void setEmpId(int empId) {
+		this.empId = empId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getMobileno() {
+
+	public long getMobileNo() {
 		return mobileNo;
 	}
-	public void setMobileno(long mobileno) {
-		this.mobileNo = mobileno;
+
+	public void setMobileNo(long mobileNo) {
+		this.mobileNo = mobileNo;
 	}
-	public String getOfficial_maildid() {
-		return official_maildid;
+
+	public String getMaildId() {
+		return maildId;
 	}
-	public void setOfficial_maildid(String official_maildid) {
-		this.official_maildid = official_maildid;
+
+	public void setMaildId(String maildId) {
+		this.maildId = maildId;
 	}
-	public Date getDate_of_birth() {
-		return date_of_birth;
+
+	public Date getBirthDate() {
+		return birthDate;
 	}
-	public void setDate_of_birth(Date date_of_birth) {
-		this.date_of_birth = date_of_birth;
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
-	public Date getDate_of_joining() {
-		return date_of_joining;
+
+	public Date getJoiningDate() {
+		return joiningDate;
 	}
-	public void setDate_of_joining(Date date_of_joining) {
-		this.date_of_joining = date_of_joining;
+
+	public void setJoiningDate(Date joiningDate) {
+		this.joiningDate = joiningDate;
 	}
+
 	public String getDesignation() {
 		return designation;
 	}
+
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getBlood_group() {
-		return blood_group;
+
+	public String getBloodGroup() {
+		return bloodGroup;
 	}
-	public void setBlood_group(String blood_group) {
-		this.blood_group = blood_group;
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
 	}
+
 	public double getSalary() {
 		return salary;
 	}
+
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	public int getDeptid() {
-		return deptid;
+
+	public int getDeptId() {
+		return deptId;
 	}
-	public void setDeptid(int deptid) {
-		this.deptid = deptid;
+
+	public void setDeptId(int deptId) {
+		this.deptId = deptId;
 	}
-	public int getMgrid() {
-		return mgrid;
+
+	public int getMgrId() {
+		return mgrId;
 	}
-	public void setMgrid(int mgrid) {
-		this.mgrid = mgrid;
+
+	public void setMgrId(int mgrId) {
+		this.mgrId = mgrId;
 	}
-	
-	
-	
+
 }
