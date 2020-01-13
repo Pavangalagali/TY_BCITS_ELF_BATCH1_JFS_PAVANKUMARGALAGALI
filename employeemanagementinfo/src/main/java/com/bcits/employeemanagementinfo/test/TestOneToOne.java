@@ -13,37 +13,43 @@ public class TestOneToOne {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		PrimaryInfo primary = new PrimaryInfo();
-		primary.setEmpId(190);
-		primary.setName("kishan");
-		primary.setMobileNo(8986598850L);
-		primary.setMaildId("shivaraj123@bcits.com");
-		primary.setBirthDate(java.sql.Date.valueOf("1980-09-11"));
-		primary.setJoiningDate(java.sql.Date.valueOf("2014-07-28"));
-		primary.setDesignation("Manager");
-		primary.setBloodGroup("A-");
-		primary.setSalary(75000);
-		primary.setDeptId(10);
-		primary.setMgrId(20);
-
 		SecondaryInfo secondary = new SecondaryInfo();
-		secondary.setAge(40);
+
+		primary.setEmpId(199);
+		primary.setName("Maran");
+		primary.setMobileNo(8986525632L);
+		primary.setMaildId("maranamurali@bcits.com");
+		primary.setBirthDate(java.sql.Date.valueOf("1989-12-19"));
+		primary.setJoiningDate(java.sql.Date.valueOf("2011-02-20"));
+		primary.setDesignation("Developer");
+		primary.setBloodGroup("A+");
+		primary.setSalary(55000);
+		primary.setDeptId(30);
+		primary.setMgrId(10);
+
+		secondary.setAge(22);
 		secondary.setGender("male");
-		secondary.setGovtId("8998-6532-5465");
-		secondary.setGuardianNname("ravikanth");
-		secondary.setGuardianContact(9988998989l);
+		secondary.setGovtId("8889-2222-5465");
+		secondary.setGuardianNname("kishore");
+		secondary.setGuardianContact(9988912323l);
 		secondary.setIsMarried("yes");
 		secondary.setJobLocation("Banglore");
 		secondary.setNationality("Indian");
-		secondary.setPersonalEmail("yahoooo@gmail.com");
+		secondary.setPersonalEmail("muralomapped@gmail.com");
 		secondary.setPrimaryInfo(primary);
+		primary.setSecondaryInfo(secondary);
 		
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("primary");
 			manager = entityManagerFactory.createEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			manager.persist(secondary);
-			System.out.println("record saved");
+//			manager.persist(primary);
+			 PrimaryInfo info =manager.find(PrimaryInfo.class, 199);
+			System.out.println(info.getEmpId());
+			System.out.println(info.getName());
+			System.out.println(info.getSecondaryInfo().getJobLocation());
+			//System.out.println("record saved");
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
