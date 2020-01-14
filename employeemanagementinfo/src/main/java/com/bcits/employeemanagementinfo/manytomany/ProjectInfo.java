@@ -36,6 +36,7 @@ public class ProjectInfo implements Serializable {
 	private String location;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "employee_project", joinColumns = @JoinColumn(name = "pid"), inverseJoinColumns = @JoinColumn(name = "empId"))
+	@JoinTable(name = "employee_project", joinColumns = @JoinColumn(name = "pid"), 
+	inverseJoinColumns = @JoinColumn(name = "empId"))
 	private List<PrimaryInfo> list;
 }
