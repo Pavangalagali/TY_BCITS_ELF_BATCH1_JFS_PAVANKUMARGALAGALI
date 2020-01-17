@@ -11,10 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 public class ServletDate extends HttpServlet {
 
+	  public ServletDate() {
+	System.out.println("instantiation phase");
+	} 
+	  
+	 @Override
+	public void init() throws ServletException {
+		 System.out.println("initialisation phase");
+	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		
 		Date date = new Date();
 
 		ServletConfig config = getServletConfig();
@@ -36,5 +49,11 @@ public class ServletDate extends HttpServlet {
 		out.print("<h1> Servlet name = "+myConfigParamVal+"<h1>");
 		out.println("</body>");
 		out.println("</html>");
+		
+	}
+	@Override
+	public void destroy() {
+		
+		System.out.println("destruction phase");
 	}
 }
