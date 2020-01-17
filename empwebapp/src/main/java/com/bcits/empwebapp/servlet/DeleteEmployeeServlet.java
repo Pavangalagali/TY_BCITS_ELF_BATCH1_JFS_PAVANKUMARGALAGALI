@@ -23,48 +23,40 @@ public class DeleteEmployeeServlet extends HttpServlet {
 		int empId = Integer.parseInt(empIdVal);
 
 		resp.setContentType("text/html");
-		
+
 		PrintWriter out = resp.getWriter();
+
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("emsPeristenceUnit");
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
-		PrimaryInfo info =manager.find(PrimaryInfo.class, empId);
-		
-		if(info!=null) {
+
+		PrimaryInfo info = manager.find(PrimaryInfo.class, empId);
+
+		if (info != null) {
 			try {
 				transaction.begin();
 				manager.remove(info);
 				transaction.commit();
+				out.println("<html>");
+				out.println("<body>");
+				out.println("<h1 style='color:blue'> Employee ID " + empId + " Deleted<h1>");
+				out.println("</body>");
+				out.println("</html>");
 			} catch (Exception e) {
-				
+
 				transaction.rollback();
+				resp.sendError(200, "Something went wrong try later");
 			}
+
+		} else {
 			out.println("<html>");
 			out.println("<body>");
-			out.println("<h1 style='color:blue'> Employee ID " + empId + "Deleted<h1>");
+			out.println("<h1 style='color:red'> Employee ID " + empId + " Not Found<h1>");
 			out.println("</body>");
 			out.println("</html>");
 		}
-		else {
-			out.println("<html>");
-			out.println("<body>");
-			out.println("<h1 style='color:red'> Employee ID " + empId + "Not Found<h1>");
-			out.println("</body>");
-			out.println("</html>");
-		}
-		
+
 		manager.close();
 		factory.close();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

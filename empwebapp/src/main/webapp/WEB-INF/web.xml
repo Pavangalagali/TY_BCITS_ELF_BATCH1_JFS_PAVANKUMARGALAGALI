@@ -9,15 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-  	<servlet-name>currentDate</servlet-name>
-  	<servlet-class>com.bcits.empwebapp.servlet.DateServlet</servlet-class>
-  	</servlet>
-  	
-  	<servlet-mapping>
-  	<servlet-name>currentDate</servlet-name>
-  	<url-pattern>/currentDate</url-pattern>	
-  	</servlet-mapping>
+  
+  <context-param>
+  	<param-name>appName</param-name>
+  	<param-value>empwebapp</param-value>
+  </context-param>
+  
   	<servlet>
     	<servlet-name>searchEmployee</servlet-name>
     	<servlet-class>com.bcits.empwebapp.servlet.SearchEmployeeServlet</servlet-class>
@@ -25,6 +22,19 @@
   <servlet-mapping>
   <servlet-name>searchEmployee</servlet-name>
   <url-pattern>/searchEmp</url-pattern>	
+  </servlet-mapping>
+  
+  <servlet>
+    	<servlet-name>currentDate</servlet-name>
+    	<servlet-class>com.bcits.empwebapp.servlet.ServletDate</servlet-class>
+    	<init-param>
+    		<param-name>ServletName</param-name>
+    		<param-value>Date Servlet</param-value>
+    	</init-param>
+  	</servlet>
+  <servlet-mapping>
+  <servlet-name>currentDate</servlet-name>
+  <url-pattern>/currentDate</url-pattern>	
   </servlet-mapping>
   
 </web-app>
