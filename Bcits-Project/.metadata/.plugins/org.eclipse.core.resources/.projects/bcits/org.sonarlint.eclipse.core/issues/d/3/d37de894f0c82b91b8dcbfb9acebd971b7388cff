@@ -1,0 +1,131 @@
+
+j
+squid:S106+"9Replace this use of System.out or System.err by a logger.(˜éÜŠşÿÿÿÿHŠRMAJORZ
+CODE_SMELL
+_squid:S1148D"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8øÒË¿û-HRMINORZVULNERABILITY
+q
+squid:S106t"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8‹°ñ¿û-H¶RMAJORZ
+CODE_SMELL
+msquid:S1141&"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8×†Æ¿û-HxRMAJORZ
+CODE_SMELL
+i
+squid:S106G"9Replace this use of System.out or System.err by a logger.(¬óÅÉşÿÿÿÿHSRMAJORZ
+CODE_SMELL
+q
+squid:S106u"9Replace this use of System.out or System.err by a logger.(Ïíõšûÿÿÿÿ8‹°ñ¿û-HµRMAJORZ
+CODE_SMELL
+_squid:S1148X"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8š«Ø¿û-H—RMINORZVULNERABILITY
+q
+squid:S106~"9Replace this use of System.out or System.err by a logger.(»òĞ°øÿÿÿÿ8Ş¼ü¿û-HËRMAJORZ
+CODE_SMELL
+i
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ú®üşÿÿÿÿH\RMAJORZ
+CODE_SMELL
+l
+squid:S106s"9Replace this use of System.out or System.err by a logger.(ÎÊËÅ8«”Ù¿û-H RMAJORZ
+CODE_SMELL
+j
+squid:S106<"9Replace this use of System.out or System.err by a logger.(Åü‡ÒüÿÿÿÿH”RMAJORZ
+CODE_SMELL
+i
+squid:S106'"9Replace this use of System.out or System.err by a logger.(Åü‡ÒüÿÿÿÿH8RMAJORZ
+CODE_SMELL
+d
+squid:S106>"9Replace this use of System.out or System.err by a logger.(¹ìÃÀHORMAJORZ
+CODE_SMELL
+Œsquid:S1192+"XDefine a constant instead of duplicating this literal "Enter the final reading" 3 times.(˜éÜŠşÿÿÿÿHvRCRITICALZ
+CODE_SMELL
+d
+squid:S106"9Replace this use of System.out or System.err by a logger.(«Ş´çHYRMAJORZ
+CODE_SMELL
+c
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÚÁŸqHARMAJORZ
+CODE_SMELL
+jsquid:S1135C"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8øÒË¿û-HRINFOZ
+CODE_SMELL
+‚squid:S1192'"NDefine a constant instead of duplicating this literal "enter the id " 3 times.(Åü‡ÒüÿÿÿÿHuRCRITICALZ
+CODE_SMELL
+„squid:S1192#"PDefine a constant instead of duplicating this literal "enter the name " 3 times.(êÌ‰ÚÿÿÿÿÿHPRCRITICALZ
+CODE_SMELL
+i
+squid:S106@"9Replace this use of System.out or System.err by a logger.(˜éÜŠşÿÿÿÿH7RMAJORZ
+CODE_SMELL
+fsquid:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿHCRMAJORZ
+CODE_SMELL
+j
+squid:S106T"9Replace this use of System.out or System.err by a logger.(˜éÜŠşÿÿÿÿH•RMAJORZ
+CODE_SMELL
+i
+squid:S106"9Replace this use of System.out or System.err by a logger.(¤ºÁ©ıÿÿÿÿHcRMAJORZ
+CODE_SMELL
+nsquid:S1141:"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8øÒË¿û-HRMAJORZ
+CODE_SMELL
+i
+squid:S106"9Replace this use of System.out or System.err by a logger.(‘™µşÿÿÿÿHXRMAJORZ
+CODE_SMELL
+jsquid:S1135W"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8š«Ø¿û-H™RINFOZ
+CODE_SMELL
+q
+squid:S106z"9Replace this use of System.out or System.err by a logger.(ÒÃœ¢úÿÿÿÿ8Ş¼ü¿û-HÊRMAJORZ
+CODE_SMELL
+i
+squid:S106P"9Replace this use of System.out or System.err by a logger.(Åü‡ÒüÿÿÿÿH=RMAJORZ
+CODE_SMELL
+d
+squid:S106r"9Replace this use of System.out or System.err by a logger.(ÍÚÎ¿H9RMAJORZ
+CODE_SMELL
+nsquid:S1141O"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8š«Ø¿û-H–RMAJORZ
+CODE_SMELL
+j
+squid:S1067"9Replace this use of System.out or System.err by a logger.(êÌ‰ÚÿÿÿÿÿH‹RMAJORZ
+CODE_SMELL
+d
+squid:S106p"9Replace this use of System.out or System.err by a logger.(§ö§HIRMAJORZ
+CODE_SMELL
+i
+squid:S106"9Replace this use of System.out or System.err by a logger.(‚¸üùÿÿÿÿHHRMAJORZ
+CODE_SMELL
+j
+squid:S106k"9Replace this use of System.out or System.err by a logger.(öğ€•şÿÿÿÿHŒRMAJORZ
+CODE_SMELL
+i
+squid:S106a"9Replace this use of System.out or System.err by a logger.(ÈïÂşÿÿÿÿHdRMAJORZ
+CODE_SMELL
+i
+squid:S106e"9Replace this use of System.out or System.err by a logger.(»òĞ°øÿÿÿÿHQRMAJORZ
+CODE_SMELL
+ˆsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(Çµí‘8×†Æ¿û-HzRCRITICALZ
+CODE_SMELL
+i
+squid:S106L"9Replace this use of System.out or System.err by a logger.(êÌ‰ÚÿÿÿÿÿHTRMAJORZ
+CODE_SMELL
+|squid:S11922"HDefine a constant instead of duplicating this literal "bill = " 3 times.(¬óÅÉşÿÿÿÿH>RCRITICALZ
+CODE_SMELL
+Šsquid:S1192)"[Define a constant instead of duplicating this literal "Enter the initial reading " 3 times.(¹ìÃÀHwRCRITICALZ
+CODE_SMELL
+i
+squid:S1062"9Replace this use of System.out or System.err by a logger.(¬óÅÉşÿÿÿÿHDRMAJORZ
+CODE_SMELL
+Šsquid:S2293	"YReplace the type specification in this constructor call with the diamond operator ("<>").(óÈÌıÿÿÿÿHGRMINORZ
+CODE_SMELL
+d
+squid:S106R"9Replace this use of System.out or System.err by a logger.(¹ìÃÀH@RMAJORZ
+CODE_SMELL
+i
+squid:S106#"9Replace this use of System.out or System.err by a logger.(êÌ‰ÚÿÿÿÿÿHBRMAJORZ
+CODE_SMELL
+d
+squid:S106)"9Replace this use of System.out or System.err by a logger.(¹ìÃÀHsRMAJORZ
+CODE_SMELL
+i
+squid:S106"9Replace this use of System.out or System.err by a logger.(±ëã÷ùÿÿÿÿHtRMAJORZ
+CODE_SMELL
+i
+squid:S106/"9Replace this use of System.out or System.err by a logger.(Œ¦âÛøÿÿÿÿHURMAJORZ
+CODE_SMELL
+d
+squid:S106q"9Replace this use of System.out or System.err by a logger.(›ÓÇH°RMAJORZ
+CODE_SMELL
+p
+squid:S106["9Replace this use of System.out or System.err by a logger.(¬óÅÉşÿÿÿÿ8ØŞ¿¿û-HgRMAJORZ
+CODE_SMELL

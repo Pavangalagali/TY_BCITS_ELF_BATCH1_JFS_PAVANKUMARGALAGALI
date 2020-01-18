@@ -1,0 +1,13 @@
+
+msquid:S2184
+"BCast one of the operands of this addition operation to a "double".(òÖÔüÿÿÿÿH¸RMINORZBUG
+hsquid:S2184&"BCast one of the operands of this addition operation to a "double".(öÇÙ€H¹RMINORZBUG
+fsquid:S1118":Add a private constructor to hide the implicit public one.( Û«GHºRMAJORZ
+CODE_SMELL
+msquid:S2184"BCast one of the operands of this addition operation to a "double".(™¶³öúÿÿÿÿH»RMINORZBUG
+msquid:S2184"BCast one of the operands of this addition operation to a "double".(ßÎëùÿÿÿÿH¼RMINORZBUG
+hsquid:S2184"BCast one of the operands of this addition operation to a "double".(àÆ™ƒH½RMINORZBUG
+ssquid:S2184"HCast one of the operands of this multiplication operation to a "double".(¤ÎÍûÿÿÿÿH¾RMINORZBUG
+nsquid:S2184""HCast one of the operands of this multiplication operation to a "double".(¾¦•H¿RMINORZBUG
+nsquid:S2184"HCast one of the operands of this multiplication operation to a "double".(á‹æàHÀRMINORZBUG
+hsquid:S2184$"BCast one of the operands of this addition operation to a "double".(¿¨ãªHÁRMINORZBUG
