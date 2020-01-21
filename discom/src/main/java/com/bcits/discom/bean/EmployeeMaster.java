@@ -22,5 +22,7 @@ public class EmployeeMaster implements Serializable{
 	private String eMail;
 	@Column
 	private String password;
+	@Column
+	private String region;
 	
 }

@@ -13,14 +13,10 @@ public class MonthlyConsumption {
 	@EmbeddedId
 	private MonthlyConsumptionPk consumptionPk;
 	@Column
-	private double previousUnits;
-	@Column
-	private double finalUnits;
-	@Column
 	private double totalUnits;
 	@Column
 	private double bill;
-	@Column
-	private String status;
+	
+	
 	
 }

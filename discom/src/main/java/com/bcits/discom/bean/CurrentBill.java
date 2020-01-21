@@ -30,4 +30,5 @@ public class CurrentBill implements Serializable {
 	@Column
 	private Date readingsTakenOn;
 	
+	
 }

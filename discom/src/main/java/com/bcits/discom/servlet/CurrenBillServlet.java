@@ -33,25 +33,8 @@ public class CurrenBillServlet extends HttpServlet {
 			ConsumerMaster master =(ConsumerMaster) session.getAttribute("consumer");
 			out.print("<h1 style='color:orange'>"+master.getFirstName()+" "+master.getLastName()+ "</h1> ");
 			CurrentBill currentBill = manager.find(CurrentBill.class, master.getRrNumber());
-			out.print("<tr>"+
-			 "<th>RR Number</th>"+
-			   "<th>Readings Taken On</th>"+
-			   "<th>Intial Units</th>"+
-			   "<th>Final Units</th>"+
-			   "<th>Total Units</th>"+
-			   "<th>Amount</th>"+
-			   "<th>Due Date</th>"+
-			  "</tr><br>");
-			  out.print("<tr>"+
-			    "<td>"+currentBill.getRrNumber()+"</td>"+
-			    "<td>"+currentBill.getReadingsTakenOn()+"</td>"+
-			    "<td>"+currentBill.getInitialUnits()+"</td>"+
-			    "<td>"+currentBill.getFinalUnits()+"</td>"+
-			    "<td>"+currentBill.getUnitsConsumed()+"</td>"+
-			    "<td>"+currentBill.getAmount()+"</td>"+
-			    "<td>"+currentBill.getDueDate()+"</td>"+
-			    "</tr><br>");
-			  out.print("<a>"+"Pay Now"+" </a>");
+			req.setAttribute("currentBill", currentBill);
+			req.getRequestDispatcher("./currentBill.jsp").forward(req, resp);
 		}else {
 			out.print("<h1 style='color:blue'>Please login again</h1> ");
 			req.getRequestDispatcher("./consumerLogin.html").include(req, resp);
