@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean definitions here -->
+	<bean id="message" class="com.bcits.springcore.beans.MessageBean"> <!-- init-method="init" destroy-method="destroy" -->
+		<property name="message" value="Say hi to SpringCore...!" />
+	</bean>
+
+	<bean id="employee"
+		class="com.bcits.springcore.beans.EmployeeBean" scope="prototype" />
+	<!-- <bean id="employee2" class="com.bcits.springcore.beans.EmployeeBean"> 
+		<property name="name" value="Arun" /> <property name="age" value="23"/> </bean> -->
+
+</beans>

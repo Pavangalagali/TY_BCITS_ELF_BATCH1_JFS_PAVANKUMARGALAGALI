@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="employee" class="com.bcits.springcore.beans.EmployeeBean">
+		<property name="name" value="anil"/>
+		<property name="age" value="22"/>
+		<property name="departmentBean" ref="dept"></property>
+	</bean>
+	<bean id="dept" class="com.bcits.springcore.beans.DepartmentBean">
+		<property name="deptId" value="12"/>
+		<property name="deptName" value="development"/>
+	</bean>
+</beans>
