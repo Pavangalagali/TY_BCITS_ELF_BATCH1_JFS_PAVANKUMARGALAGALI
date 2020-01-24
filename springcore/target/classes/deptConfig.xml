@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="dev" class="com.bcits.springcore.beans.DepartmentBean" >   <!-- setting it non eligible for autowiring -->
+		<property name="deptId" value="12"/>
+		<property name="deptName" value="development"/>
+	</bean>
+	
+	<bean id="hr" class="com.bcits.springcore.beans.DepartmentBean" autowire-candidate="false">
+		<property name="deptId" value="13"/>
+		<property name="deptName" value="hr"/>
+	</bean>
+	
+	<bean id="test" class="com.bcits.springcore.beans.DepartmentBean" autowire-candidate="false">
+		<property name="deptId" value="14"/>
+		<property name="deptName" value="test"/>
+	</bean>
+	
+	
+</beans>
