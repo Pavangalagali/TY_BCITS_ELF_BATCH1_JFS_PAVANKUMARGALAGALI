@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import lombok.Data;
 
 @Data
@@ -24,8 +27,10 @@ public class EmployeeInfoBean implements Serializable {
 	@Column(name = "official_maildid")
 	private String maildId;
 	@Column(name = "date_of_birth")
+	@DateTimeFormat(iso =ISO. DATE)
 	private Date birthDate;
 	@Column(name = "date_of_joining")
+	@DateTimeFormat(iso =ISO. DATE)
 	private Date joiningDate;
 	@Column
 	private String designation;

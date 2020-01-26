@@ -1,5 +1,7 @@
 package com.bcits.springmvc.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -118,5 +120,82 @@ public class EmployeeController {
 		map.addAttribute("errMsg", "logged out successfully");
 		return "empLoginForm";
 	}// end of logout()
+
+	@GetMapping("/seeAllEmployee")
+	public String getAllEmployee(@SessionAttribute(name = "loggedEmpInfo", required = false) EmployeeInfoBean infoBean,
+			ModelMap modelMap) {
+		if (infoBean != null) {
+			List<EmployeeInfoBean> infoBeans = service.getAllEmployees();
+			if (infoBeans != null) {
+				modelMap.addAttribute("infoBeans", infoBeans);
+			} else {
+				modelMap.addAttribute("errMsg", "NO Employee Found");
+			}
+			return "seeAllEmployee";
+
+		} else {
+			modelMap.addAttribute("errMsg", "Please Login First");
+			return "empLoginForm";
+		}
+	}// end of seeEmployee()
+
+	@GetMapping("/addEmployee")
+	public String getAddEmployeeForm(
+			@SessionAttribute(name = "loggedEmpInfo", required = false) EmployeeInfoBean infoBean, ModelMap modelMap) {
+		if (infoBean != null) {
+			// valid session
+			return "insertEmployee";
+		} else {
+			modelMap.addAttribute("errMsg", "Please Login First");
+			return "empLoginForm";
+		}
+	}// end of getAddEmployeeFOrm();
+
+	@PostMapping("/addEmployee")
+	public String addEmployee(EmployeeInfoBean employeeBean,
+			@SessionAttribute(name = "loggedEmpInfo", required = false) EmployeeInfoBean infoBean, ModelMap modelMap) {
+		if (infoBean != null) {
+			if (service.addemployee(employeeBean)) {
+				modelMap.addAttribute("msg", "added successfully");
+			} else {
+				modelMap.addAttribute("errMsg", "this Employee Record Already exists!");
+			}
+			return "insertEmployee";
+		} else {
+			modelMap.addAttribute("errMsg", "Please Login First");
+			return "empLoginForm";
+		}
+	}// end of addEmployee()
+
+	@GetMapping("/updateEmployee")
+	public String getUpdateForm(@SessionAttribute(name = "loggedEmpInfo", required = false) EmployeeInfoBean infoBean,
+			ModelMap modelMap) {
+		if (infoBean != null) {
+			// valid Session
+			return "updateEmployee";
+		} else {
+			// invalid session
+			modelMap.addAttribute("errMsg", "Please Login First");
+			return "empLoginForm";
+		}
+	}// end of getUpdateForm()
+
+	@GetMapping("/updateEmp")
+	public String upadteEmployee(EmployeeInfoBean employeeBean,
+			@SessionAttribute(name = "loggedEmpInfo", required = false) EmployeeInfoBean infoBean, ModelMap modelMap) {
+		if (infoBean != null) {
+			// valid Session
+			if (service.updateEmployee(employeeBean)) {
+				modelMap.addAttribute("msg", "Updated successfully");
+			} else {
+				modelMap.addAttribute("errMsg", "Employee Id not Found");
+			}
+			return "updateEmployee";
+		} else {
+			// invalid session
+			modelMap.addAttribute("errMsg", "Please Login First");
+			return "empLoginForm";
+		}
+	}
 
 }

@@ -63,9 +63,23 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
 	@Override
 	public boolean updateEmployee(EmployeeInfoBean infoBean) {
-
+		boolean isUpdated = false;
 		EntityManager manager = managerFactory.createEntityManager();
-		return false;
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			EmployeeInfoBean bean = manager.find(EmployeeInfoBean.class,infoBean.getEmpId());
+			bean.setSalary(infoBean.getSalary());
+			bean.setMobileNum(infoBean.getMobileNum());
+			bean.setDesignation(infoBean.getDesignation());
+			transaction.commit();
+			isUpdated = true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+			
+		}
+		return isUpdated;
 	}
 
 	@Override

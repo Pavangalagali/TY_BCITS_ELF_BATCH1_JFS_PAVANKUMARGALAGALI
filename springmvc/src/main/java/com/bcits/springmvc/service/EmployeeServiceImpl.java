@@ -22,6 +22,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean addemployee(EmployeeInfoBean infoBean) {
+		if (infoBean.getEmpId() < 1) {
+
+			return false;
+		}
 
 		return dao.addemployee(infoBean);
 	}
@@ -37,9 +41,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean updateEmployee(EmployeeInfoBean infoBean) {
+		if (infoBean.getEmpId() < 1) {
+			return false;
+		} else {
 
-		return dao.updateEmployee(infoBean);
-	}
+			if (dao.getEmployee(infoBean.getEmpId()) != null) {
+				return dao.updateEmployee(infoBean);
+			} else {
+				return false;
+			}
+		}
+
+	}// end od update
 
 	@Override
 	public EmployeeInfoBean getEmployee(int empId) {
