@@ -24,9 +24,14 @@
 				<th>Name</th>
 				<th>Salary</th>
 				<th>Designation</th>
+				<th>Email ID</th>
+				<th>Mobile Number</th>
 				<th>DOB</th>
 				<th>DOJ</th>
-				<th>Mobile Number</th>
+				<th>Blood Group</th>
+				<th>Dept Id</th>
+				<th>Manager Id</th>
+				
 			</tr>
 			</thead>
 			<tbody>
@@ -36,9 +41,13 @@
 					<td><%= infoBean.getName()%></td>
 					<td><%= infoBean.getSalary()%></td>
 					<td><%= infoBean.getDesignation()%></td>
+					<td><%= infoBean.getMaildId()%></td>
+					<td><%= infoBean.getMobileNum()%></td>			
 					<td><%= infoBean.getBirthDate()%></td>
 					<td><%= infoBean.getJoiningDate()%></td>
-					<td><%= infoBean.getMobileNum()%></td>			
+				    <td><%= infoBean.getBloodGroup()%></td>
+				   	<td><%= infoBean.getDeptId()%></td>
+				    <td><%= infoBean.getMgrId()%></td>
 			</tr>
 			<% } %>
 			</tbody>

@@ -12,7 +12,7 @@
 <title>Home</title>
 </head>
 <body>
-	<h1 style="color: purple;">Welcome<%=employeeInfoBean.getName()%></h1>
+	<h1 style="color: purple;">Welcome<%=   employeeInfoBean.getName()%></h1>
 </body>
 </html>
 

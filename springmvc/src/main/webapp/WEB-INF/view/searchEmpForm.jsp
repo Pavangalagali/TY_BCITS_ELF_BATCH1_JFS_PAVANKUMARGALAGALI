@@ -32,23 +32,39 @@
 	<% } %>
 	<% if(infoBean != null){ %>
 	<table>
-	<tr style='background-color: lightgrey;color: blue;height: 30px'>
-				<th style="font-size: 20px">ID</th>
-				<th style="font-size: 20px">Name </th>
-				<th style="font-size: 20px">Designation</th>
-				<th style="font-size: 20px">Salary</th>
-				<th style="font-size: 20px">Mobile</th>
-				<th style="font-size: 20px">Email</th>
+	<table border="1" style='width: 80%'>
+			<thead style="background-color: blue; color: white;">
+			<tr style="height: 35px">
+				<th> Employee Id</th>
+				<th>Name</th>
+				<th>Salary</th>
+				<th>Designation</th>
+				<th>Email ID</th>
+				<th>Mobile Number</th>
+				<th>DOB</th>
+				<th>DOJ</th>
+				<th>Blood Group</th>
+				<th>Dept Id</th>
+				<th>Manager Id</th>
+				
 			</tr>
-			<tr style='height: 30px'>
-				<td style="font-size: 15px"><%=infoBean.getEmpId() %></td>
-				<td style="font-size: 15px"><%=infoBean.getName() %></td>
-				<td style="font-size: 15px"><%=infoBean.getDesignation() %></td>
-				<td style="font-size: 15px"><%=infoBean.getSalary() %></td>
-				<td style="font-size: 15px"><%=infoBean.getMobileNum() %></td>
-				<td style="font-size: 15px"><%=infoBean.getMaildId() %></td>
-			</tr>			
-		</table>	
+			</thead>
+			<tbody>
+			<tr>
+					<td><%= infoBean.getEmpId()%></td>
+					<td><%= infoBean.getName()%></td>
+					<td><%= infoBean.getSalary()%></td>
+					<td><%= infoBean.getDesignation()%></td>
+					<td><%= infoBean.getMaildId()%></td>
+					<td><%= infoBean.getMobileNum()%></td>			
+					<td><%= infoBean.getBirthDate()%></td>
+					<td><%= infoBean.getJoiningDate()%></td>
+				    <td><%= infoBean.getBloodGroup()%></td>
+				   	<td><%= infoBean.getDeptId()%></td>
+				    <td><%= infoBean.getMgrId()%></td>
+			</tr>
+			</tbody>
+			</table>
 	<% } %>
 	<br><br>
 	

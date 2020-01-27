@@ -37,6 +37,8 @@
         <input type="number" name="deptId" required><br><br>
         <label>Manager Id :</label>
         <input type="number" name="mgrId" required><br><br>
+        <label>Password :</label>
+        <input type="text" name="password" required><br><br>
         <br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="submit" value="ADD" >		
@@ -54,7 +56,7 @@
 		<%
 		if (msg != null && !msg.isEmpty()) {
 	%>
-	<h2 style="color: red;">
+	<h2 style="color: blue;">
 		<%=msg%></h2>
 
 	<%

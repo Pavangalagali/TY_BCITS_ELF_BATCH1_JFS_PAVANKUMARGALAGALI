@@ -1,8 +1,11 @@
+<%@page import="com.bcits.springmvc.beans.EmployeeInfoBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%
 	String errMsg = (String) request.getAttribute("errMsg");
     String msg = (String) request.getAttribute("msg");
+    Integer empId = (Integer) request.getAttribute("empId");
+    
 %>
     
     <jsp:include page="header.jsp" />
@@ -15,20 +18,34 @@
 <body>
 <fieldset>
 		<legend>Employee Details</legend>
-		<form action="./updateEmp" >
-		<label>Id :</label>
-        <input type="number" name="empId" required><br><br>
+		<form action="./updateEmp" method="post">
+		<label>Id : <%=empId%> </label>
+        <input type="hidden" name="empId" value="<%=empId%>" ><br><br>
         <label>Name :</label>
-        <input type="text" name="name" required><br><br>
+        <input type="text" name="name" ><br><br>
         <label>Mobile Number :</label>
-        <input type="tel" name="mobileNum" required><br><br>     
+        <input type="tel" name="mobileNum" ><br><br>
+        <label>Email :</label>
+        <input type="email" name="maildId" ><br><br>
+        <label>BirthDate :</label>
+        <input type="date" name="birthDate" ><br><br>
+        <label>JoiningDate :</label>
+        <input type="date" name="joiningDate" ><br><br>
         <label>Designation :</label>
-        <input type="text" name="designation" required><br><br>
+        <input type="text" name="designation" ><br><br>
+        <label>Blood Group :</label>
+        <input type="text" name="bloodGroup" ><br><br>
         <label>salary :</label>
-        <input type="number" name="salary" required><br><br>
-         <br>
+        <input type="text" name="salary" ><br><br>
+        <label>Department Id :</label>
+        <input type="number" name="deptId" ><br><br>
+        <label>Manager Id :</label>
+        <input type="number" name="mgrId" ><br><br>
+        <label>Password :</label>
+        <input type="password" name="password" ><br><br>
+        <br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" value="Update" >		
+		<input type="submit" value="Upadte" >		
 		</form>
 	</fieldset>
 <%
@@ -43,7 +60,7 @@
 		<%
 		if (msg != null && !msg.isEmpty()) {
 	%>
-	<h2 style="color: red;">
+	<h2 style="color: blue;">
 		<%=msg%></h2>
 
 	<%

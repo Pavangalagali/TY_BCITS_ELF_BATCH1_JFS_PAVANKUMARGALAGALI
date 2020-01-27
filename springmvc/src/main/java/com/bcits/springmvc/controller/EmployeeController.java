@@ -1,5 +1,7 @@
 package com.bcits.springmvc.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,9 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -18,6 +23,12 @@ import com.bcits.springmvc.service.EmployeeService;
 
 @Controller
 public class EmployeeController {
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		CustomDateEditor dateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
+		binder.registerCustomEditor(Date.class, dateEditor);
+	}// end of initBinder()
 
 	@Autowired
 	@Qualifier("service1")
@@ -172,6 +183,7 @@ public class EmployeeController {
 			ModelMap modelMap) {
 		if (infoBean != null) {
 			// valid Session
+			modelMap.addAttribute("empId", infoBean.getEmpId());
 			return "updateEmployee";
 		} else {
 			// invalid session
@@ -180,7 +192,7 @@ public class EmployeeController {
 		}
 	}// end of getUpdateForm()
 
-	@GetMapping("/updateEmp")
+	@PostMapping("/updateEmp")
 	public String upadteEmployee(EmployeeInfoBean employeeBean,
 			@SessionAttribute(name = "loggedEmpInfo", required = false) EmployeeInfoBean infoBean, ModelMap modelMap) {
 		if (infoBean != null) {
@@ -196,6 +208,6 @@ public class EmployeeController {
 			modelMap.addAttribute("errMsg", "Please Login First");
 			return "empLoginForm";
 		}
-	}
+	}// end of updateEmployee()
 
-}
+}// end of class
