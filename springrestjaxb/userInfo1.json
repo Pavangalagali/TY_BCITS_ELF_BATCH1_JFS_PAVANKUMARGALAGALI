@@ -1,0 +1,17 @@
+{
+	"name": "Manju",
+	"mobileNum": 9876878789,
+	"maildId": "manju@gmail.com",
+	"birthDate": 1580209075036,
+	"joiningDate": 1580209075036,
+	"designation": "jsd",
+	"bloodGroup": "A+",
+	"salary": 40000.0,
+	"otherInfo": {
+		"gender": "Male",
+		"aadhar": 12344321
+	},
+	"employeeId": 100,
+	"departmentId": 16,
+	"managerId": 12
+}

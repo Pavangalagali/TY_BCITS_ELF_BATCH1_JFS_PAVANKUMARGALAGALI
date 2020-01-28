@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<User-info User-id="101">
+    <name>Punith</name>
+    <mobileNum>9876878789</mobileNum>
+    <maildId>sai@gmail.com</maildId>
+    <birthDate>2020-01-28T13:07:21.002+05:30</birthDate>
+    <joiningDate>2020-01-28T13:07:21.002+05:30</joiningDate>
+    <designation>ssd</designation>
+    <bloodGroup>A-</bloodGroup>
+    <salary>50000.0</salary>
+    <deptId>11</deptId>
+    <mgrId>22</mgrId>
+    <password>qwerty</password>
+    <other-info>
+        <gender>Male</gender>
+        <aadhar>12300321</aadhar>
+    </other-info>
+</User-info>

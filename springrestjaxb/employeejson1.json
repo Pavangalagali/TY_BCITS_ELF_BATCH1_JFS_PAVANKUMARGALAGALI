@@ -1,0 +1,14 @@
+{
+	"empId": 102,
+	"name": "Aun",
+	"mobileNum": 9876878789,
+	"maildId": "sai@gmail.com",
+	"birthDate": "1990-12-12",
+	"joiningDate": 1580205945040,
+	"designation": "Tester",
+	"bloodGroup": "A-",
+	"salary": 30000.0,
+	"deptId": 11,
+	"mgrId": 22,
+	"password": "qwerty"
+}

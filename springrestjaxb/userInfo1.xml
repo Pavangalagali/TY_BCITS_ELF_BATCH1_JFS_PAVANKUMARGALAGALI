@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<User-info User-id="101">
+    <name>Sai</name>
+    <mobileNum>9876878789</mobileNum>
+    <maildId>sai@gmail.com</maildId>
+    <birthDate>2020-01-28T13:42:41.116+05:30</birthDate>
+    <joiningDate>2020-01-28T13:42:41.116+05:30</joiningDate>
+    <designation>ssd</designation>
+    <bloodGroup>A-</bloodGroup>
+    <salary>60000.0</salary>
+    <deptId>11</deptId>
+    <mgrId>22</mgrId>
+    <password>qwerty</password>
+    <other-info>
+        <gender>Male</gender>
+        <aadhar>12344321</aadhar>
+    </other-info>
+    <user-address-list>
+        <userAddesses>
+            <houseNum>11</houseNum>
+            <street>MG ROAD</street>
+            <city>BGK</city>
+            <address-type>80</address-type>
+        </userAddesses>
+        <userAddesses>
+            <houseNum>11</houseNum>
+            <street>NR COLONY</street>
+            <city>BLR</city>
+            <address-type>84</address-type>
+        </userAddesses>
+    </user-address-list>
+</User-info>

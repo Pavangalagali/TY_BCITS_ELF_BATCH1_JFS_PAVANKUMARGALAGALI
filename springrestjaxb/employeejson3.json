@@ -1,0 +1,13 @@
+{
+	"employeeId": 101,
+	"name": "Sai",
+	"mobileNum": 9876878789,
+	"maildId": "sai@gmail.com",
+	"birthDate": 1580208294756,
+	"joiningDate": 1580208294756,
+	"designation": "ssd",
+	"bloodGroup": "A-",
+	"salary": 60000.0,
+	"departmentId": 11,
+	"managerId": 22
+}

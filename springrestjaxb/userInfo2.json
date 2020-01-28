@@ -1,0 +1,31 @@
+{
+	"name": "Manju",
+	"mobileNum": 9876878789,
+	"maildId": "manju@gmail.com",
+	"birthDate": 1580209393630,
+	"joiningDate": 1580209393630,
+	"designation": "jsd",
+	"bloodGroup": "A+",
+	"salary": 40000.0,
+	"otherInfo": {
+		"gender": "Male",
+		"aadhar": 12344321
+	},
+	"userAddesses": [
+		{
+			"houseNum": 11,
+			"street": "MG ROAD",
+			"city": "BGK",
+			"addressType": "P"
+		},
+		{
+			"houseNum": 11,
+			"street": "NR COLONY",
+			"city": "BLR",
+			"addressType": "T"
+		}
+	],
+	"employeeId": 100,
+	"departmentId": 16,
+	"managerId": 12
+}

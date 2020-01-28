@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Employee-info Employee-id="102">
+    <name>Akash</name>
+    <mobileNum>9876878789</mobileNum>
+    <maildId>akash@gmail.com</maildId>
+    <birthDate>2020-01-28</birthDate>
+    <joiningDate>2020-01-28</joiningDate>
+    <designation>jsd</designation>
+    <bloodGroup>A-</bloodGroup>
+    <salary>40000.0</salary>
+    <deptId>11</deptId>
+    <mgrId>22</mgrId>
+    <password>qwerty</password>
+</Employee-info>
+	
