@@ -7,13 +7,28 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Data;
 
+
+@JsonRootName("employeeInfo")
+@JsonPropertyOrder({"employeeId","name"})
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Entity
 @Table(name = "employee_primary_info")
 public class EmployeeInfoBean implements Serializable {
+	@JsonProperty("employeeId")
 	@Id
 	@Column(name = "emp_id")
 	private Integer empId;
@@ -39,6 +54,7 @@ public class EmployeeInfoBean implements Serializable {
 	private Integer deptId;
 	@Column(name = "mgr_id")
 	private Integer mgrId;
+	
 	@Column
 	private String password;
 

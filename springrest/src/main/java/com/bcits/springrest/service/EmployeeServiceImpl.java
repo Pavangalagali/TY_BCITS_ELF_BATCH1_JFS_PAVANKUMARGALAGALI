@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bcits.springrest.beans.EmployeeInfoBean;
+import com.bcits.springrest.customeception.EmployeeException;
 import com.bcits.springrest.dao.EmployeeDAO;
 
-@Service(value = "service1")
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
@@ -57,13 +58,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeInfoBean getEmployee(int empId) {
 		if (empId < 1) {
-			return null;
+			throw new EmployeeException("Invalid Id");
 		}
-		EmployeeInfoBean infoBean = dao.getEmployee(empId);
-		if(infoBean == null) {
-			return null;
-		}
-		return infoBean;
+		
+		return dao.getEmployee(empId);
 	}
 
 	@Override
