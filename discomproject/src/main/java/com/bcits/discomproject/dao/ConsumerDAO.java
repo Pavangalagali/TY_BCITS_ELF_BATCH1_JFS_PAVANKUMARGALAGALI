@@ -1,6 +1,10 @@
 package com.bcits.discomproject.dao;
 
+import java.util.List;
+
 import com.bcits.discomproject.beans.ConsumerMaster;
+import com.bcits.discomproject.beans.CurrentBill;
+import com.bcits.discomproject.beans.MonthlyConsumption;
 
 public interface ConsumerDAO {
 
@@ -8,4 +12,11 @@ public interface ConsumerDAO {
 
 	public ConsumerMaster authenticate(String rrNumber, String password);
 
+	public List<MonthlyConsumption> consumptions(String rrNumber);
+	
+	public CurrentBill currentBill(String rrNumber);
+	
+	public boolean billPayment(String rrNumber);
+	
+	public boolean supportRequest(String rrNumber, String msg);
 }

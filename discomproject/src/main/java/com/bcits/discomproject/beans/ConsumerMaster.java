@@ -23,7 +23,7 @@ public class ConsumerMaster implements Serializable{
 	@Column
 	private String eMail;
 	@Column(name = "phone_number")
-	private long phoneNumber;
+	private Long phoneNumber;
 	@Column(name = "consumer_type")
 	private String consumerType;
 	@Column
@@ -31,7 +31,7 @@ public class ConsumerMaster implements Serializable{
 	@Column
 	private String password;
 	@Column(name = "house_no")
-	private int houseNo;
+	private Integer houseNo;
 	@Column
 	private String address1;
 	@Column

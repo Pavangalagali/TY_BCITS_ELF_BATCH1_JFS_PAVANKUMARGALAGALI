@@ -53,7 +53,7 @@
 
                     <div class="col mt-3">
                         <label class="">Lastname</label>
-                        <input type="text" name="lname" id="lastName" class="form-control" placeholder="Last name">
+                        <input type="text" name=lastName id="lastName" class="form-control" placeholder="Last name">
                     </div>
                 </div><br>
                 <div>
