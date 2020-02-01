@@ -95,6 +95,46 @@
 			</div>
 		</div>
 
+
+		<div class="card-body">
+		
+				<% if(currentBill != null){ %>
+		       <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
+		       <legend><h4 style="padding-top: 2mm;padding-bottom:2mm;font-size: larger;text-align: center;">Current Bill</h4></legend>
+              <table class="table table-sm table-dark mt-2">
+                <thead>
+                    <tr >
+                         <th scope="col">RR Number</th>
+                         <th scope="col">Initial Reading</th>
+                         <th scope="col">Final Reading</th>
+                         <th scope="col">Taken On</th>
+                         <th scope="col">Units Consumed</th>
+                         <th scope="col">Bill</th>
+                         <th scope="col">Due Date</th>
+                   </tr>
+             </thead>
+		    <tbody>
+		       	<tr>
+					<td><%=currentBill.getRrNumber() %></td>
+					<td><%=currentBill.getInitialUnits()%></td>
+					<td><%=currentBill.getFinalUnits() %></td>
+					<td><%=currentBill.getReadingsTakenOn()%></td>
+					<td><%=currentBill.getUnitsConsumed()%></td>
+					<td><%=currentBill.getAmount() %></td>
+					<td><%=currentBill.getDueDate()%></td>
+			  </tr>
+		</tbody>		
+		</table>
+		<form action="./payment" method="get">
+			<button type="submit"  class="btn btn-info btn-lg">Pay Now</button>
+		</form>
+		</div>
+		<%} %>
+		
+		
+		</div>
+
+
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
 			<a href="./monthlyConsumption">
 				<button type="button" class="btn btn-dark btn-lg btn-block">Monthly
@@ -109,22 +149,19 @@
             <thead>
               <tr >
                 <th scope="col">RR Number</th>
-                <th scope="col">Paid On</th>
+                <th scope="col">Statement On</th>
                 <th scope="col">Total Units</th>
-                <th scope="col">Bill</th>
               </tr>
             </thead>
 		<tbody>
 			<% for(MonthlyConsumption consumed : consumptions ){ %>
 			<tr>
 					<td><%= consumed.getConsumptionPk().getRrNumber() %></td>
-					<td><%= consumed.getConsumptionPk().getDate()%></td>
+					<td><%= consumed.getTakenOn()%></td>
 					<td><%= consumed.getTotalUnits() %></td>
-					<td><%= consumed.getBill() %></td>
 			</tr>
 			<% } %>
 			</tbody>
-			
 			</table>
 			</div>
 		<%} %>
@@ -146,7 +183,6 @@
                 <th scope="col">RR Number</th>
                 <th scope="col">Statement Date</th>
                 <th scope="col">Paid On</th>
-                <th scope="col">Previous Units</th>
                 <th scope="col">Total Units</th>
                 <th scope="col">Bill</th>
                 <th scope="col">Status</th>
@@ -158,10 +194,13 @@
 					<td><%= bill.getConsumptionPk().getRrNumber() %></td>
 					<td><%= bill.getTakenOn() %></td>
 					<td><%= bill.getConsumptionPk().getDate()%></td>
-					<td><%= bill.getPreviousUnits()%></td>
 					<td><%= bill.getTotalUnits() %></td>
-					<td><%= bill.getBill() %></td>
-					<td><%= bill.getStatus()%></td>
+					<td><%= bill.getBill() %>
+					<% if(bill.getStatus().equals("paid")){ %>
+					<td style="color: green; font-weight: bold;font-size: large;"><%= bill.getStatus()%></td>
+					<% }else { %>
+					<td style="color: red;"><%= bill.getStatus()%></td>
+					<% } %>
 			</tr>
 			<% } %>
 			</tbody>
@@ -180,38 +219,7 @@
 			</a>
 		</div>
 		
-			<% if(currentBill != null){ %>
-		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
-		<legend><h4 style="padding-top: 2mm;padding-bottom:2mm;font-size: larger;text-align: center;">Current Bill</h4></legend>
-        <table class="table table-sm table-dark mt-2">
-            <thead>
-              <tr >
-                <th scope="col">RR Number</th>
-                <th scope="col">Initial Reading</th>
-                <th scope="col">Final Reading</th>
-                <th scope="col">Taken On</th>
-                <th scope="col">Units Consumed</th>
-                <th scope="col">Bill</th>
-                <th scope="col">Due Date</th>
-              </tr>
-            </thead>
-		<tbody>
-			<tr>
-					<td><%=currentBill.getRrNumber() %></td>
-					<td><%=currentBill.getInitialUnits()%></td>
-					<td><%=currentBill.getFinalUnits() %></td>
-					<td><%=currentBill.getReadingsTakenOn()%></td>
-					<td><%=currentBill.getUnitsConsumed()%></td>
-					<td><%=currentBill.getAmount() %></td>
-					<td><%=currentBill.getDueDate()%></td>
-			</tr>
-		</tbody>		
-		</table>
-		<form action="./payment" method="get">
-			<button type="submit"  class="btn btn-info btn-lg">Pay Now</button>
-		</form>
-		</div>
-		<%} %>
+	
 				
 		
 

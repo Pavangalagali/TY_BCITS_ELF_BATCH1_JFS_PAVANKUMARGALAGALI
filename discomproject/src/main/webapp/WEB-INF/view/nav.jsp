@@ -28,11 +28,8 @@
               </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item ">
-                <a class="nav-link" style="font-size:larger" href="#">Home  </a>
-              </li>
               <li class="nav-item">
-                <a class="nav-link" style="font-size:larger;" href="#">logout</a>
+                <a class="nav-link" style="font-size:larger;" href="./logOut">logout</a>
               </li>
             </ul>
           </div>

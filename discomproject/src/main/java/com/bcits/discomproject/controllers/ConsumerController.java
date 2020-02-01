@@ -62,6 +62,8 @@ public class ConsumerController {
 			// valid credentials
 			HttpSession session = req.getSession(true);
 			session.setAttribute("consumerInfo", consumerMaster);
+			CurrentBill currentBill = service.currentBill(consumerMaster.getRrNumber());
+			map.addAttribute("currentBill", currentBill);
 			return "consumerHome";
 		} else {
 			// invalid credentials
