@@ -1,0 +1,50 @@
+form{
+  
+  border: 1px solid  rgb(143, 138, 138);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  height: 100%;
+   width: 100%;
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 2%;
+  color:rgb(19, 18, 18);
+  outline: none;
+  margin-bottom: 40px;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-bottom: 20px; font-family: 'Times New Roman', Times, serif, Courier, monospace;
+  font-size: larger;
+}
+label{
+  
+    margin-left: 2mm;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: xx-large;
+}
+input[type="text"], input[type="password"],input[type="email"],input[type="tel"]{
+  
+  border: 1px solid rgb(82, 84, 88);
+  
+  outline: none;
+  font-size: 19px;
+}
+input[type="submit"]{
+  height: 30px;
+  width: 24px;
+  color: darkgray;
+  background-color: darkgray;
+}
+body{
+
+  /* background-image: url(/user/images/now.jpg); */
+  background-color: rgb(97, 107, 116);
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  outline: none;
+}
