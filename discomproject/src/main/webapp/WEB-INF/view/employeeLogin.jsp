@@ -34,7 +34,7 @@
 						Log In
 					</span>
 				</div>
-				<form class="login100-form validate-form" action="./employeeLogin" method="post">
+				<form class="login100-form validate-form" action="./empLogin" method="post">
 					<div class="wrap-input100 validate-input m-b-26" >
 						<span class="label-input100">Employee Id :</span>
 						<input class="input100" type="text" name="id" placeholder="Enter Employee Id">

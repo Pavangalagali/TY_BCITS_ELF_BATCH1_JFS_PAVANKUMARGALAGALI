@@ -19,4 +19,6 @@ public interface ConsumerDAO {
 	public boolean billPayment(String rrNumber);
 	
 	public boolean supportRequest(String rrNumber, String msg);
+	
+	public ConsumerMaster find(String rrNumber);
 }

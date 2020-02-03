@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
+import com.bcits.discomproject.beans.EmployeeMaster;
 import com.bcits.discomproject.beans.MonthlyConsumption;
 import com.bcits.discomproject.beans.MonthlyConsumptionPk;
 import com.bcits.discomproject.beans.SupportPk;
@@ -124,5 +125,12 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 			return false;
 		}
 	}// end of supportRequest();
+
+	@Override
+	public ConsumerMaster find(String rrNumber) {
+		EntityManager manager = managerFactory.createEntityManager();
+		ConsumerMaster consumerMaster = manager.find(ConsumerMaster.class, rrNumber);
+		return consumerMaster;
+	}
 
 }

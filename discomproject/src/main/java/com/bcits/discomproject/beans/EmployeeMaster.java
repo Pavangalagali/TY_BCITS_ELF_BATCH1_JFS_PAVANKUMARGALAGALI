@@ -13,7 +13,7 @@ import lombok.Data;
 @Table(name="Employee_Master")
 public class EmployeeMaster implements Serializable{
 	@Id
-	private int id;
+	private Integer id;
 	@Column
 	private String name;
 	@Column
@@ -25,4 +25,5 @@ public class EmployeeMaster implements Serializable{
 	@Column
 	private String region;
 	
+	private Long consumerCount;
 }

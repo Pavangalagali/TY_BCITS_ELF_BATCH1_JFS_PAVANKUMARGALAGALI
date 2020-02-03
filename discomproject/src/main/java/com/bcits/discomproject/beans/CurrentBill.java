@@ -18,15 +18,15 @@ public class CurrentBill implements Serializable {
 	@Column
 	private String rrNumber;
 	@Column
-	private double amount;
+	private Double amount;
 	@Column
 	private Date dueDate;
 	@Column
-	private double initialUnits;
+	private Double initialUnits;
 	@Column
-	private double finalUnits;
+	private Double finalUnits;
 	@Column
-	private double UnitsConsumed;
+	private Double UnitsConsumed;
 	@Column
 	private Date readingsTakenOn;
 	
