@@ -15,4 +15,13 @@ public class SupportPk implements Serializable {
 	private String rrNumber;
 	@Column
 	private String support;
+	
+	public SupportPk() {}
+
+	public SupportPk(String rrNumber, String support) {
+		super();
+		this.rrNumber = rrNumber;
+		this.support = support;
+	}
+
 }

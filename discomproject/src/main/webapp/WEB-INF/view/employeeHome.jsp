@@ -9,8 +9,9 @@
 <spring:url var="css" value="/resources/css"></spring:url>
 <spring:url var="js" value="/resources/javascript"></spring:url>
 
-
+<% String msg = (String) request.getAttribute("msg"); %>
 <% EmployeeMaster master = (EmployeeMaster)session.getAttribute("admin"); %>
+
 
 <jsp:include page="nav.jsp"></jsp:include>
 <!DOCTYPE html>
@@ -100,10 +101,13 @@
                                         </div>
                                     </div>
                                 </form>
+                                <%if (msg != null && !msg.isEmpty()) { %>
+	                            <h2 style="color: green;"> <%=msg%></h2>
+                               	<% } %>
                             </div>
                         </div>
                         <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
-                            <a href="./billHistory"> <button type="button" class="btn btn-info btn-lg btn-block">Bill History</button></a>
+                            <a href="./getAll"> <button type="button" class="btn btn-info btn-lg btn-block">Generate Bill</button></a>
                         </div>
                         <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
                             <a href="./monthlyRevenue"> <button type="button" class="btn btn-info btn-lg btn-block">Monthly Revenue</button></a>

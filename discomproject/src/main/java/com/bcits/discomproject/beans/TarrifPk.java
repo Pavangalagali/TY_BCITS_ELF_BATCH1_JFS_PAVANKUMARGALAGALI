@@ -12,7 +12,7 @@ import lombok.Data;
 public class TarrifPk implements Serializable {
 
 	@Column
-	private String region;
+	private String type;
 	@Column
 	private Long range;
 	

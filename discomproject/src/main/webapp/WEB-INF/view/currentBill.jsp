@@ -5,18 +5,19 @@
     <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url var="css" value="/resources/css"></spring:url>
 <spring:url var="js" value="/resources/javascript"></spring:url>
- <%! String rrNumber = null; 
-     Double initReading=0.0;
-   %>
- <% String msg = (String) request.getAttribute("msg"); %>
+ 
+ <% Double initReading=0.0;
+ 	String msg = (String) request.getAttribute("msg"); %>
     <% String errMsg = (String) request.getAttribute("errMsg"); %>
     <% List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions"); %>
     <% if(consumption != null){ 
     	for(MonthlyConsumption month :consumption){    		
-    		rrNumber = month.getConsumptionPk().getRrNumber();
-    		initReading = month.getPreviousUnits();	
+    		if(month.getPreviousUnits()!=null){
+    		initReading = month.getFinalUnits();	
+    		}
     	}
     } %>
+    <% String rrNumber = (String) request.getAttribute("rrNumber"); %>
 <jsp:include page="nav.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,9 @@
     </h5>
 
     <div class="card-body px-lg-5 pt-0">
-
+	<%if (errMsg != null && !errMsg.isEmpty()) { %>
+	<h2 style="color: orange;"> <%=errMsg%></h2>
+	<% } %>
        
         <form class="text-center" style="color: #757575;" action="./generateBill" method="post">
 
@@ -43,7 +46,7 @@
                     <div class="col mt-3">
                         <label>RR-Number</label>
                         <label>:<%=rrNumber %></label>
-                        <input type="text" name="rrNumber" value="<%=rrNumber %>"class="form-control"  hidden="true">
+                        <input type="text" name="rrNumber" value="<%=rrNumber %>"class="form-control" hidden="true">
                     </div>                
            </div><br>
                
@@ -55,7 +58,7 @@
                     </div>
                     <div class="col mt-3">
                         <label>Final Reading</label>
-                        <input type="text" name="finalUnits" id="" class="form-control" placeholder="Enter Final Reading">
+                        <input type="number" name="finalUnits" id="" class="form-control" placeholder="Enter Final Reading">
                     </div>
                 </div><br> 
            
@@ -67,7 +70,7 @@
 
                     <div class="col mt-3">
                         <label >Due Date</label>
-                          <label>:<%=initReading %></label>
+                      
                         <input type="date" name="dueDate" id="" class="form-control" placeholder="Due Date">
                     </div>
                 </div><br> 

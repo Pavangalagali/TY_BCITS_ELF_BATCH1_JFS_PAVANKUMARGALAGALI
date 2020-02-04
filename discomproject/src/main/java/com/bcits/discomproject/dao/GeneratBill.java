@@ -7,19 +7,26 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.bcits.discomproject.beans.TarrifMaster;
 
+@Repository
 public class GeneratBill {
 
-	@PersistenceUnit
-	private static EntityManagerFactory managerFactory;
+	@Autowired
+	private  EntityManagerFactory managerFactory;
 
-	private static EntityManager manager = managerFactory.createEntityManager();
 
-	public static Double generateBill(String region, Double init, Double fnl) {
-		String gettarrif = " from TarrifMaster where region := region ";
+	public  Double generateBill(String type, Double init, Double fnl) {
+		if(init == null) {
+			init=0.0;
+		}
+		EntityManager manager = managerFactory.createEntityManager();
+		String gettarrif = " from TarrifMaster where type =: type ";
 		Query query = manager.createQuery(gettarrif);
-		query.setParameter("region", region);
+		query.setParameter("type", type);
 
 		List<TarrifMaster> tarrifMasters = query.getResultList();
 		Long initRange = tarrifMasters.get(0).getTarrif().getRange();

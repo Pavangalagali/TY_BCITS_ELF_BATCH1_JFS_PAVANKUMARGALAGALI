@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 
-	public static void main(String[] args) {
+	public void  main(String[] args) {
 		System.out.println("Sending Mail...");
 
 		final String username = "pavankumargalagali@gmail.com";

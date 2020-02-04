@@ -88,6 +88,7 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 			pk.setDate(new Date());
 			pk.setRrNumber(rrNumber);
 			consumption.setConsumptionPk(pk);
+			consumption.setFinalUnits(bill.getFinalUnits());
 			consumption.setBill(bill.getAmount());
 			consumption.setPreviousUnits(bill.getInitialUnits());
 			consumption.setStatus("paid");
@@ -104,20 +105,21 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 		}
 
 		return isPaid;
-	}
+	}//end of billPayment()
 
 	@Override
 	public boolean supportRequest(String rrNumber, String msg) {
 		EntityManager manager = managerFactory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
-		SupportRequest request = new SupportRequest();
+		SupportRequest support = new SupportRequest();
 		SupportPk supportPk = new SupportPk();
 		try {
 			supportPk.setRrNumber(rrNumber);
 			supportPk.setSupport(msg);
-			request.setSupport(supportPk);
+			support.setSupportPk(supportPk);
+			support.setResponse(null);
 			transaction.begin();
-			manager.persist(request);
+			manager.persist(support);
 			transaction.commit();
 			return true;
 		} catch (Exception e) {

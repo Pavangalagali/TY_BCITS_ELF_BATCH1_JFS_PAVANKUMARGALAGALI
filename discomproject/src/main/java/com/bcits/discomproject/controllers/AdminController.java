@@ -1,28 +1,37 @@
 package com.bcits.discomproject.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.bcits.discomproject.beans.EmployeeMaster;
-import com.bcits.discomproject.dao.AdminDAO;
 import com.bcits.discomproject.service.AdminService;
 
 @Controller
 public class AdminController {
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		CustomDateEditor dateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
+		binder.registerCustomEditor(Date.class, dateEditor);
+	}// end of initBinder()
+
 	@Autowired
 	private AdminService service;
+	
 
 	@GetMapping("/logOut")
 	public String logOut(HttpSession httpSession, ModelMap map) {
@@ -38,11 +47,11 @@ public class AdminController {
 
 	@PostMapping("/empLogin")
 	public String adminLogin(int id, String password, HttpServletRequest req, ModelMap map) {
-		EmployeeMaster master = service.authenticate(id, password);
-		if (master != null) {
+		EmployeeMaster employee = service.authenticate(id, password);
+		if (employee != null) {
 			HttpSession session = req.getSession(true);
-			session.setAttribute("admin", master);
-			if (master.getRole().equals("admin")) {
+			session.setAttribute("admin", employee);
+			if (employee.getRole().equals("admin")) {
 				return "adminHome";
 			} else {
 				return "employeeHome";

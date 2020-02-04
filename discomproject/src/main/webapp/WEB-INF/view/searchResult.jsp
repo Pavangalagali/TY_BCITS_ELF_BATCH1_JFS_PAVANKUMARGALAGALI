@@ -1,3 +1,4 @@
+<%@page import="com.bcits.discomproject.beans.SupportRequest"%>
 <%@page import="com.bcits.discomproject.beans.MonthlyConsumption"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -6,7 +7,10 @@
 <spring:url var="css" value="/resources/css"></spring:url>
 <spring:url var="js" value="/resources/javascript"></spring:url>
     <% String errMsg = (String) request.getAttribute("errMsg"); %>
-    <% List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions"); %>
+    <% List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions");
+       String rrNumber = (String) request.getAttribute("rrNumber");
+       List<SupportRequest> reqs = (List<SupportRequest>) request.getAttribute("support");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +22,13 @@
 <body>
        <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
 			<form  action="./curentBillPage">
-			<input type="text" name="rrNumber" value="<%=consumption.get(0).getConsumptionPk().getRrNumber()%>">
-				<button type="button" class="btn btn-primary btn-lg btn-block">Generate Bill</button>
+			<input type="text" name="rrNumber" value="<%=rrNumber%>" hidden="true">
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Generate Bill</button>
 			</form>
 	  </div>
+	  
+	  
+	  
 <% if(consumption != null){ %>
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
 		<legend><h4 style="padding-top: 2mm;padding-bottom:2mm;font-size: larger;text-align: center;">Monthly Consumption</h4></legend>
@@ -44,6 +51,39 @@
 			</tbody>
 			</table>
 			</div>
+		<%} %>
+		
+		<% if(reqs != null){ %>
+		<div class=" col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 " style="margin-top: 100px;margin-left: 260px">
+		 <legend><h4 style="padding-top: 2mm;padding-bottom:2mm;font-size: larger;text-align: center;">Support Request</h4></legend>
+         <table class="table table-bordered table-info mt-2" style="border-style: solid;">
+            <thead>
+              <tr >
+                <th scope="col">Support</th>
+                <th scope="col">Response</th>
+                <th/>
+               
+             
+              </tr>
+            </thead>
+		<tbody>
+			<% for(SupportRequest req : reqs ){ %>
+			<form action="./generateResponse" method="post">   	
+		      <input name ="rrNumber" type="text"
+		      value="<%=rrNumber%>" hidden="true" />	
+		      <input name="support" type="text" value="<%=req.getSupport().getSupport()%>" hidden="true"/>
+			<tr >
+					<td style="width: 30%;"><%= req.getSupport().getSupport() %></td>
+					<td style="width: 40%"><%=req.getResponse()%></td>
+				    <td><input  type="text" name="response" rows="3" cols="40"/>
+					<button type="submit"  class="btn btn-dark">Submit</button></td>
+		
+			</tr>
+			</form>
+			<% } %>
+			</tbody>
+			</table>
+		 </div>
 		<%} %>
 
 
