@@ -6,11 +6,11 @@
 <spring:url var="css" value="/resources/css"></spring:url>
 <spring:url var="js" value="/resources/javascript"></spring:url>
  
- <% Double initReading=0.0;
- 	String msg = (String) request.getAttribute("msg"); %>
-    <% String errMsg = (String) request.getAttribute("errMsg"); %>
-    <% List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions"); %>
-    <% if(consumption != null){ 
+ <%  Double initReading=0.0;
+ 	String msg = (String) request.getAttribute("msg"); 
+     String errMsg = (String) request.getAttribute("errMsg"); 
+     List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions");
+     if(consumption != null){ 
     	for(MonthlyConsumption month :consumption){    		
     		if(month.getPreviousUnits()!=null){
     		initReading = month.getFinalUnits();	
@@ -18,7 +18,7 @@
     	}
     } %>
     <% String rrNumber = (String) request.getAttribute("rrNumber"); %>
-<jsp:include page="nav.jsp"></jsp:include>
+<jsp:include page="employeeHeader.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>

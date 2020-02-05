@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
 import com.bcits.discomproject.beans.MonthlyConsumption;
+import com.bcits.discomproject.beans.SupportRequest;
+import com.bcits.discomproject.dao.EmployeeDAO;
 import com.bcits.discomproject.service.ConsumerService;
+import com.bcits.discomproject.service.EmployeeService;
 
 @Controller
 public class ConsumerController {
@@ -33,6 +36,9 @@ public class ConsumerController {
 
 	@Autowired
 	private ConsumerService service;
+
+	@Autowired
+	private EmployeeService empService;
 
 	@GetMapping("/consumerLogin")
 	public String displayLogin() {
@@ -157,7 +163,8 @@ public class ConsumerController {
 
 	@PostMapping("/sendSupport")
 	public String sendSupportRequest(
-			@SessionAttribute(name = "consumerInfo", required = false) ConsumerMaster consumerMaster,String support, ModelMap map) {
+			@SessionAttribute(name = "consumerInfo", required = false) ConsumerMaster consumerMaster, String support,
+			ModelMap map) {
 		if (consumerMaster != null) {
 			if (service.supportRequest(consumerMaster.getRrNumber(), support)) {
 				map.addAttribute("msg", "support Requested");
@@ -169,6 +176,36 @@ public class ConsumerController {
 			map.addAttribute("errMsg", "Please Login First");
 			return "consumerLogin";
 		}
-	}
+	}// end of sendSupport
+
+	@GetMapping("/getSupport")
+	public String getResponses(String rrNumber,
+			@SessionAttribute(name = "consumerInfo", required = false) ConsumerMaster consumerMaster,
+			ModelMap map) {
+		if (consumerMaster != null) {
+			List<SupportRequest> reqs = service.getSupportRequest(rrNumber);
+			System.out.println(reqs);
+			if(reqs != null) {
+				map.addAttribute("support", reqs);
+			}else {
+				map.addAttribute("msg", "you have not raised tokens");
+			}
+			return "responses";
+		} else {
+			map.addAttribute("errMsg", "Please Login First");
+			return "consumerLogin";
+		}
+	}// end of getresponses();
+
+	@GetMapping("/consumerHome")
+	public String getConsumerHome(
+			@SessionAttribute(name = "consumerInfo", required = false) ConsumerMaster consumerMaster, ModelMap map) {
+		if (consumerMaster != null) {
+			return "consumerHome";
+		} else {
+			map.addAttribute("errMsg", "Please Login First");
+			return "consumerLogin";
+		}
+	}// end of getConsumerHome()
 
 }

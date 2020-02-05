@@ -4,6 +4,7 @@
    <spring:url var="css" value="/resources/css"></spring:url>
    <spring:url var="js" value="/resources/javascript"></spring:url>
     
+<jsp:include page="employeeHeader.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,8 @@
 <title>Monthly Revenue</title>
 </head>
 <body>
-
+		
+	
 
 
 

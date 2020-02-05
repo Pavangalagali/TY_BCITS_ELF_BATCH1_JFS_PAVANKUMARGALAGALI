@@ -12,14 +12,14 @@
 <%   String msg = (String) request.getAttribute("msg"); 
 List<ConsumerMaster> consumers = (List<ConsumerMaster>) request.getAttribute("consumers"); %>
 
-<jsp:include page="nav.jsp"></jsp:include>
+<jsp:include page="employeeHeader.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="${css}/home.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Employee Management</title>
 </head>
 <body>
 <% if(consumers != null){ %>

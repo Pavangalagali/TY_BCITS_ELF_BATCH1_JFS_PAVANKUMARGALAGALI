@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.bcits.discomproject.beans.SupportRequest"%>
 <%@page import="com.bcits.discomproject.beans.MonthlyConsumption"%>
 <%@page import="java.util.List"%>
@@ -10,14 +11,17 @@
     <% List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions");
        String rrNumber = (String) request.getAttribute("rrNumber");
        List<SupportRequest> reqs = (List<SupportRequest>) request.getAttribute("support");
+    	
+		SimpleDateFormat  dateFormat = new SimpleDateFormat("dd/MM/yyyy");	    
     %>
+<jsp:include page="employeeHeader.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="${css}/home.css">
-<title>Insert title here</title>
+<title>Employee Management</title>
 </head>
 <body>
        <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
@@ -26,7 +30,9 @@
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Generate Bill</button>
 			</form>
 	  </div>
-	  
+	  <%if (errMsg != null && !errMsg.isEmpty()) { %>
+	   <h2 style="color: blue;"> <%=errMsg%></h2>
+	   <% } %>	
 	  
 	  
 <% if(consumption != null){ %>
@@ -37,6 +43,7 @@
               <tr >
                 <th scope="col">RR Number</th>
                 <th scope="col">Statement On</th>
+                <th scope="col">Previous Units</th>
                 <th scope="col">Total Units</th>
               </tr>
             </thead>
@@ -44,7 +51,9 @@
 			<% for(MonthlyConsumption consumed : consumption ){ %>
 			<tr>
 					<td><%= consumed.getConsumptionPk().getRrNumber() %></td>
-					<td><%= consumed.getTakenOn()%></td>
+					<% String date = dateFormat.format(consumed.getTakenOn()); %>
+					<td><%=date %></td>
+					<td><%=consumed.getFinalUnits() %></td>
 					<td><%= consumed.getTotalUnits() %></td>
 			</tr>
 			<% } %>
@@ -71,9 +80,9 @@
 			<form action="./generateResponse" method="post">   	
 		      <input name ="rrNumber" type="text"
 		      value="<%=rrNumber%>" hidden="true" />	
-		      <input name="support" type="text" value="<%=req.getSupport().getSupport()%>" hidden="true"/>
+		      <input name="support" type="text" value="<%=req.getSupportPk().getSupport()%>" hidden="true"/>
 			<tr >
-					<td style="width: 30%;"><%= req.getSupport().getSupport() %></td>
+					<td style="width: 30%;"><%= req.getSupportPk().getSupport() %></td>
 					<td style="width: 40%"><%=req.getResponse()%></td>
 				    <td><input  type="text" name="response" rows="3" cols="40"/>
 					<button type="submit"  class="btn btn-dark">Submit</button></td>

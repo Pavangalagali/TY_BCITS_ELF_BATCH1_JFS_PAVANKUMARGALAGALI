@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
 import com.bcits.discomproject.beans.MonthlyConsumption;
+import com.bcits.discomproject.beans.SupportRequest;
 import com.bcits.discomproject.dao.ConsumerDAO;
 
 @Service
@@ -54,6 +55,11 @@ public class ConsumerServiceImpl implements ConsumerService {
 		}else {
 			return dao.supportRequest(rrNumber, msg);
 		}
+	}
+
+	@Override
+	public List<SupportRequest> getSupportRequest(String rrNumber) {
+		return dao.getSupportRequest(rrNumber);
 	}
 
 }

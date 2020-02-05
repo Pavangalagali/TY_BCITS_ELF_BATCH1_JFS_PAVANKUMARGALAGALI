@@ -29,6 +29,8 @@ public class CurrentBill implements Serializable {
 	private Double UnitsConsumed;
 	@Column
 	private Date readingsTakenOn;
+	@Column
+	private String region;
 	
 	
 }

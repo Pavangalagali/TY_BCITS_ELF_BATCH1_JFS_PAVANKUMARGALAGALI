@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
-import com.bcits.discomproject.beans.EmployeeMaster;
 import com.bcits.discomproject.beans.MonthlyConsumption;
 import com.bcits.discomproject.beans.MonthlyConsumptionPk;
 import com.bcits.discomproject.beans.SupportPk;
@@ -105,7 +104,7 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 		}
 
 		return isPaid;
-	}//end of billPayment()
+	}// end of billPayment()
 
 	@Override
 	public boolean supportRequest(String rrNumber, String msg) {
@@ -134,5 +133,18 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 		ConsumerMaster consumerMaster = manager.find(ConsumerMaster.class, rrNumber);
 		return consumerMaster;
 	}
+
+	@Override
+	public List<SupportRequest> getSupportRequest(String rrNumber) {
+
+		List<SupportRequest> requests = null;
+		EntityManager manager = managerFactory.createEntityManager();
+		String getRequest = " from SupportRequest where rrNumber=:rrNumber";
+		Query query = manager.createQuery(getRequest);
+		query.setParameter("rrNumber", rrNumber);
+		requests = query.getResultList();
+		manager.close();
+		return requests;
+	}// end of
 
 }

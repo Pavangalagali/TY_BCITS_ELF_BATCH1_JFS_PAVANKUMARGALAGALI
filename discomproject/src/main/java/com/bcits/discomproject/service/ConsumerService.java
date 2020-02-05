@@ -5,6 +5,7 @@ import java.util.List;
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
 import com.bcits.discomproject.beans.MonthlyConsumption;
+import com.bcits.discomproject.beans.SupportRequest;
 
 public interface ConsumerService {
 
@@ -19,4 +20,6 @@ public interface ConsumerService {
 	public boolean billPayment(String rrNumber);
 	
 	public boolean supportRequest(String rrNumber, String msg);
+	
+	public List<SupportRequest> getSupportRequest(String rrNumber);
 }

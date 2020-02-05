@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.bcits.discomproject.beans.CurrentBill"%>
 <%@page import="com.bcits.discomproject.beans.MonthlyConsumption"%>
 <%@page import="java.util.List"%>
@@ -14,9 +15,11 @@
 	List<MonthlyConsumption> bills = (List<MonthlyConsumption>) request.getAttribute("bill");
 	CurrentBill currentBill = (CurrentBill) request.getAttribute("currentBill");
     String msg = (String) request.getAttribute("msg");
+    
+    SimpleDateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy");
 %>
 
-<jsp:include page="nav.jsp"></jsp:include>
+<jsp:include page="consumerHeader.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,10 +121,12 @@
 					<td><%=currentBill.getRrNumber() %></td>
 					<td><%=currentBill.getInitialUnits()%></td>
 					<td><%=currentBill.getFinalUnits() %></td>
-					<td><%=currentBill.getReadingsTakenOn()%></td>
+					<% String date=  dateFormat.format(currentBill.getReadingsTakenOn()); %>
+					<td><%=date%></td>
 					<td><%=currentBill.getUnitsConsumed()%></td>
 					<td><%=currentBill.getAmount() %></td>
-					<td><%=currentBill.getDueDate()%></td>
+					<% String date2=  dateFormat.format(currentBill.getDueDate()); %>
+					<td><%=date2%></td>
 			  </tr>
 		</tbody>		
 		</table>
@@ -157,7 +162,9 @@
 			<% for(MonthlyConsumption consumed : consumptions ){ %>
 			<tr>
 					<td><%= consumed.getConsumptionPk().getRrNumber() %></td>
-					<td><%= consumed.getTakenOn()%></td>
+					<%
+					String date=  dateFormat.format(consumed.getTakenOn()); %>
+					<td><%= date%></td>
 					<td><%= consumed.getTotalUnits() %></td>
 			</tr>
 			<% } %>
@@ -192,8 +199,11 @@
 			<% for(MonthlyConsumption bill : bills ){ %>
 			<tr>
 					<td><%= bill.getConsumptionPk().getRrNumber() %></td>
-					<td><%= bill.getTakenOn() %></td>
-					<td><%= bill.getConsumptionPk().getDate()%></td>
+			        <% 	String date=  dateFormat.format(bill.getTakenOn()); %>
+					<td><%= date%></td>
+					<% 	String date2=  dateFormat.format(bill.getConsumptionPk().getDate()); %>
+					<td><%= date2%></td>
+
 					<td><%= bill.getTotalUnits() %></td>
 					<td><%= bill.getBill() %>
 					<% if(bill.getStatus().equals("paid")){ %>
@@ -231,9 +241,12 @@
 				<button type="submit"   class="btn btn-primary btn-lg">Submit</button>
 			</form>
 			
-		</div><br><br>
+		</div><br>
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">
-		<a href="./getSupport" > <button type="button"   class="btn btn-dark btn-lg">Responses</button></a>
+		<form action="./getSupport" >
+		<input type="text" name="rrNumber" value="<%=consumer.getRrNumber()%>" hidden="true">
+		 <button type="submit"   class="btn btn-dark btn-lg">Responses</button>
+	   </form>
 		</div>
 		<br>
 	</div>
