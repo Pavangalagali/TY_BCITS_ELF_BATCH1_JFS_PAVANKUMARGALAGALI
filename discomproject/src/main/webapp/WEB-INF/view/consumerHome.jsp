@@ -238,6 +238,7 @@
 			<form action="./sendSupport" method="post">
 				<textarea name="support" id="" cols="150" rows="8"
 					placeholder="max 250 character"></textarea>
+					<input type="text" name="response" value="" hidden="true">
 				<button type="submit"   class="btn btn-primary btn-lg">Submit</button>
 			</form>
 			

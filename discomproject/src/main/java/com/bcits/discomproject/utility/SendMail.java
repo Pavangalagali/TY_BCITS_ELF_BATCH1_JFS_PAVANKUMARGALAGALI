@@ -21,7 +21,7 @@ public class SendMail {
 		System.out.println("Sending Mail...");
 
 		final String username = "pavankumargalagali@gmail.com";
-		final String password = "XXXXXXXXXX";
+		final String password = "9008575613";
 	
 
 		

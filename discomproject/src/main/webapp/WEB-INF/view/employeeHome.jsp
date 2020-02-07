@@ -16,8 +16,7 @@
 %>
 <%
 	EmployeeMaster master = (EmployeeMaster) session.getAttribute("admin");
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-%>
+	%>
 
 
 <jsp:include page="employeeHeader.jsp"></jsp:include>
@@ -135,7 +134,7 @@
 			</a>
 		</div>
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
-		<%String date = dateFormat.format(new Date());%>
+		<% Date date = (new Date());%>
 			<a href="./collected?date=<%=date%>">
 				<button type="button" class="btn btn-info btn-lg btn-block">This
 					Month Bill Collected</button>

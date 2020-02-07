@@ -1,8 +1,12 @@
 package com.bcits.discomproject.service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +28,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private ConsumerDAO consumer;
-	
-
 
 	@Override
 	public boolean generateBill(CurrentBill bill) {
@@ -68,13 +70,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public BillCollected getCollectedBill(String date, String region) {
-		Date newDate = null;
-		try {
-			newDate = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+	public BillCollected getCollectedBill(Date date, String region) {
+
 		List<MonthlyConsumption> list = dao.getCollectedBill(date, region);
 		Double estimation = 0.0;
 		Double collected = 0.0;
@@ -95,10 +92,33 @@ public class EmployeeServiceImpl implements EmployeeService {
 		estimation = estimation + collected;
 		BillCollected collection = new BillCollected();
 		collection.setCollected(collected);
-		collection.setEstimaation(estimation);
-		collection.setDate(newDate);
-		
+		collection.setEstimation(estimation);
+		collection.setDate(date);
+
 		return collection;
+
+	}
+
+	@Override
+	public List<BillCollected> getMonthlyConsumption(String region) {
+		ResultSet consumptions = dao.getMonthlyConsumption(region);
+		List<BillCollected> list = new ArrayList<BillCollected>();
 		
+		try {
+			while (consumptions.next() == true) {
+			Double double1 =consumptions.getDouble("sum(bill)");
+			Date date = consumptions.getDate("takenOn");	
+			
+			BillCollected billCollected = new BillCollected();
+			billCollected.setCollected(double1);
+			billCollected.setDate(date);
+			
+			list.add(billCollected);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

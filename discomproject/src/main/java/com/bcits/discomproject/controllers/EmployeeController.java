@@ -140,6 +140,7 @@ public class EmployeeController {
 
 	@GetMapping("/generatedBills")
 	public String getGeneratedBills(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+		
 		if (master != null) {
 			List<CurrentBill> bills = empService.currentBills(master.getRegion());
 			if (bills != null) {
@@ -176,7 +177,8 @@ public class EmployeeController {
 	}// end of getMOMRevenuePage
 
 	@GetMapping("/collected")
-	public String getCollectedBill(String date,@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+	public String getCollectedBill(Date date,@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+		System.out.println(date);
 		if (master != null) {	
 			BillCollected collected = empService.getCollectedBill(date, master.getRegion());
 		if(collected != null) {

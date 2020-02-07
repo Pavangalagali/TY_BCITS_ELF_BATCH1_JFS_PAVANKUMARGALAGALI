@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class BillCollected {
 
-	private Double estimaation;
+	private Double estimation;
 	
 	private Double collected;
 	

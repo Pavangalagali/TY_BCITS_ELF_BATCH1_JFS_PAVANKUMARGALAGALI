@@ -58,7 +58,7 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 	public List<MonthlyConsumption> consumptions(String rrNumber) {
 
 		EntityManager manager = managerFactory.createEntityManager();
-		String jpql = "from MonthlyConsumption where rrNumber=:rr";
+		String jpql = "from MonthlyConsumption where rrNumber=:rr ";
 		Query query = manager.createQuery(jpql);
 		query.setParameter("rr", rrNumber);
 		List<MonthlyConsumption> consumptions = query.getResultList();
@@ -93,6 +93,7 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 			consumption.setStatus("paid");
 			consumption.setTotalUnits(bill.getUnitsConsumed());
 			consumption.setTakenOn(bill.getReadingsTakenOn());
+			
 
 			manager.persist(consumption);
 			manager.remove(bill);
@@ -116,7 +117,8 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 			supportPk.setRrNumber(rrNumber);
 			supportPk.setSupport(msg);
 			support.setSupportPk(supportPk);
-			support.setResponse(null);
+			support.setResponse("");
+			support.setDate(new Date());
 			transaction.begin();
 			manager.persist(support);
 			transaction.commit();

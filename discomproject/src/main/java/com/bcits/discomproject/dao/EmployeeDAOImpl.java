@@ -1,5 +1,6 @@
 package com.bcits.discomproject.dao;
 
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ import com.bcits.discomproject.beans.CurrentBill;
 import com.bcits.discomproject.beans.MonthlyConsumption;
 import com.bcits.discomproject.beans.SupportPk;
 import com.bcits.discomproject.beans.SupportRequest;
+import com.bcits.discomproject.service.BillCollected;
 import com.bcits.discomproject.utility.SendMail;
 
 @Repository
@@ -148,30 +150,30 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public List<MonthlyConsumption> getCollectedBill(String date, String region) {
-		Date newDate = null;
-		try {
-			newDate = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		LocalDate localDate = newDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		
-		int year = localDate.getYear();
-		Month month = localDate.getMonth();
-		System.out.println(month);
-		String fnlDate = year+ "/"+month;
-		System.out.println(fnlDate);
+	public List<MonthlyConsumption> getCollectedBill(Date date, String region) {
+
 		EntityManager manager = managerFactory.createEntityManager();
-		String getCollectedBill = " from MonthlyConsumption Where date like %:date% and"
+		String getCollectedBill = " from MonthlyConsumption Where date like %:date% and "
 				+ " rrNumber in ( select rrNumber from ConsumerMaster where region =:region )";
 		Query query = manager.createQuery(getCollectedBill);
-		query.setParameter("date", fnlDate);
+		query.setParameter("date", date);
 		query.setParameter("region", region);
 
 		List<MonthlyConsumption> monthlyConsumptions = query.getResultList();
 		System.out.println(monthlyConsumptions);
 		return monthlyConsumptions;
+	}
+
+	@Override
+	public ResultSet getMonthlyConsumption(String region) {
+		EntityManager manager = managerFactory.createEntityManager();
+		String getConsumer ="select sum(bill),takenOn from MonthlyConsumption Where "
+				+ " rrNumber in ( select rrNumber from ConsumerMaster where region =:region ); group by takenOn ";
+		Query query = manager.createQuery(getConsumer);
+		query.setParameter("region", region);
+		manager.close();
+		ResultSet resultSet=  (ResultSet) query.getResultList();
+		 return resultSet;
 	}
 
 }

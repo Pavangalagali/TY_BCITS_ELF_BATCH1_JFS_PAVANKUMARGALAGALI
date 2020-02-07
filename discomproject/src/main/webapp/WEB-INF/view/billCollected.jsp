@@ -44,9 +44,9 @@
 			<tr >
 			<% String date = dateFormat.format(collected.getDate()); %>
 					<td style="width: 30%;"><%=date  %></td>
-					<td style="width: 40%"><%=collected.getEstimaation()%></td>	
+					<td style="width: 40%"><%=collected.getEstimation()%></td>	
 					<td style="width: 40%"><%=collected.getCollected()%></td>
-					<% Double pending = collected.getEstimaation() - collected.getCollected(); %>
+					<% Double pending = collected.getEstimation() - collected.getCollected(); %>
 					<td style="width: 40%"><%=pending%></td>
 			</tr>
 			</form>

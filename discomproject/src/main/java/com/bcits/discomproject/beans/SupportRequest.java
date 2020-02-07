@@ -1,6 +1,7 @@
 package com.bcits.discomproject.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -18,4 +19,6 @@ public class SupportRequest implements Serializable{
 	private SupportPk supportPk;
 	@Column
 	private String response;
+	@Column
+	private Date date;
 }

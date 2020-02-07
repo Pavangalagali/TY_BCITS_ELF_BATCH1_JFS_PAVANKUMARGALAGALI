@@ -45,7 +45,7 @@ public class GeneratBill {
 		} else if (units < midRange) {
 			bill = (initRange * initAmount) + ((units - initRange) * midAmount);
 		} else if (units > midRange) {
-			bill = (initRange * initAmount) + (midRange * midAmount) + ((units - midAmount) * finalAmount);
+			bill = (initRange * initAmount) + ((midRange - initRange) * midAmount) + ((units - midAmount) * finalAmount);
 		}
 		return bill;
 	}

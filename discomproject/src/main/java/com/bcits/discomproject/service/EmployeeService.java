@@ -23,5 +23,9 @@ public interface EmployeeService {
 	 
 	 public boolean sendMail(String rrNumber);
 	 
-	 public BillCollected getCollectedBill(String date, String region);
+	 public BillCollected getCollectedBill(Date date, String region);
+	 
+	 public List<BillCollected> getMonthlyConsumption(String region);
+
+	
 }

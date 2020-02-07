@@ -68,6 +68,7 @@
          <table class="table table-bordered table-info mt-2" style="border-style: solid;">
             <thead>
               <tr >
+              <th scope="col">Date</th>
                 <th scope="col">Support</th>
                 <th scope="col">Response</th>
                 <th/>
@@ -78,10 +79,12 @@
 		<tbody>
 			<% for(SupportRequest req : reqs ){ %>
 			<form action="./generateResponse" method="post">   	
-		      <input name ="rrNumber" type="text"
+		      <input  type="text" name="support" value="<%=req.getSupportPk().getSupport()%>" hidden="true"/>
+		      <input  type="text" name ="rrNumber"
 		      value="<%=rrNumber%>" hidden="true" />	
-		      <input name="support" type="text" value="<%=req.getSupportPk().getSupport()%>" hidden="true"/>
 			<tr >
+			        <% String date = dateFormat.format(req.getDate()); %>
+			        <td style="width: 40%"><%=date%></td>
 					<td style="width: 30%;"><%= req.getSupportPk().getSupport() %></td>
 					<td style="width: 40%"><%=req.getResponse()%></td>
 				    <td><input  type="text" name="response" rows="3" cols="40"/>

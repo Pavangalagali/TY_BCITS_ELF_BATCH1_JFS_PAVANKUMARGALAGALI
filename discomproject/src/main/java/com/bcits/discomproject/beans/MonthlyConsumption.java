@@ -27,4 +27,5 @@ public class MonthlyConsumption implements Serializable{
 	private Date takenOn;
 	@Column
 	private Double finalUnits;
+	
 }
