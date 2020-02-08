@@ -18,8 +18,11 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="${css}/home.css">
-<title>Tokens<title>
+<title>Tokens</title>
 </head>
+
+
+
 <body>
 	  <%if (msg != null && !msg.isEmpty()) { %>
 	   <h2 style="color: blue;"> <%=msg%></h2>
@@ -55,6 +58,6 @@
 
 <script src="${js}/jquery-3.2.1.min.js"></script> 
     <script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

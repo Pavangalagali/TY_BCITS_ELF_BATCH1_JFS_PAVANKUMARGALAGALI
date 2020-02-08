@@ -25,6 +25,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
+            <h2 style="color:#ff8c1a;"> Dis</h2> <h2 style="color:#ffffb3 ;"> Com</h2>
             <ul class="navbar-nav ml-auto">
              <li class="nav-item">
                 <a class="nav-link" style="font-size:larger;" href="./empHome">Home</a>

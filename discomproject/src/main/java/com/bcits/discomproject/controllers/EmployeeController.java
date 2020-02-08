@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.bcits.discomproject.beans.BillHistory;
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
 import com.bcits.discomproject.beans.EmployeeMaster;
@@ -168,7 +169,7 @@ public class EmployeeController {
 	@GetMapping("/monthlyRevenue")
 	public String getMOMRevenuePage(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
 		if (master != null) {
-
+				map.addAttribute("revenue", empService.getMonthlyConsumption(master.getRegion()));
 			return "monthlyRevenue";
 		} else {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
@@ -177,11 +178,12 @@ public class EmployeeController {
 	}// end of getMOMRevenuePage
 
 	@GetMapping("/collected")
-	public String getCollectedBill(Date date,@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
-		System.out.println(date);
+	public String getCollectedBill(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+		
 		if (master != null) {	
-			BillCollected collected = empService.getCollectedBill(date, master.getRegion());
+			List<BillHistory> collected= empService.getCollectedBill(master.getRegion());
 		if(collected != null) {
+			
 			map.addAttribute("collected", collected);
 		}else {
 			map.addAttribute("errMsg", "No Consumer paid the bill this month");

@@ -9,6 +9,7 @@
  <%  Double initReading=0.0;
  	String msg = (String) request.getAttribute("msg"); 
      String errMsg = (String) request.getAttribute("errMsg"); 
+     
      List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions");
      if(consumption != null){ 
     	for(MonthlyConsumption month :consumption){    		

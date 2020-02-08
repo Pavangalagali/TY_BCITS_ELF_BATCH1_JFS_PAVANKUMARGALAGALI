@@ -134,8 +134,8 @@
 			</a>
 		</div>
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
-		<% Date date = (new Date());%>
-			<a href="./collected?date=<%=date%>">
+		
+			<a href="./collected">
 				<button type="button" class="btn btn-info btn-lg btn-block">This
 					Month Bill Collected</button>
 			</a>

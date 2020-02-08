@@ -1,20 +1,14 @@
 package com.bcits.discomproject.service;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bcits.discomproject.beans.BillHistory;
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
-import com.bcits.discomproject.beans.MonthlyConsumption;
 import com.bcits.discomproject.beans.SupportPk;
 import com.bcits.discomproject.beans.SupportRequest;
 import com.bcits.discomproject.dao.ConsumerDAO;
@@ -70,55 +64,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public BillCollected getCollectedBill(Date date, String region) {
+	public List<BillHistory> getCollectedBill(String region) {
 
-		List<MonthlyConsumption> list = dao.getCollectedBill(date, region);
-		Double estimation = 0.0;
-		Double collected = 0.0;
-		if (list != null) {
-			for (MonthlyConsumption monthlyConsumption : list) {
-				if (monthlyConsumption.getStatus().equals("paid")) {
-					collected += monthlyConsumption.getBill();
-				}
-			}
-		}
-		System.out.println("collected Bill" + collected);
-		List<CurrentBill> bills = dao.currentBills(region);
-		if (bills != null) {
-			for (CurrentBill currentBill : bills) {
-				estimation = estimation + currentBill.getAmount();
-			}
-		}
-		estimation = estimation + collected;
-		BillCollected collection = new BillCollected();
-		collection.setCollected(collected);
-		collection.setEstimation(estimation);
-		collection.setDate(date);
+		return  dao.getCollectedBill(region);
 
-		return collection;
 
 	}
 
 	@Override
 	public List<BillCollected> getMonthlyConsumption(String region) {
-		ResultSet consumptions = dao.getMonthlyConsumption(region);
+		List consumptions = dao.getMonthlyConsumption(region);
 		List<BillCollected> list = new ArrayList<BillCollected>();
 		
-		try {
-			while (consumptions.next() == true) {
-			Double double1 =consumptions.getDouble("sum(bill)");
-			Date date = consumptions.getDate("takenOn");	
-			
-			BillCollected billCollected = new BillCollected();
-			billCollected.setCollected(double1);
-			billCollected.setDate(date);
-			
-			list.add(billCollected);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		
 		return list;
 	}
 }

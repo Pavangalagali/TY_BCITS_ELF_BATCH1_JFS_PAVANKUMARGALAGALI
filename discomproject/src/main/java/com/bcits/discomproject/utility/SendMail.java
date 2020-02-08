@@ -21,7 +21,7 @@ public class SendMail {
 		System.out.println("Sending Mail...");
 
 		final String username = "pavankumargalagali@gmail.com";
-		final String password = "9008575613";
+		final String password = "**********";
 	
 
 		
@@ -48,7 +48,7 @@ public class SendMail {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("prashulshetty307@gmail.com"));
 			message.setSubject("Testing Gmail TLS");
 			message.setText("Dear Consumer," +
-			                 "\n\n This  Month you have Consumed "+ currentBill.getUnitsConsumed()+
+			                 "\n\n This  Month you have Consumed "+ currentBill.getUnitsConsumed()+" units"+                               
 					         "\n\n So the total Bill will be rupees" +currentBill.getAmount()+
 					         "\n\n The Due Date will be "+dueDate+"\n\n"
 					         		+ "\n\n"

@@ -11,6 +11,8 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.bcits.discomproject.beans.BillHistory;
+import com.bcits.discomproject.beans.BillHistoryPk;
 import com.bcits.discomproject.beans.ConsumerMaster;
 import com.bcits.discomproject.beans.CurrentBill;
 import com.bcits.discomproject.beans.MonthlyConsumption;
@@ -81,6 +83,7 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 		try {
 			transaction.begin();
 			CurrentBill bill = manager.find(CurrentBill.class, rrNumber);
+			
 			MonthlyConsumption consumption = new MonthlyConsumption();
 
 			MonthlyConsumptionPk pk = new MonthlyConsumptionPk();
@@ -94,7 +97,19 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 			consumption.setTotalUnits(bill.getUnitsConsumed());
 			consumption.setTakenOn(bill.getReadingsTakenOn());
 			
+		    BillHistory billHistory = new BillHistory();
 
+		    BillHistoryPk billHistoryPk = new BillHistoryPk();
+		    
+		    billHistoryPk.setDate(new Date());
+		    billHistoryPk.setRrNumber(rrNumber);
+		    
+		    billHistory.setBillHistoryPk(billHistoryPk);
+		    billHistory.setBill(bill.getAmount());
+		    billHistory.setRegion(bill.getRegion());
+		    billHistory.setStatus("paid");
+		    
+		    manager.persist(billHistory);
 			manager.persist(consumption);
 			manager.remove(bill);
 			transaction.commit();
