@@ -44,15 +44,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		boolean isGenerated = false;
 		EntityManager manager = managerFactory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
-		
+
 		ConsumerMaster consumerMaster = dao.find(bill.getRrNumber());
-		
+
 		String region = consumerMaster.getRegion();
 		String type = consumerMaster.getConsumerType();
-		
+
 		Double init = bill.getInitialUnits();
 		Double fnl = bill.getFinalUnits();
-		
+
 		try {
 			transaction.begin();
 			CurrentBill currentBill = manager.find(CurrentBill.class, bill.getRrNumber());
@@ -81,17 +81,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				consumption.setPreviousUnits(currentBill.getInitialUnits());
 				consumption.setTakenOn(currentBill.getReadingsTakenOn());
 				consumption.setTotalUnits(currentBill.getUnitsConsumed());
-				
+
 				manager.persist(consumption);
 				manager.persist(billHistory);
 				manager.remove(currentBill);
-				
+
 				init = currentBill.getFinalUnits();
 			}
-			
+
 			System.out.println(fnl);
 			System.out.println(init);
-			
+
 			bill.setAmount(generate.generateBill(type, init, fnl));
 			bill.setFinalUnits(fnl);
 			bill.setInitialUnits(init);
@@ -188,10 +188,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public List<BillHistory> getCollectedBill(String region) {
 
 		EntityManager manager = managerFactory.createEntityManager();
-		String getCollectedBill = " from BillHistory Where region =:region ";
+		String getCollectedBill = " from BillHistory Where region =:region and status=:paid";
+
 		Query query = manager.createQuery(getCollectedBill);
-	
+
 		query.setParameter("region", region);
+		query.setParameter("paid", "paid");
 
 		List<BillHistory> billHistories = query.getResultList();
 		System.out.println(billHistories);
@@ -199,16 +201,57 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public List getMonthlyConsumption(String region) {
+	public List<Object[]> getEstimation(String region) {
 		EntityManager manager = managerFactory.createEntityManager();
-		String getConsumer = "select sum(bill),takenOn from MonthlyConsumption Where "
-				+ " rrNumber in ( select rrNumber from ConsumerMaster where region =:region ) group by takenOn ";
-		Query query = manager.createQuery(getConsumer);
-		query.setParameter("region", region);
-		List result = query.getResultList();
-		System.out.println(result.toString());
-		manager.close();
-		return result;
+		try {
+			String jpql = " select sum(bill), DATE_FORMAT(billHistoryPk.date,'%Y-%m') from BillHistory "
+					+ " where region=:region GROUP BY MONTH(billHistoryPk.date) ";
+
+			Query query = manager.createQuery(jpql);
+			query.setParameter("region", region);
+
+			List<Object[]> estimations = query.getResultList();
+			return estimations;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}//end of getEstimation()
+
+	@Override
+	public List<Object[]> getPaidBills(String region) {
+		EntityManager manager = managerFactory.createEntityManager();
+		try {
+			String jpql = " select sum(bill), DATE_FORMAT(billHistoryPk.date,'%Y-%m') from BillHistory "
+					+ " where region=:region and status='paid' GROUP BY MONTH(billHistoryPk.date) ";
+
+			Query query = manager.createQuery(jpql);
+			query.setParameter("region", region);
+
+			List<Object[]> paidBills = query.getResultList();
+			return paidBills;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<Object[]> getPendingBills(String region) {
+		EntityManager manager = managerFactory.createEntityManager();
+		try {
+			String jpql = " select sum(bill), DATE_FORMAT(billHistoryPk.date,'%Y-%m') from BillHistory "
+					+ " where region=:region and status='not paid' GROUP BY MONTH(billHistoryPk.date) ";
+
+			Query query = manager.createQuery(jpql);
+			query.setParameter("region", region);
+
+			List<Object[]> pendingBill = query.getResultList();
+			return pendingBill;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

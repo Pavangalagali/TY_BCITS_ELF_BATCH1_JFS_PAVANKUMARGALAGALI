@@ -24,5 +24,9 @@ public interface EmployeeDAO {
 	 
 	 public List<BillHistory> getCollectedBill(String region);
 	 
-	 public List getMonthlyConsumption(String region);
+	 public List<Object[]> getEstimation(String region);
+	 
+	 public List<Object[]> getPaidBills(String region);
+	 
+	 public List<Object[]> getPendingBills(String region);
 }

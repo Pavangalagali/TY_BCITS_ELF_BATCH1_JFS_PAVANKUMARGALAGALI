@@ -66,18 +66,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<BillHistory> getCollectedBill(String region) {
 
-		return  dao.getCollectedBill(region);
-
+		return dao.getCollectedBill(region);
 
 	}
 
 	@Override
 	public List<BillCollected> getMonthlyConsumption(String region) {
-		List consumptions = dao.getMonthlyConsumption(region);
-		List<BillCollected> list = new ArrayList<BillCollected>();
-		
-		
-		
-		return list;
+
+		return null;
 	}
 }
