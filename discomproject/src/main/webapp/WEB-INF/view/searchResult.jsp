@@ -11,7 +11,7 @@
     <% List<MonthlyConsumption> consumption = (List<MonthlyConsumption>) request.getAttribute("consumptions");
        String rrNumber = (String) request.getAttribute("rrNumber");
        List<SupportRequest> reqs = (List<SupportRequest>) request.getAttribute("support");
-    	
+       String msg = (String) request.getAttribute("msg");
 		SimpleDateFormat  dateFormat = new SimpleDateFormat("dd/MM/yyyy");	    
     %>
 <jsp:include page="employeeHeader.jsp"></jsp:include>
@@ -31,31 +31,41 @@
 			</form>
 	  </div>
 	  <%if (errMsg != null && !errMsg.isEmpty()) { %>
-	   <h2 style="color: blue;"> <%=errMsg%></h2>
+	   <h2 style="color: red;"> <%=errMsg%></h2>
 	   <% } %>	
-	  
+	   <%if (msg != null && !msg.isEmpty()) { %>
+	   <h2 style="color: blue;"> <%=msg%></h2>
+	   <% } %>
 	  
 <% if(consumption != null){ %>
-		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
+		<div class=" col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 mt-3" style="margin-left: 250px">
 		<legend><h4 style="padding-top: 2mm;padding-bottom:2mm;font-size: larger;text-align: center;">Monthly Consumption</h4></legend>
-        <table class="table table-sm table-dark mt-2">
+        <table class="table table-sm  table-bordered table-dark mt-2">
             <thead>
               <tr >
                 <th scope="col">RR Number</th>
                 <th scope="col">Statement On</th>
                 <th scope="col">Previous Units</th>
                 <th scope="col">Total Units</th>
+                <th scope="col"></th>
               </tr>
             </thead>
 		<tbody>
 			<% for(MonthlyConsumption consumed : consumption ){ %>
-			<tr>
-					<td><%= consumed.getConsumptionPk().getRrNumber() %></td>
+		 <form action="./UpdateDueBill" method="post">
+		 <input type="text" name="rrNumber"  value="<%=consumed.getConsumptionPk().getRrNumber() %>" hidden="true" />
+			<tr >
+		  <input type="datetime" name="date" value="<%=consumed.getConsumptionPk().getDate() %>" hidden="true" />
+					<td style="width: 25%"><%= consumed.getConsumptionPk().getRrNumber() %></td>
 					<% String date = dateFormat.format(consumed.getTakenOn()); %>
-					<td><%=date %></td>
-					<td><%=consumed.getFinalUnits() %></td>
-					<td><%= consumed.getTotalUnits() %></td>
+					<td style="width: 25%"><%=date %></td>
+					<td style="width: 25%"><%=consumed.getFinalUnits() %></td>
+					<td style="width: 25%"><%= consumed.getTotalUnits() %></td>
+					<% if(consumed.getStatus().equals("not paid")){ %>
+						<td style="width: 25%"> <input type="submit"  class="btn btn-primary" value="Received" /> </td>
+					<%} %>
 			</tr>
+		</form>
 			<% } %>
 			</tbody>
 			</table>
@@ -88,7 +98,7 @@
 					<td style="width: 30%;"><%= req.getSupportPk().getSupport() %></td>
 					<td style="width: 40%"><%=req.getResponse()%></td>
 				    <td><input  type="text" name="response" rows="3" cols="40"/>
-					<button type="submit"  class="btn btn-dark">Submit</button></td>
+					<button type="submit"  class="btn btn-dark  ">Submit</button></td>
 		
 			</tr>
 			</form>

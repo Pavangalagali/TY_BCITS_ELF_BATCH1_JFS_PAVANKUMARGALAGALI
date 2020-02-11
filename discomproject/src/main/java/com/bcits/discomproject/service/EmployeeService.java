@@ -1,5 +1,6 @@
 package com.bcits.discomproject.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.bcits.discomproject.beans.BillHistory;
@@ -24,7 +25,11 @@ public interface EmployeeService {
 	 
 	 public List<BillHistory> getCollectedBill(String region);
 	 
-	 public List<BillCollected> getMonthlyConsumption(String region);
-
-	
+	 public List<Object[]> getPaidBills(String region);
+	 
+	 public List<Object[]> getPendingBills(String region);
+	 
+	 public List<SupportRequest> getAllRequestSupport(String region);
+	 
+	 public boolean updateDueBill(String rrNumber,Date date);
 }

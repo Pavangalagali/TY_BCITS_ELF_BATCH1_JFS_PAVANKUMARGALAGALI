@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="${css}/home.css">
 <title>Insert title here</title>
 </head>
-<body style="color: silver;">
+<body style="background-color: silver;">
 <div  class="card col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-5 mx-auto d-block">
 
     <h5 class="card-header info-color white-text text-center ">

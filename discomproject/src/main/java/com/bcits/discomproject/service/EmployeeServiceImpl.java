@@ -1,6 +1,7 @@
 package com.bcits.discomproject.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,8 +72,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<BillCollected> getMonthlyConsumption(String region) {
+	public List<Object[]> getPaidBills(String region) {
 
-		return null;
+		return dao.getPaidBills(region);
+	}
+
+	@Override
+	public List<Object[]> getPendingBills(String region) {
+
+		return dao.getPendingBills(region);
+	}
+
+	@Override
+	public List<SupportRequest> getAllRequestSupport(String region) {
+		
+		return dao.getAllRequestSupport(region);
+	}
+
+	@Override
+	public boolean updateDueBill(String rrNumber, Date date) {
+		
+		return dao.updateDueBill(rrNumber, date);
 	}
 }

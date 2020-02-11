@@ -124,6 +124,7 @@ public class EmployeeController {
 		}
 	}// end of showAllConsumer();
 
+	
 	@PostMapping("/generateResponse")
 	public String response(SupportPk supportPk, String response, @SessionAttribute("admin") EmployeeMaster master,
 			ModelMap map) {
@@ -139,6 +140,7 @@ public class EmployeeController {
 		}
 	}// end of response()
 
+	
 	@GetMapping("/generatedBills")
 	public String getGeneratedBills(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
 		
@@ -156,6 +158,7 @@ public class EmployeeController {
 		}
 	}// end of generatedBills()
 
+	
 	@GetMapping("/empHome")
 	public String getHome(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
 		if (master != null) {
@@ -166,10 +169,12 @@ public class EmployeeController {
 		}
 	}// end of getHome();
 
+	
 	@GetMapping("/monthlyRevenue")
 	public String getMOMRevenuePage(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
 		if (master != null) {
-				map.addAttribute("revenue", empService.getMonthlyConsumption(master.getRegion()));
+				map.addAttribute("paid", empService.getPaidBills(master.getRegion()));
+				map.addAttribute("pending", empService.getPendingBills(master.getRegion()));
 			return "monthlyRevenue";
 		} else {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
@@ -177,6 +182,7 @@ public class EmployeeController {
 		}
 	}// end of getMOMRevenuePage
 
+	
 	@GetMapping("/collected")
 	public String getCollectedBill(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
 		
@@ -193,5 +199,57 @@ public class EmployeeController {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
 			return "home";
 		}
-	}
+	}//end of getCollectedBill()
+	
+	@GetMapping("/requestSupport")
+	public String getSupportRequests(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+		if (master != null) {	
+			List<SupportRequest> requests= empService.getAllRequestSupport(master.getRegion());
+		if(requests != null) {
+			map.addAttribute("support", requests);
+		}else {
+			map.addAttribute("errMsg", "No Consumer paid the bill this month");
+		}
+			return "requestSupport";
+		} else {
+			map.addAttribute("errMsg", "Session Time out!! Login Again");
+			return "home";
+		}
+	}//end of getSupportRequests()
+	
+	@PostMapping("/generateSupport")
+	public String sendResponse(SupportPk supportPk, String response,
+			@SessionAttribute("admin") EmployeeMaster master,
+			ModelMap map) {
+		if (master != null) {
+			empService.generateResponse(supportPk, response);
+			List<SupportRequest> requests = empService.getAllRequestSupport(master.getRegion());
+			map.addAttribute("support", requests);
+			return "requestSupport";
+		} else {
+			map.addAttribute("errMsg", "Session Time out!! Login Again");
+			return "home";
+		}
+	}//end of sendResponse();
+	
+	@PostMapping("/UpdateDueBill")
+	public String updateDue(String rrNumber, Date date,
+			@SessionAttribute("admin") EmployeeMaster master,
+			ModelMap map) {
+		System.out.println(rrNumber +" "+date);
+		if (master != null) {
+			List<MonthlyConsumption> consumptions = service.consumptions(rrNumber);
+			if(empService.updateDueBill(rrNumber, date)) {
+				map.addAttribute("msg", "Updated successfully");
+				
+			}else {
+				map.addAttribute("errMsg", "Could not update try later");
+			}
+			map.addAttribute("consumptions", consumptions);
+			return "searchResult";
+		} else {
+			map.addAttribute("errMsg", "Session Time out!! Login Again");
+			return "home";
+		}
+	}//end of sendResponse();
 }

@@ -50,7 +50,7 @@
 		    <% for(EmployeeMaster master : masters){ %>
 		      <form action="./revokeEmployee" method="get">   	
 		      <input name ="id" type="number"
-		      value="<%=master.getId() %>" />	
+		      value="<%=master.getId() %>"  hidden="true"/>	
 		       	<tr>
 					<td><%=master.getId()%></td>
 					<td><%=master.getName()%></td>

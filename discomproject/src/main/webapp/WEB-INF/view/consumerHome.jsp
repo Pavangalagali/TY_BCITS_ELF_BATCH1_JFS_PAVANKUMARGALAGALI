@@ -33,21 +33,21 @@
 <title>home</title>
 </head>
 
-<body>
+<body style="background-image: url('${images}/conHome.jpg');">
 	<%if (msg != null && !msg.isEmpty()) { %>
 	   <h2 style="color: blue;"> <%=msg%></h2>
 	   <% } %>	
 
 	<div class="container">
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3 ">
-			<div class="card text-center">
+			<div class="card text-center" style="background-image: url('${images}/conHome.jpg');">
 				<div class="card-header bg-info " style="height: 70px;">
 					<h4 style="color: rgb(195, 221, 221);">Welcome to Discom
 						Consumer Portal</h4>
 				</div>
 				<div class="card-body">
 					<table>
-						<tr>
+						<tr style="color: white">
 							<td>
 								<h5 style="text-align: left;">Full Name</h5>
 							</td>
@@ -60,7 +60,7 @@
 								</h5>
 							</td>
 						</tr>
-						<tr>
+						<tr style="color: white">
 							<td>
 								<h5 style="text-align: left;">RR-Number</h5>
 							</td>
@@ -71,7 +71,7 @@
 								<h5 style="text-align: left;"><%=consumer.getRrNumber()%></h5>
 							</td>
 						</tr>
-						<tr>
+						<tr style="color: white">
 							<td>
 								<h5 style="text-align: left;">Region</h5>
 							</td>
@@ -82,7 +82,7 @@
 								<h5 style="text-align: left;"><%=consumer.getRegion()%></h5>
 							</td>
 						</tr>
-						<tr>
+						<tr style="color: white">
 							<td>
 								<h5 style="text-align: left;">Consumer-Type</h5>
 							</td>
@@ -135,8 +135,6 @@
 		</form>
 		</div>
 		<%} %>
-		
-		
 		</div>
 
 
@@ -234,7 +232,7 @@
 		
 
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">
-			<h1 style="font-size: larger;">Leave Message</h1>
+			<h1 style="font-size: larger;color: aqua;">Leave Message</h1>
 			<form action="./sendSupport" method="post">
 				<textarea name="support" id="" cols="150" rows="8"
 					placeholder="max 250 character"></textarea>

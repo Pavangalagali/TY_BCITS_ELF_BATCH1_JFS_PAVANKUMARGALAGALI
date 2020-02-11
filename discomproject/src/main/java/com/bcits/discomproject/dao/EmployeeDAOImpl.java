@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+import javax.transaction.Transaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -200,23 +201,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return billHistories;
 	}
 
-	@Override
-	public List<Object[]> getEstimation(String region) {
-		EntityManager manager = managerFactory.createEntityManager();
-		try {
-			String jpql = " select sum(bill), DATE_FORMAT(billHistoryPk.date,'%Y-%m') from BillHistory "
-					+ " where region=:region GROUP BY MONTH(billHistoryPk.date) ";
-
-			Query query = manager.createQuery(jpql);
-			query.setParameter("region", region);
-
-			List<Object[]> estimations = query.getResultList();
-			return estimations;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}//end of getEstimation()
 
 	@Override
 	public List<Object[]> getPaidBills(String region) {
@@ -224,10 +208,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		try {
 			String jpql = " select sum(bill), DATE_FORMAT(billHistoryPk.date,'%Y-%m') from BillHistory "
 					+ " where region=:region and status='paid' GROUP BY MONTH(billHistoryPk.date) ";
-
 			Query query = manager.createQuery(jpql);
 			query.setParameter("region", region);
-
 			List<Object[]> paidBills = query.getResultList();
 			return paidBills;
 		} catch (Exception e) {
@@ -240,18 +222,75 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public List<Object[]> getPendingBills(String region) {
 		EntityManager manager = managerFactory.createEntityManager();
 		try {
-			String jpql = " select sum(bill), DATE_FORMAT(billHistoryPk.date,'%Y-%m') from BillHistory "
+			String jpql =" select sum(bill), DATE_FORMAT(billHistoryPk.date,'%Y-%m') from BillHistory "
 					+ " where region=:region and status='not paid' GROUP BY MONTH(billHistoryPk.date) ";
-
 			Query query = manager.createQuery(jpql);
 			query.setParameter("region", region);
-
 			List<Object[]> pendingBill = query.getResultList();
+			System.out.println();
 			return pendingBill;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+
+	@Override
+	public List<SupportRequest> getAllRequestSupport(String region) {
+		EntityManager manager = managerFactory.createEntityManager();
+		try {
+			String jpql =" from SupportRequest where supportPk.rrNumber in"
+					+ " ( select rrNumber from ConsumerMaster where region=:region) ";
+			Query query = manager.createQuery(jpql);
+			query.setParameter("region", region);
+			List<SupportRequest> requests = query.getResultList();
+			System.out.println();
+			return requests;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean updateDueBill(String rrNumber, Date date) {
+		System.out.println(rrNumber +" "+date);
+		boolean isUpdated = false;
+		EntityManager manager = managerFactory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();;
+			String jpql =" from BillHistory Where billHistoryPk.rrNumber =:rrNumber and "
+					+ " DATE_FORMAT(billHistoryPk.date, '%c-%d-%Y')=DATE_FORMAT(:date, '%c-%d-%Y') "
+					+ " and status ='not paid' ";
+			Query query = manager.createQuery(jpql);
+			query.setParameter("rrNumber",rrNumber);
+			query.setParameter("date", date);
+			
+			String jpql2 =" from MonthlyConsumption Where consumptionPk.rrNumber =:rrNumber and "
+					+ " DATE_FORMAT(consumptionPk.date, '%c-%d-%Y')=DATE_FORMAT(:date, '%c-%d-%Y')"
+					+ " and status='not paid'";
+			Query query2 = manager.createQuery(jpql2);
+			query2.setParameter("rrNumber",rrNumber);
+			query2.setParameter("date", date);
+			
+			BillHistory billHistory = (BillHistory) query.getSingleResult();
+			billHistory.setStatus("paid");
+			
+			MonthlyConsumption consumption = (MonthlyConsumption) query2.getSingleResult();
+			consumption.setStatus("paid");
+			
+			transaction.commit();
+			isUpdated= true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+		}
+	
+		return isUpdated;
+	}
+
+	
 
 }
