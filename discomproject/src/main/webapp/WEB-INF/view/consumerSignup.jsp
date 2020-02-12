@@ -43,53 +43,61 @@
 	<h2 style="color: white;"> <%=errMsg%></h2>
 	<% } %>
         <div class=" col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 mt-5 mx-auto d-block ">
-            <form  onsubmit="goToLogin()" action="./userSignup" method="post">
+            <form id="formData" onsubmit="validation(); return false"  method="post">
               
                 <div class="row ">
                     <div class="col mt-3">
-                        <label>Firstname</label>
-                        <input type="text"  id="fname" name="firstName" class="form-control " placeholder="First name">
+                        <label for="fname">First Name</label>
+                        <input type="text"  id="fname" name="firstName" class="form-control " placeholder="First name" required="required">
+                        <span id="firstname" style="color:orange ;"></span>
                     </div>
 
                     <div class="col mt-3">
-                        <label class="">Lastname</label>
-                        <input type="text" name=lastName id="lastName" class="form-control" placeholder="Last name">
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" name="lastName"  class="form-control" placeholder="Last name" required="required">
+                         <span id="lastname" style="color: orange;"></span>
                     </div>
                 </div><br>
                 <div>
-                    <label class="">Meter Number/RR Number</label>
-                    <input type="text"  name="rrNumber"  id="mNumber" class="form-control" placeholder="Meter Number/RR Number">
+                    <label for="mnumber">Meter Number/RR Number</label>
+                    <input type="text"  name="rrNumber"  id="mnumber" class="form-control" placeholder="Meter Number/RR Number" required="required">
+                     <span id="rrnumber" style="color: red;"></span>
                 </div><br>
                 <div class="row ">
                     <div class="col mt-3">
-                        <label>Email</label>
-                        <input type="email" name="eMail" id="email" class="form-control" placeholder="Email">
+                        <label for="email">Email</label>
+                        <input type="email" name="eMail" id="email" class="form-control" placeholder="Email" required="required">
+                        <span id="emailid" style="color: red;"></span>
                     </div>
 
                     <div class="col mt-3">
-                        <label class="">Phone Number</label>
-                        <input type="tel" name="phoneNumber" id="pNumber" class="form-control" placeholder="Phone Number">
+                        <label for="pnumber">Phone Number</label>
+                        <input type="tel" name="phoneNumber" id="pnumber" class="form-control" placeholder="Phone Number" required="required" maxlength="10">
+                        <span id="phonenumber" style="color: red;"></span>
                     </div>
                 </div><br>
 
-                    <label class="">Address</label>
-                    <input type="text" name="houseNo" class="form-control " placeholder="House Number">
-                    <input type="text" name="address1"class="form-control mt-3" placeholder="Address Line 1">
-                    <input type="text" name="address2" class="form-control mt-3" placeholder="Address Line 1">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" name="houseNo" id="houseNum" class="form-control " placeholder="House Number" required="required">
+                     <span id="houseno" style="color: red;"></span><br>
+                    <input type="text" name="address1"  id="inputAddress1" class="form-control mt-3" placeholder="Address Line 1" required="required">
+                    <span id="add1" style="color: red;"></span>
+                    <input type="text" name="address2" id="inputAddress2" class="form-control mt-3" placeholder="Address Line 2" required="required">
+                     <span id="add2" style="color: red;"></span>
                     <br>
                     <div class="form-row">
 
                         <div class="form-group col-md-6">
-                            <label for="inputRegion">Region</label>
-                            <select name="region" id="inputRegion" class="form-control">
+                            <label >Region</label>
+                            <select name="region"  class="form-control" required="required">
                                 <option selected disabled>Choose...</optionselected> 
-                                <option value="south">Banglore South</option>
-                                <option value="north">Banglore North</option>
+                                <option value="Banglore South">Banglore South</option>
+                                <option value="Banglore North">Banglore North</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputConsumer">Type Of Consumer</label>
-                            <select  name="consumerType"   id="inputConsumer" class="form-control">
+                            <label >Type Of Consumer</label>
+                            <select  name="consumerType"    class="form-control" required="required">
                                 <option selected disabled>Choose...</option>
                                 <option value="residential">Residential consumers</option>
                                 <option value="commercial">Commercial consumers</option>
@@ -100,23 +108,25 @@
                 
                 <div class="row">
                     <div class="col mt-3">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Password">
-
+                        <label for="psw">Password</label>
+                        <input type="password" name="password"  id="psw" class="form-control" placeholder="Password" required="required">
+                        <span id="password" style="color: red;"></span>
                     </div>
 
                     <div class="col mt-3">
-                        <label class="">Confirm Password</label>
-                        <input type="password"  name="confirmPwd" class="form-control" placeholder="Confirm Password">
+                        <label for="cpsw">Confirm Password</label>
+                        <input type="password"  name="confirmPwd" id="cpsw" class="form-control" placeholder="Confirm Password" required="required">
+                        <span id="confirmpassword" style="color: red;"></span>
                     </div>
                 </div><br>
                
-                <button type="submit" class="btn btn-primary c mx-auto d-block mt-2 " >Sign In</button> 
+                <button type="submit" formaction="./userSignup" class="btn btn-primary c mx-auto d-block mt-2 " >Sign In</button> 
     
             </form>
         </div>
     </div>
     <script src="${js}/jquery-3.2.1.min.js"></script>
+    <script src="${js}/signup.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

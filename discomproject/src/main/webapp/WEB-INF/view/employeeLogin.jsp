@@ -34,21 +34,23 @@
 						Log In
 					</span>
 				</div>
-				<form class="login100-form validate-form" action="./empLogin" method="post">
+				<form class="login100-form validate-form"  onsubmit="check(); return false" method="post">
 					<div class="wrap-input100 validate-input m-b-26" >
-						<span class="label-input100">Employee Id :</span>
-						<input class="input100" type="text" name="id" placeholder="Enter Employee Id">
+						<span class="label-input100" for="empId">Employee Id </span>
+						<input class="input100" type="number"  id="empId" name="id" placeholder="Enter Employee Id">
 						<span class="focus-input100"></span>
+						<span id="employeeId" style="color:orange ;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" >
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="password" placeholder="Enter password">
+						<span class="label-input100" for="psw">Password</span>
+						<input class="input100" type="password" id="psw" name="password" placeholder="Enter password">
 						<span class="focus-input100"></span>
+						<span id="password" style="color: red;"></span>
 					</div>	
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit" formaction="./empLogin">
 							Login
 						</button>
 					</div>
@@ -59,6 +61,7 @@
 
 
 	<script src="${js}/jquery-3.2.1.min.js"></script>
+	<script src="${js}/employeeLogin.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

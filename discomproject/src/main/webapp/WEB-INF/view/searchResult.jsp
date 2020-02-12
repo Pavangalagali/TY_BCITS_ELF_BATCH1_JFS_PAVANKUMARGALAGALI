@@ -52,10 +52,11 @@
             </thead>
 		<tbody>
 			<% for(MonthlyConsumption consumed : consumption ){ %>
-		 <form action="./UpdateDueBill" method="post">
-		 <input type="text" name="rrNumber"  value="<%=consumed.getConsumptionPk().getRrNumber() %>" hidden="true" />
+			<form action="./UpdateDueBill" method="post">
 			<tr >
-		  <input type="datetime" name="date" value="<%=consumed.getConsumptionPk().getDate() %>" hidden="true" />
+				<input type="text" name="rrNumber"  value="<%=consumed.getConsumptionPk().getRrNumber() %>" hidden="true" />
+		 		<input type="datetime" name="date" value="<%=consumed.getConsumptionPk().getDate()%>" hidden="true">
+		  		
 					<td style="width: 25%"><%= consumed.getConsumptionPk().getRrNumber() %></td>
 					<% String date = dateFormat.format(consumed.getTakenOn()); %>
 					<td style="width: 25%"><%=date %></td>
@@ -65,9 +66,9 @@
 						<td style="width: 25%"> <input type="submit"  class="btn btn-primary" value="Received" /> </td>
 					<%} %>
 			</tr>
-		</form>
+			</form>
 			<% } %>
-			</tbody>
+		</tbody>
 			</table>
 			</div>
 		<%} %>
@@ -97,7 +98,7 @@
 			        <td style="width: 40%"><%=date%></td>
 					<td style="width: 30%;"><%= req.getSupportPk().getSupport() %></td>
 					<td style="width: 40%"><%=req.getResponse()%></td>
-				    <td><input  type="text" name="response" rows="3" cols="40"/>
+				    <td><textarea name="response" rows="5" cols="40" required="required"></textarea><br>
 					<button type="submit"  class="btn btn-dark  ">Submit</button></td>
 		
 			</tr>

@@ -37,9 +37,6 @@ public class ConsumerController {
 	@Autowired
 	private ConsumerService service;
 
-	@Autowired
-	private EmployeeService empService;
-
 	@GetMapping("/consumerLogin")
 	public String displayLogin() {
 		return "consumerLogin";
@@ -180,14 +177,13 @@ public class ConsumerController {
 
 	@GetMapping("/getSupport")
 	public String getResponses(String rrNumber,
-			@SessionAttribute(name = "consumerInfo", required = false) ConsumerMaster consumerMaster,
-			ModelMap map) {
+			@SessionAttribute(name = "consumerInfo", required = false) ConsumerMaster consumerMaster, ModelMap map) {
 		if (consumerMaster != null) {
 			List<SupportRequest> reqs = service.getSupportRequest(rrNumber);
 			System.out.println(reqs);
-			if(reqs != null) {
+			if (reqs != null) {
 				map.addAttribute("support", reqs);
-			}else {
+			} else {
 				map.addAttribute("msg", "you have not raised tokens");
 			}
 			return "responses";

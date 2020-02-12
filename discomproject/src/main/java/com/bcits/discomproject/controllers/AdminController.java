@@ -46,7 +46,7 @@ public class AdminController {
 	}// end of getHome()
 
 	@PostMapping("/empLogin")
-	public String adminLogin(int id, String password, HttpServletRequest req, ModelMap map) {
+	public String adminLogin(Integer id, String password, HttpServletRequest req, ModelMap map) {
 		EmployeeMaster employee = service.authenticate(id, password);
 		if (employee != null) {
 			HttpSession session = req.getSession(true);

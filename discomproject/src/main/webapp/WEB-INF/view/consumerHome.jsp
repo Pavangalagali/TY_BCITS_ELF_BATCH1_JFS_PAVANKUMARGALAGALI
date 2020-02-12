@@ -52,7 +52,7 @@
 								<h5 style="text-align: left;">Full Name</h5>
 							</td>
 							<td>
-								<h5 style="text-align: left;">:</h5>
+								<h5 style="text-align: left;">&nbsp;:&nbsp;</h5>
 							</td>
 							<td>
 								<h5 style="text-align: left;">
@@ -65,7 +65,7 @@
 								<h5 style="text-align: left;">RR-Number</h5>
 							</td>
 							<td>
-								<h5 style="text-align: left;">:</h5>
+								<h5 style="text-align: left;">&nbsp;:&nbsp;</h5>
 							</td>
 							<td>
 								<h5 style="text-align: left;"><%=consumer.getRrNumber()%></h5>
@@ -76,7 +76,7 @@
 								<h5 style="text-align: left;">Region</h5>
 							</td>
 							<td>
-								<h5 style="text-align: left;">:</h5>
+								<h5 style="text-align: left;">&nbsp;:&nbsp;</h5>
 							</td>
 							<td>
 								<h5 style="text-align: left;"><%=consumer.getRegion()%></h5>
@@ -87,7 +87,7 @@
 								<h5 style="text-align: left;">Consumer-Type</h5>
 							</td>
 							<td>
-								<h5 style="text-align: left;">:</h5>
+								<h5 style="text-align: left;">&nbsp;:&nbsp;</h5>
 							</td>
 							<td>
 								<h5 style="text-align: left;"><%=consumer.getConsumerType()%></h5>
@@ -234,8 +234,8 @@
 		<div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">
 			<h1 style="font-size: larger;color: aqua;">Leave Message</h1>
 			<form action="./sendSupport" method="post">
-				<textarea name="support" id="" cols="150" rows="8"
-					placeholder="max 250 character"></textarea>
+				<textarea  name="support" id="" cols="150" rows="8"
+					placeholder="max 2000 character" required="required"></textarea>
 					<input type="text" name="response" value="" hidden="true">
 				<button type="submit"   class="btn btn-primary btn-lg">Submit</button>
 			</form>

@@ -40,7 +40,7 @@
 	<h2 style="color: orange;"> <%=errMsg%></h2>
 	<% } %>
        
-        <form class="text-center" style="color: #757575;" action="./generateBill" method="post">
+        <form id="formData" class="text-center" style="color: #757575;" onsubmit="validateReadings(); return false" method="post">
 
 
           <div class="row " style="text-align: left;">
@@ -53,36 +53,37 @@
                
                <div class="row " style="text-align: left;">
                     <div class="col mt-3">
-                        <label class="">Initial Readings</label>
+                        <label for="init">Initial Readings</label>
                           <label>:<%=initReading %></label>
-                        <input type="number" name="initialUnits" id="" class="form-control" value="<%=initReading %>" hidden="true">
+                        <input type="number" name="initialUnits" id="init" class="form-control" value="<%=initReading %>" hidden="true">
                     </div>
                     <div class="col mt-3">
-                        <label>Final Reading</label>
-                        <input type="number" name="finalUnits" id="" class="form-control" placeholder="Enter Final Reading">
+                        <label for="final">Final Reading</label>
+                        <input type="number" name="finalUnits" id="final" class="form-control" placeholder="Enter Final Reading" required="required">               	
+                	<span id="finalUnits" style="color: red;"></span>
                     </div>
                 </div><br> 
            
            <div class="row " style="text-align: left;">
                                <div class="col mt-3">
-                        <label>Statement Date</label>
-                        <input type="date" name="readingsTakenOn" id="" class="form-control" placeholder="statemented date">
+                        <label >Statement Date</label>
+                        <input type="date" name="readingsTakenOn" id="statement" class="form-control" placeholder="statemented date">
                     </div>
 
                     <div class="col mt-3">
                         <label >Due Date</label>
-                      
                         <input type="date" name="dueDate" id="" class="form-control" placeholder="Due Date">
                     </div>
                 </div><br> 
            
-            <button type="submit" class="btn btn-primary c mx-auto d-block mt-2 ">Generate</button>
+            <button type="submit" formaction="./generateBill" class="btn btn-primary c mx-auto d-block mt-2 ">Generate</button>
         </form>
     </div>
 
 </div>
 
 <script src="${js}/jquery-3.2.1.min.js"></script> 
+   <script src="${js}/currentBill.js"></script>
     <script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>

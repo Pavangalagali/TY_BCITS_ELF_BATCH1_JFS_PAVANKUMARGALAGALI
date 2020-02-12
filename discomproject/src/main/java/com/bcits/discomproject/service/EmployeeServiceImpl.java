@@ -14,6 +14,7 @@ import com.bcits.discomproject.beans.SupportPk;
 import com.bcits.discomproject.beans.SupportRequest;
 import com.bcits.discomproject.dao.ConsumerDAO;
 import com.bcits.discomproject.dao.EmployeeDAO;
+import com.bcits.discomproject.validations.Validations;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -24,6 +25,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private ConsumerDAO consumer;
 
+	@Autowired
+	private Validations validations;
+	
 	@Override
 	public boolean generateBill(CurrentBill bill) {
 		if (consumer.find(bill.getRrNumber()) != null) {
@@ -49,8 +53,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean generateResponse(SupportPk supportPk, String response) {
-
+		if(validations.supportValidation(response)) {
 		return dao.generateResponse(supportPk, response);
+		}
+		return false;
 	}
 
 	@Override

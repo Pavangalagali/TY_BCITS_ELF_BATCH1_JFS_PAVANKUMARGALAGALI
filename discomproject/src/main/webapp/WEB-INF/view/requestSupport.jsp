@@ -39,18 +39,18 @@
 		<tbody>
 			<% for(SupportRequest req : reqs ){ %>
 			<form action="./generateSupport" method="post">   	
+			<tr >
 		      <input  type="text" name="support" value="<%=req.getSupportPk().getSupport()%>" hidden="true"/>
 		      <input  type="text" name ="rrNumber"
-		      value="<%=req.getSupportPk().getRrNumber()%>" hidden="true" />	
-			<tr >
-			        <td><%=req.getSupportPk().getRrNumber()%></td>
-			        <% String date = dateFormat.format(req.getDate()); %>
-			        <td ><%=date%></td>
-					<td ><%= req.getSupportPk().getSupport() %></td>
-					<td ><%=req.getResponse()%></td>
-				    <td style="width: 30%"><input  type="text" name="response" rows="3" cols="40"/>
-					<button type="submit"  class="btn btn-dark">Submit</button></td>
-		
+		             value="<%=req.getSupportPk().getRrNumber()%>" hidden="true" />	
+			        <td style="width: 20%"><%=req.getSupportPk().getRrNumber()%></td>
+			         <% String date = dateFormat.format(req.getDate()); %>
+			        <td style="width: 10%"><%=date%></td>
+					<td style="width: 30%"><%= req.getSupportPk().getSupport() %></td>
+					<td style="width: 30%"><%=req.getResponse()%></td>
+				    <td style="width: 30%"><textarea name="response" rows="5" cols="40" required="required"></textarea><br>
+					<button type="submit"  class="btn btn-dark">Submit</button></td>		
+			<span id="resp" style="color: red;"></span>
 			</tr>
 			</form>
 			<% } %>
@@ -58,5 +58,9 @@
 			</table>
 		 </div>
 		<%} %>
+		
+		<script src="${js}/jquery-3.2.1.min.js"></script> 
+    <script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

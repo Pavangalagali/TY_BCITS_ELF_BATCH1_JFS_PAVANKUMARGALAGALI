@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 
+import com.bcits.discomproject.validations.Validations;
+
 @Configuration
 public class EntityManagerFactoryConfig {
 
@@ -15,6 +17,9 @@ public class EntityManagerFactoryConfig {
 		return bean;
 	}
 	
-	
+	@Bean
+	public Validations validations() {
+		return new Validations();
+	}
 	
 }

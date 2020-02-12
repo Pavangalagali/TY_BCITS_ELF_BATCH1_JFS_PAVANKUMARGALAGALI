@@ -236,15 +236,15 @@ public class EmployeeController {
 	public String updateDue(String rrNumber, Date date,
 			@SessionAttribute("admin") EmployeeMaster master,
 			ModelMap map) {
-		System.out.println(rrNumber +" "+date);
+	
 		if (master != null) {
-			List<MonthlyConsumption> consumptions = service.consumptions(rrNumber);
 			if(empService.updateDueBill(rrNumber, date)) {
 				map.addAttribute("msg", "Updated successfully");
 				
 			}else {
 				map.addAttribute("errMsg", "Could not update try later");
 			}
+			List<MonthlyConsumption> consumptions = service.consumptions(rrNumber);
 			map.addAttribute("consumptions", consumptions);
 			return "searchResult";
 		} else {

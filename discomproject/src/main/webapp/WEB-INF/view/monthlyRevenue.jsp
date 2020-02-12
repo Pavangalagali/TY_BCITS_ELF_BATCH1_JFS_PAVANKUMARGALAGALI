@@ -55,10 +55,10 @@
 	  } 
    
 		
-		boolean isPresent = false; 
 		 Object[] collected = null;
 		
 		 for( int i=0 ;i<totalCollected.size();i++)   {
+		boolean isPresent = false; 
 			  collected = totalCollected.get(i);	
 			  Object[] pending=null;
 			for( int j=0 ; j <totalPending.size();j++){
@@ -80,20 +80,20 @@
 		      		
 		}
 		 
-        boolean isPresentInRevenue = false;
-		for( int i=0 ;i<totalCollected.size();i++) {
-			 collected = totalCollected.get(i);
-			 Object[] pending = null;
-		      for( int j=0 ; j<totalPending.size();j++) {
-		    	  pending  = totalPending.get(j);
+		for( int i=0 ;i<totalPending.size();i++) {
+			Object[] pending = totalPending.get(i);
+			collected = null;
+        boolean isPresent = false;
+		      for( int j=0 ; j<totalCollected.size();j++) {
+		    	  collected  = totalCollected.get(j);
 	 			
 		    	  if(collected[1].equals(pending[1])){
-	 				isPresentInRevenue = true;
+		    		  isPresent = true;
 					break;
 	 			}
 	 			
 		 }
-		      if(!isPresentInRevenue){	%>
+		      if(!isPresent){	%>
 				<tr >
 			       <td><%=pending[1] %></td>
 			       <td><%=pending[0] %></td>
