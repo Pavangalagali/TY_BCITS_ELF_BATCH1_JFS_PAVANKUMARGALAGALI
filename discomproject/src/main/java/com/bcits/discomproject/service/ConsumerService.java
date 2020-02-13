@@ -22,4 +22,6 @@ public interface ConsumerService {
 	public boolean supportRequest(String rrNumber, String msg);
 	
 	public List<SupportRequest> getSupportRequest(String rrNumber);
+	
+	
 }

@@ -48,7 +48,8 @@ public class EmployeeController {
 	}// end of getLoginForm()
 
 	@GetMapping("/curentBillPage")
-	public String showCurrentBill(String rrNumber, @SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+	public String showCurrentBill(String rrNumber,
+			@SessionAttribute(name = "admin", required = false) EmployeeMaster master, ModelMap map) {
 		if (master != null) {
 			List<MonthlyConsumption> consumptions = service.consumptions(rrNumber);
 			if (consumptions == null) {
@@ -65,8 +66,8 @@ public class EmployeeController {
 	}// end of showcurrentBill()
 
 	@PostMapping("/generateBill")
-	public String generateBill(CurrentBill currentBill, @SessionAttribute("admin") EmployeeMaster master,
-			ModelMap map) {
+	public String generateBill(CurrentBill currentBill,
+			@SessionAttribute(name = "admin", required = false) EmployeeMaster master, ModelMap map) {
 		if (master != null) {
 			if (empService.generateBill(currentBill)) {
 				if (empService.sendMail(currentBill.getRrNumber())) {
@@ -88,17 +89,21 @@ public class EmployeeController {
 	}// end of generatebill
 
 	@GetMapping("/getSearchResult")
-	public String getResult(String rrNumber, @SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+	public String getResult(String rrNumber, @SessionAttribute(name = "admin", required = false) EmployeeMaster master,
+			ModelMap map) {
 		if (master != null) {
-			List<MonthlyConsumption> consumptions = service.consumptions(rrNumber);
-			List<SupportRequest> requests = empService.getSupportRequest(rrNumber);
-			if (consumptions == null) {
-				map.addAttribute("support", requests);
-
-				map.addAttribute("msg", "No current details found");
+			if (empService.checkForSameRegion(master.getRegion(), rrNumber)) {
+				List<MonthlyConsumption> consumptions = service.consumptions(rrNumber);
+				List<SupportRequest> requests = empService.getSupportRequest(rrNumber);
+				if (consumptions == null) {
+					map.addAttribute("support", requests);
+					map.addAttribute("msg", "No current details found");
+				} else {
+					map.addAttribute("consumptions", consumptions);
+					map.addAttribute("support", requests);
+				}
 			} else {
-				map.addAttribute("consumptions", consumptions);
-				map.addAttribute("support", requests);
+				map.addAttribute("errMsg", "This Consumer is not from your region");
 			}
 			map.addAttribute("rrNumber", rrNumber);
 			return "searchResult";
@@ -109,7 +114,8 @@ public class EmployeeController {
 	}// end of getResult()
 
 	@GetMapping("/getAll")
-	public String showAllConsumers(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+	public String showAllConsumers(@SessionAttribute(name = "admin", required = false) EmployeeMaster master,
+			ModelMap map) {
 		if (master != null) {
 			List<ConsumerMaster> consumers = empService.getAllConsumers(master.getRegion());
 			if (consumers != null) {
@@ -124,10 +130,9 @@ public class EmployeeController {
 		}
 	}// end of showAllConsumer();
 
-	
 	@PostMapping("/generateResponse")
-	public String response(SupportPk supportPk, String response, @SessionAttribute("admin") EmployeeMaster master,
-			ModelMap map) {
+	public String response(SupportPk supportPk, String response,
+			@SessionAttribute(name = "admin", required = false) EmployeeMaster master, ModelMap map) {
 
 		if (master != null) {
 			empService.generateResponse(supportPk, response);
@@ -140,10 +145,10 @@ public class EmployeeController {
 		}
 	}// end of response()
 
-	
 	@GetMapping("/generatedBills")
-	public String getGeneratedBills(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
-		
+	public String getGeneratedBills(@SessionAttribute(name = "admin", required = false) EmployeeMaster master,
+			ModelMap map) {
+
 		if (master != null) {
 			List<CurrentBill> bills = empService.currentBills(master.getRegion());
 			if (bills != null) {
@@ -158,9 +163,8 @@ public class EmployeeController {
 		}
 	}// end of generatedBills()
 
-	
 	@GetMapping("/empHome")
-	public String getHome(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+	public String getHome(@SessionAttribute(name = "admin", required = false) EmployeeMaster master, ModelMap map) {
 		if (master != null) {
 			return "employeeHome";
 		} else {
@@ -169,12 +173,12 @@ public class EmployeeController {
 		}
 	}// end of getHome();
 
-	
 	@GetMapping("/monthlyRevenue")
-	public String getMOMRevenuePage(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
+	public String getMOMRevenuePage(@SessionAttribute(name = "admin", required = false) EmployeeMaster master,
+			ModelMap map) {
 		if (master != null) {
-				map.addAttribute("paid", empService.getPaidBills(master.getRegion()));
-				map.addAttribute("pending", empService.getPendingBills(master.getRegion()));
+			map.addAttribute("paid", empService.getPaidBills(master.getRegion()));
+			map.addAttribute("pending", empService.getPendingBills(master.getRegion()));
 			return "monthlyRevenue";
 		} else {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
@@ -182,45 +186,45 @@ public class EmployeeController {
 		}
 	}// end of getMOMRevenuePage
 
-	
 	@GetMapping("/collected")
-	public String getCollectedBill(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
-		
-		if (master != null) {	
-			List<BillHistory> collected= empService.getCollectedBill(master.getRegion());
-		if(collected != null) {
-			
-			map.addAttribute("collected", collected);
-		}else {
-			map.addAttribute("errMsg", "No Consumer paid the bill this month");
-		}
+	public String getCollectedBill(@SessionAttribute(name = "admin", required = false) EmployeeMaster master,
+			ModelMap map) {
+
+		if (master != null) {
+			List<BillHistory> collected = empService.getCollectedBill(master.getRegion());
+			if (collected != null) {
+
+				map.addAttribute("collected", collected);
+			} else {
+				map.addAttribute("errMsg", "No Consumer paid the bill this month");
+			}
 			return "billCollected";
 		} else {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
 			return "home";
 		}
-	}//end of getCollectedBill()
-	
+	}// end of getCollectedBill()
+
 	@GetMapping("/requestSupport")
-	public String getSupportRequests(@SessionAttribute("admin") EmployeeMaster master, ModelMap map) {
-		if (master != null) {	
-			List<SupportRequest> requests= empService.getAllRequestSupport(master.getRegion());
-		if(requests != null) {
-			map.addAttribute("support", requests);
-		}else {
-			map.addAttribute("errMsg", "No Consumer paid the bill this month");
-		}
+	public String getSupportRequests(@SessionAttribute(name = "admin", required = false) EmployeeMaster master,
+			ModelMap map) {
+		if (master != null) {
+			List<SupportRequest> requests = empService.getAllRequestSupport(master.getRegion());
+			if (requests != null) {
+				map.addAttribute("support", requests);
+			} else {
+				map.addAttribute("errMsg", "No Consumer paid the bill this month");
+			}
 			return "requestSupport";
 		} else {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
 			return "home";
 		}
-	}//end of getSupportRequests()
-	
+	}// end of getSupportRequests()
+
 	@PostMapping("/generateSupport")
 	public String sendResponse(SupportPk supportPk, String response,
-			@SessionAttribute("admin") EmployeeMaster master,
-			ModelMap map) {
+			@SessionAttribute(name = "admin", required = false) EmployeeMaster master, ModelMap map) {
 		if (master != null) {
 			empService.generateResponse(supportPk, response);
 			List<SupportRequest> requests = empService.getAllRequestSupport(master.getRegion());
@@ -230,18 +234,17 @@ public class EmployeeController {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
 			return "home";
 		}
-	}//end of sendResponse();
-	
+	}// end of sendResponse();
+
 	@PostMapping("/UpdateDueBill")
 	public String updateDue(String rrNumber, Date date,
-			@SessionAttribute("admin") EmployeeMaster master,
-			ModelMap map) {
-	
+			@SessionAttribute(name = "admin", required = false) EmployeeMaster master, ModelMap map) {
+
 		if (master != null) {
-			if(empService.updateDueBill(rrNumber, date)) {
+			if (empService.updateDueBill(rrNumber, date)) {
 				map.addAttribute("msg", "Updated successfully");
-				
-			}else {
+
+			} else {
 				map.addAttribute("errMsg", "Could not update try later");
 			}
 			List<MonthlyConsumption> consumptions = service.consumptions(rrNumber);
@@ -251,5 +254,5 @@ public class EmployeeController {
 			map.addAttribute("errMsg", "Session Time out!! Login Again");
 			return "home";
 		}
-	}//end of sendResponse();
+	}// end of sendResponse();
 }

@@ -1,6 +1,5 @@
 package com.bcits.discomproject.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +30,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public boolean generateBill(CurrentBill bill) {
 		if (consumer.find(bill.getRrNumber()) != null) {
-
-			return dao.generateBill(bill);
+			if(bill.getFinalUnits() > bill.getInitialUnits()) {	
+				System.out.println("generating");
+				return dao.generateBill(bill);
+			}
+			return false;
 		}
 		return false;
 	}
@@ -99,5 +101,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public boolean updateDueBill(String rrNumber, Date date) {
 		
 		return dao.updateDueBill(rrNumber, date);
+	}
+
+	@Override
+	public boolean checkForSameRegion(String region, String rrNumber) {
+		ConsumerMaster consumerMaster = consumer.find(rrNumber);
+		if(region.equals(consumerMaster.getRegion())) {
+			return true;
+		}
+		return false;
 	}
 }

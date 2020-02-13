@@ -48,7 +48,7 @@
                 <div class="row ">
                     <div class="col mt-3">
                         <label for="fname">First Name</label>
-                        <input type="text"  id="fname" name="firstName" class="form-control " placeholder="First name" required="required">
+                        <input type="text"  id="fname" name="firstName" class="form-control " placeholder="First name" required="required" >
                         <span id="firstname" style="color:orange ;"></span>
                     </div>
 
@@ -61,29 +61,29 @@
                 <div>
                     <label for="mnumber">Meter Number/RR Number</label>
                     <input type="text"  name="rrNumber"  id="mnumber" class="form-control" placeholder="Meter Number/RR Number" required="required">
-                     <span id="rrnumber" style="color: red;"></span>
+                     <span id="rrnumber" style="color: orange;"></span>
                 </div><br>
                 <div class="row ">
                     <div class="col mt-3">
                         <label for="email">Email</label>
                         <input type="email" name="eMail" id="email" class="form-control" placeholder="Email" required="required">
-                        <span id="emailid" style="color: red;"></span>
+                        <span id="emailid" style="color: orange;"></span>
                     </div>
 
                     <div class="col mt-3">
                         <label for="pnumber">Phone Number</label>
                         <input type="tel" name="phoneNumber" id="pnumber" class="form-control" placeholder="Phone Number" required="required" maxlength="10">
-                        <span id="phonenumber" style="color: red;"></span>
+                        <span id="phonenumber" style="color: orange;"></span>
                     </div>
                 </div><br>
 
                     <label for="inputAddress">Address</label>
                     <input type="text" name="houseNo" id="houseNum" class="form-control " placeholder="House Number" required="required">
-                     <span id="houseno" style="color: red;"></span><br>
+                     <span id="houseno" style="color: orange;"></span><br>
                     <input type="text" name="address1"  id="inputAddress1" class="form-control mt-3" placeholder="Address Line 1" required="required">
-                    <span id="add1" style="color: red;"></span>
+                    <span id="add1" style="color: orange;"></span>
                     <input type="text" name="address2" id="inputAddress2" class="form-control mt-3" placeholder="Address Line 2" required="required">
-                     <span id="add2" style="color: red;"></span>
+                     <span id="add2" style="color: orange;"></span>
                     <br>
                     <div class="form-row">
 
@@ -110,13 +110,13 @@
                     <div class="col mt-3">
                         <label for="psw">Password</label>
                         <input type="password" name="password"  id="psw" class="form-control" placeholder="Password" required="required">
-                        <span id="password" style="color: red;"></span>
+                        <span id="password" style="color: orange;"></span>
                     </div>
 
                     <div class="col mt-3">
                         <label for="cpsw">Confirm Password</label>
                         <input type="password"  name="confirmPwd" id="cpsw" class="form-control" placeholder="Confirm Password" required="required">
-                        <span id="confirmpassword" style="color: red;"></span>
+                        <span id="confirmpassword" style="color: orange;"></span>
                     </div>
                 </div><br>
                

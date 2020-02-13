@@ -32,4 +32,6 @@ public interface EmployeeService {
 	 public List<SupportRequest> getAllRequestSupport(String region);
 	 
 	 public boolean updateDueBill(String rrNumber,Date date);
+	 
+	 public boolean checkForSameRegion(String region, String rrNumber);
 }

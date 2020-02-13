@@ -10,6 +10,7 @@ import com.bcits.discomproject.beans.CurrentBill;
 import com.bcits.discomproject.beans.MonthlyConsumption;
 import com.bcits.discomproject.beans.SupportRequest;
 import com.bcits.discomproject.dao.ConsumerDAO;
+import com.bcits.discomproject.validations.Validations;
 
 @Service
 public class ConsumerServiceImpl implements ConsumerService {
@@ -17,19 +18,28 @@ public class ConsumerServiceImpl implements ConsumerService {
 	@Autowired
 	private ConsumerDAO  dao;
 	
+	@Autowired
+	private Validations validations;
+	
 	@Override
 	public boolean signUpConsumer(ConsumerMaster consumerMaster, String confirmpwd) {
 	
-		if(consumerMaster.getPassword().equals(confirmpwd)) {
-			return dao.signUpConsumer(consumerMaster);
-		}
+		if(validations.validateConsumerDeatils(consumerMaster)) {
+			System.out.println("validated successfully");
+			
+			if(consumerMaster.getPassword().equals(confirmpwd)) {
+				return dao.signUpConsumer(consumerMaster);
+			}
+		}		
 		return false;
 	}
 
 	@Override
 	public ConsumerMaster authenticate(String rrNumber, String password) {
-		
+		if(validations.rrValidation(rrNumber) && validations.validatePassword(password) ) {
 		return dao.authenticate(rrNumber, password);
+		}
+		return null;
 	}
 
 	@Override
@@ -50,7 +60,7 @@ public class ConsumerServiceImpl implements ConsumerService {
 
 	@Override
 	public boolean supportRequest(String rrNumber, String msg) {
-		if(msg.length() > 255) {
+		if(msg.length() > 2001) {
 			return false;			
 		}else {
 			return dao.supportRequest(rrNumber, msg);

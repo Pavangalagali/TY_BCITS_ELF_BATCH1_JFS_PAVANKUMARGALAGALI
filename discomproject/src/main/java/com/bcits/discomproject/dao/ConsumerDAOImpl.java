@@ -19,6 +19,7 @@ import com.bcits.discomproject.beans.MonthlyConsumption;
 import com.bcits.discomproject.beans.MonthlyConsumptionPk;
 import com.bcits.discomproject.beans.SupportPk;
 import com.bcits.discomproject.beans.SupportRequest;
+import com.bcits.discomproject.utility.SendMail;
 
 @Repository
 public class ConsumerDAOImpl implements ConsumerDAO {
@@ -80,8 +81,10 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 		boolean isPaid = false;
 		EntityManager manager = managerFactory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
+		SendMail mail = new SendMail();
 		try {
 			transaction.begin();
+			
 			CurrentBill bill = manager.find(CurrentBill.class, rrNumber);
 			
 			MonthlyConsumption consumption = new MonthlyConsumption();
@@ -113,6 +116,8 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 			manager.persist(consumption);
 			manager.remove(bill);
 			transaction.commit();
+			mail.sendReceipt(bill);
+			
 			isPaid = true;
 		} catch (Exception e) {
 			e.printStackTrace();

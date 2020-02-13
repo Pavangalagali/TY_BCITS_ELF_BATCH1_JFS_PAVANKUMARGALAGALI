@@ -53,12 +53,12 @@
                     <div class="col mt-3">
                         <label for="email">E-mail</label>
                         <input type="email" name="eMail" id="email" class="form-control" placeholder="Email Id">
-                        <span id="emailid" style="color: red;"></span>
+                        <span id="emailid" style="color: orange;"></span>
                     </div>
                 </div><br> 
            
             
-             <div class="form-row">
+             <div class="form-row" >
 
                         <div class="form-group col-md-6 " style="text-align: left">
                             <label >Region</label>
@@ -70,18 +70,19 @@
                         </div>
                         </div>
                         <br>
+            
             <!-- Password -->
             <div class="row " style="text-align: left;">
                     <div class="col mt-3">
                         <label for="psw">Password</label>
                         <input type="password" name="password" id="psw" class="form-control" placeholder="Password">
-                         <span id="password" style="color: red;"></span>
+                         <span id="password" style="color: orange;"></span>
                     </div>
 
                     <div class="col mt-3">
                         <label for="cpsw">Confirm Password</label>
                         <input type="password" name="pwd" id="cpsw" class="form-control" placeholder="Confirm Password">
-                       <span id="confirmpassword" style="color: red;"></span>
+                       <span id="confirmpassword" style="color: orange;"></span>
                     </div>
                 </div><br> 
             <button type="submit" formaction="./grantAccess" class="btn btn-primary c mx-auto d-block mt-2 " >Submit</button>
